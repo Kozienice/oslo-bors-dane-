@@ -27,7 +27,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.1"
+WERSJA = "0.1.1"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -144,7 +144,9 @@ def newsweb(s):
         zapisz(RAW / "newsweb" / "lista" / f"{t}.json", r.content, zr, r.url, r.status_code)
         try:
             j = r.json()
-            ok = j.get("header", {}).get("result", {}).get("text") == "OK"
+            h = j.get("header", {}) or {}
+            # API zwraca klucze naglowka plasko ("result.text"), wersja zagniezdzona na wszelki wypadek
+            ok = (h.get("result.text") or (h.get("result") or {}).get("text")) == "OK"
             msgs = j.get("data", {}).get("messages", []) or []
             if j.get("data", {}).get("overflow"):
                 blad(zr, f"{t}: overflow=true (lista ucieta przez API)")
