@@ -1,0 +1,46 @@
+name: pobierz-dane-oslo
+
+# Godziny w UTC (GitHub nie zna stref czasowych).
+# 04:45 UTC = 06:45 Oslo latem (CEST) / 05:45 zima (CET)  -> przed zadaniem PORTFEL (pon 07:30)
+# 14:40 UTC = 16:40 Oslo latem (po zamknieciu sesji 16:20) / 15:40 zima (przed zamknieciem)
+# 15:40 UTC = 17:40 Oslo latem / 16:40 zima (po zamknieciu sesji)
+# GitHub moze opozniac zaplanowane uruchomienia o kilka-kilkadziesiat minut.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "45 4 * * 1-5"
+    - cron: "40 14 * * 1-5"
+    - cron: "40 15 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pobierz-dane-oslo
+  cancel-in-progress: false
+
+jobs:
+  pobierz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r wymagania.txt
+      - name: oslo
+        run: python oslo.py
+        continue-on-error: true
+      - name: zapisz zmiany
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "brak zmian w danych"
+          else
+            git commit -m "dane: $(date -u +%Y-%m-%dT%H:%MZ)"
+            git pull --rebase
+            git push
+          fi
