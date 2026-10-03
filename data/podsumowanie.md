@@ -1,8 +1,8 @@
-# Oslo Bors - dane z 2026-10-02 21:18 CEST (skrypt 0.1.1)
+# Oslo Bors - dane z 2026-10-03 10:59 CEST (skrypt 0.1.2)
 
 Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie wpisano recznie.
 
-- API newsweb: 26/26 tickerow OK, 68 komunikatow w oknie 2026-09-18..2026-10-03; niepowodzenia: brak
+- API newsweb: 26/26 tickerow OK, 63 komunikatow w oknie 2026-09-19..2026-10-04; niepowodzenia: brak
 - Norges Bank: OK, ostatnia data 2026-10-02
 - FRED DCOILBRENTEU: OK 2026-09-29 113.96
 - FRED MCOILBRENTEU: OK 2026-08-01 91.08
