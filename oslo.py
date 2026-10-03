@@ -27,7 +27,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.1.1"
+WERSJA = "0.1.2"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -42,8 +42,9 @@ KLASTRY = {
     "LOGISTYKA": ["MPCC", "HAUTO", "HAFNI", "FRO"],
     "PRZEMYSL": ["AKSO", "SUBC", "KOG"],
     "SEAFOOD": ["MOWI", "SALM", "LSG", "BAKKA"],
-    "CRITICAL_MINERALS": ["NOM", "TEKNA", "NHY", "RANA"],
-    "RADAR": ["VEI", "NRC", "POLAR", "GEM"],
+    "CRITICAL_MINERALS": ["NOM", "TEKNA", "NHY"],
+    "BUDOWNICTWO": ["VEI", "SNTIA", "NRC"],
+    "RADAR": ["POLAR", "GEM"],
 }
 TICKERY = PORTFEL + OBSERWOWANE + [t for lista in KLASTRY.values() for t in lista]
 KURSY_TICKERY = PORTFEL + OBSERWOWANE + KLASTRY["ENERGIA"]
