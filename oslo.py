@@ -8,6 +8,13 @@ WERSJA 0.1 (2026-10-02)
 - FRED: DCOILBRENTEU (Dated Brent dzienny), MCOILBRENTEU (Brent sredni miesieczny), PNGASEUUSDM (gaz UE miesieczny).
 - Kursy zamkniecia: Yahoo chart API (EKSPERYMENTALNE, klasa 4) - do potwierdzenia drugim zrodlem w zadaniu.
 
+WERSJA 0.2.0 (2026-10-05)
+- Rekomendacje brokerow (EKSPERYMENTALNE): listy depesz MarketScreener (news-broker-research i news) dla portfela
+  i obserwowanych + strony Nordnet z depeszami Direkt/TDN. Zapis: tekst strony bez znacznikow (raw/rekomendacje/*.txt,
+  sha256 pliku i sha256 oryginalnej odpowiedzi w status.json) oraz wiersze z frazami o celach i ratingach
+  (data/rekomendacje.csv) z data skopiowana z otoczenia wiersza bez interpretacji. Powod: 05.10.2026 poranny przebieg
+  nie wykryl BofA 02.10 (cel 50 z 47) - publiczne listy w narzedziach modelu byly zamrozone.
+
 Zasady (jak w ev-dane-pl):
 - zadnych liczb wpisanych recznie; wszystko w data/ pochodzi z odpowiedzi zrodla albo z arytmetyki na nich
 - kazdy pobrany plik ma w data/status.json: adres, czas UTC, kod HTTP, rozmiar, sha256
@@ -17,8 +24,10 @@ Zasady (jak w ev-dane-pl):
 
 import csv
 import hashlib
+import html
 import io
 import json
+import re
 import time
 import traceback
 from datetime import datetime, timedelta, timezone
@@ -27,7 +36,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.1.2"
+WERSJA = "0.2.0"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -330,6 +339,94 @@ def kursy(s):
     status["kontrole"]["kursy_yahoo"] = {"eksperymentalne": True, "klasa": 4, "per_ticker": wynik}
 
 
+# ---------------------------------------------------------------- rekomendacje brokerow (eksperymentalne)
+
+# adresy stron z depeszami o celach i ratingach; slug-i skopiowane z wynikow wyszukiwania (05.10.2026)
+MS = "https://www.marketscreener.com/quote/stock"
+REKOMENDACJE_STRONY = {
+    "VAR": [("marketscreener_broker", f"{MS}/VAR-ENERGI-133025650/news-broker-research/"),
+            ("marketscreener_news", f"{MS}/VAR-ENERGI-133025650/news/")],
+    "NAS": [("marketscreener_broker", f"{MS}/NORWEGIAN-AIR-SHUTTLE-ASA-1413204/news-broker-research/"),
+            ("marketscreener_news", f"{MS}/NORWEGIAN-AIR-SHUTTLE-ASA-1413204/news/")],
+    "AFG": [("marketscreener_broker", f"{MS}/AF-GRUPPEN-ASA-1413069/news-broker-research/"),
+            ("marketscreener_news", f"{MS}/AF-GRUPPEN-ASA-1413069/news/")],
+    "TGS": [("marketscreener_broker", f"{MS}/TGS-ASA-1413301/news-broker-research/"),
+            ("marketscreener_news", f"{MS}/TGS-ASA-1413301/news/"),
+            ("nordnet_fi", "https://www.nordnet.fi/markkinakatsaus/osakekurssit/16105575-tgs-asa")],
+    "BNOR": [("marketscreener_broker", f"{MS}/BLUENORD-ASA-1413217/news-broker-research/"),
+             ("marketscreener_news", f"{MS}/BLUENORD-ASA-1413217/news/"),
+             ("nordnet_se", "https://www.nordnet.se/aktier/kurser/blue-nord-bnor-xosl")],
+}
+# frazy o celach i ratingach: EN, SV, NO, FI, DE
+REK_WZOR = re.compile(
+    r"(target|price objective|rating|upgrad|downgrad|initiat|coverage|riktkurs|kursm[aå]l|kursmaal|anbefal|"
+    r"oppgrader|nedgrader|h[oö]jer|s[aä]nker|tavoitehin|suositus|kursziel)", re.I)
+DATA_WZORY = [
+    re.compile(r"\b\d{4}-\d{2}-\d{2}\b"),
+    re.compile(r"\b\d{1,2}[./]\d{1,2}[./]\d{2,4}\b"),
+    re.compile(r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.? \d{1,2}\b"),
+    re.compile(r"\b\d{1,2}\.? (?:jan|feb|mar|apr|mai|maj|may|jun|jul|aug|sep|okt|oct|nov|des|dec)[a-z]*\b", re.I),
+    re.compile(r"\b\d{1,2}/\d{1,2}\b"),
+    re.compile(r"\b\d{1,2}:\d{2}(?:am|pm)?\b", re.I),
+]
+
+
+def tekst_strony(html_bytes: bytes) -> str:
+    """HTML -> linie tekstu bez znacznikow; tresc skryptow zostaje (strony Next.js trzymaja depesze w JSON)."""
+    t = html_bytes.decode("utf-8", errors="replace")
+    t = re.sub(r"(?is)<style.*?</style>", "\n", t)
+    t = re.sub(r"(?s)<[^>]+>", "\n", t)
+    t = html.unescape(t)
+    t = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), t)
+    t = t.replace('\\"', '"').replace("\\n", "\n").replace("\\/", "/")
+    t = re.sub(r'","|\},\{|\],\[', "\n", t)
+    linie = [re.sub(r"\s+", " ", l).strip() for l in t.split("\n")]
+    return "\n".join(l for l in linie if l)
+
+
+def data_z_otoczenia(linie, i):
+    """Pierwszy napis wygladajacy na date w wierszu albo w 3 wierszach wyzej - kopiowany 1:1, bez interpretacji."""
+    for j in range(i, max(i - 4, -1), -1):
+        for w in DATA_WZORY:
+            m = w.search(linie[j])
+            if m:
+                return m.group(0)
+    return ""
+
+
+def rekomendacje(s):
+    zr = "rekomendacje"
+    wiersze, wynik = [], {}
+    for t, strony in REKOMENDACJE_STRONY.items():
+        for nazwa, url in strony:
+            klucz = f"{t}/{nazwa}"
+            r = get(s, url, zr)
+            if r is None or r.status_code != 200:
+                wynik[klucz] = {"ok": False, "http": getattr(r, "status_code", None)}
+                continue
+            tekst = tekst_strony(r.content)
+            plik = RAW / "rekomendacje" / f"{t}_{nazwa}.txt"
+            zapisz(plik, tekst.encode("utf-8"), zr, r.url, r.status_code)
+            wpis = status["zrodla"][zr]["pliki"][-1]
+            wpis["bajty_odpowiedzi"] = len(r.content)
+            wpis["sha256_odpowiedzi"] = hashlib.sha256(r.content).hexdigest()
+            linie = tekst.split("\n")
+            widziane, n = set(), 0
+            for i, l in enumerate(linie):
+                if not (15 <= len(l) <= 400) or not REK_WZOR.search(l) or l in widziane:
+                    continue
+                widziane.add(l)
+                wiersze.append([t, nazwa, data_z_otoczenia(linie, i), l, r.url, utc()])
+                n += 1
+            wynik[klucz] = {"ok": True, "http": r.status_code, "bajty": len(r.content), "trafien": n}
+    zapisz_csv(DATA / "rekomendacje.csv",
+               ["ticker", "zrodlo", "data_w_otoczeniu", "wiersz", "adres", "pobrano_utc"], wiersze)
+    status["kontrole"]["rekomendacje"] = {"eksperymentalne": True, "klasa": "do ustalenia (RELAY po weryfikacji)",
+                                          "stron": sum(len(v) for v in REKOMENDACJE_STRONY.values()),
+                                          "ok": sum(1 for w in wynik.values() if w.get("ok")),
+                                          "wierszy": len(wiersze), "per_strona": wynik}
+
+
 # ---------------------------------------------------------------- podsumowanie dla zadania
 
 def podsumowanie():
@@ -350,7 +447,11 @@ def podsumowanie():
           for t, w in ky.items() if w.get("ok")]
     zle = [t for t, w in ky.items() if not w.get("ok")]
     linie.append(f"- Kursy Yahoo (eksperymentalne, klasa 4): {'; '.join(ok) or 'brak'}; bledy: {', '.join(zle) or 'brak'}")
-    linie += ["", "Pliki: komunikaty.csv, waluty.csv, kursy.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json"]
+    rk = k.get("rekomendacje") or {}
+    zle_r = [n for n, w in (rk.get("per_strona") or {}).items() if not w.get("ok")]
+    linie.append(f"- Rekomendacje (eksperymentalne): {rk.get('ok', 0)}/{rk.get('stron', 0)} stron OK, "
+                 f"{rk.get('wierszy', 0)} wierszy w rekomendacje.csv; bledy: {', '.join(zle_r) or 'brak'}")
+    linie += ["", "Pliki: komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json"]
     (DATA / "podsumowanie.md").write_text("\n".join(linie) + "\n", encoding="utf-8")
 
 
@@ -359,7 +460,7 @@ def podsumowanie():
 def main():
     DATA.mkdir(exist_ok=True)
     s = sesja()
-    for krok in (newsweb, norges_bank, fred, kursy):
+    for krok in (newsweb, norges_bank, fred, kursy, rekomendacje):
         try:
             krok(s)
         except Exception:
