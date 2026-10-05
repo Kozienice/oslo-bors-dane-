@@ -13,7 +13,7 @@ GitHub Actions pobiera surowe dane w dni robocze i zapisuje je w `data/`. Zadani
 - Kursy zamkniecia z Yahoo chart API (EKSPERYMENTALNE, klasa 4): `data/kursy.csv`.
 - Rekomendacje brokerow (EKSPERYMENTALNE od 0.2.0): listy depesz MarketScreener (news-broker-research, news) dla
   VAR, NAS, AFG, TGS, BNOR oraz strony Nordnet z depeszami Direkt/TDN. Surowe: `data/raw/rekomendacje/{ticker}_{zrodlo}.txt`
-  (tekst strony bez znacznikow; w status.json sha256 pliku i sha256 oryginalnej odpowiedzi). Pochodne:
+  (okna tekstu bez znacznikow wokol trafien; w status.json sha256 pliku i sha256 oryginalnej odpowiedzi). Pochodne:
   `data/rekomendacje.csv` - wiersze z frazami o celach/ratingach, kolumna `data_w_otoczeniu` skopiowana 1:1 z sasiedztwa
   wiersza (moze byc pusta lub nietrafiona). Klasa do ustalenia po 2 tygodniach porownania z rachunkiem DNB.
 

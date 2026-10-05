@@ -10,7 +10,7 @@ WERSJA 0.1 (2026-10-02)
 
 WERSJA 0.2.0 (2026-10-05)
 - Rekomendacje brokerow (EKSPERYMENTALNE): listy depesz MarketScreener (news-broker-research i news) dla portfela
-  i obserwowanych + strony Nordnet z depeszami Direkt/TDN. Zapis: tekst strony bez znacznikow (raw/rekomendacje/*.txt,
+  i obserwowanych + strony Nordnet z depeszami Direkt/TDN. Zapis: okna tekstu wokol trafien (raw/rekomendacje/*.txt,
   sha256 pliku i sha256 oryginalnej odpowiedzi w status.json) oraz wiersze z frazami o celach i ratingach
   (data/rekomendacje.csv) z data skopiowana z otoczenia wiersza bez interpretacji. Powod: 05.10.2026 poranny przebieg
   nie wykryl BofA 02.10 (cel 50 z 47) - publiczne listy w narzedziach modelu byly zamrozone.
@@ -377,7 +377,8 @@ def tekst_strony(html_bytes: bytes) -> str:
     t = re.sub(r"(?is)<style.*?</style>", "\n", t)
     t = re.sub(r"(?s)<[^>]+>", "\n", t)
     t = html.unescape(t)
-    t = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), t)
+    t = re.sub(r"\\u([0-9a-fA-F]{4})",
+               lambda m: chr(int(m.group(1), 16)) if not 0xD800 <= int(m.group(1), 16) <= 0xDFFF else "", t)
     t = t.replace('\\"', '"').replace("\\n", "\n").replace("\\/", "/")
     t = re.sub(r'","|\},\{|\],\[', "\n", t)
     linie = [re.sub(r"\s+", " ", l).strip() for l in t.split("\n")]
@@ -404,20 +405,21 @@ def rekomendacje(s):
             if r is None or r.status_code != 200:
                 wynik[klucz] = {"ok": False, "http": getattr(r, "status_code", None)}
                 continue
-            tekst = tekst_strony(r.content)
-            plik = RAW / "rekomendacje" / f"{t}_{nazwa}.txt"
-            zapisz(plik, tekst.encode("utf-8"), zr, r.url, r.status_code)
-            wpis = status["zrodla"][zr]["pliki"][-1]
-            wpis["bajty_odpowiedzi"] = len(r.content)
-            wpis["sha256_odpowiedzi"] = hashlib.sha256(r.content).hexdigest()
-            linie = tekst.split("\n")
-            widziane, n = set(), 0
+            linie = tekst_strony(r.content).split("\n")
+            widziane, n, okna = set(), 0, []
             for i, l in enumerate(linie):
                 if not (15 <= len(l) <= 400) or not REK_WZOR.search(l) or l in widziane:
                     continue
                 widziane.add(l)
                 wiersze.append([t, nazwa, data_z_otoczenia(linie, i), l, r.url, utc()])
+                okna.append("\n".join(x for x in linie[max(i - 3, 0):i + 1] if len(x) <= 400))
                 n += 1
+            # zapisujemy tylko okna wokol trafien (strona ma do 1 MB tekstu); pelna odpowiedz potwierdza sha256
+            plik = RAW / "rekomendacje" / f"{t}_{nazwa}.txt"
+            zapisz(plik, "\n----\n".join(okna).encode("utf-8", "replace"), zr, r.url, r.status_code)
+            wpis = status["zrodla"][zr]["pliki"][-1]
+            wpis["bajty_odpowiedzi"] = len(r.content)
+            wpis["sha256_odpowiedzi"] = hashlib.sha256(r.content).hexdigest()
             wynik[klucz] = {"ok": True, "http": r.status_code, "bajty": len(r.content), "trafien": n}
     zapisz_csv(DATA / "rekomendacje.csv",
                ["ticker", "zrodlo", "data_w_otoczeniu", "wiersz", "adres", "pobrano_utc"], wiersze)
