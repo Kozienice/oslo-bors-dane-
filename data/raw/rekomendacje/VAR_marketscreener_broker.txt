@@ -1,906 +1,159 @@
-Var Energi: Analyst Recommendations and Opinions | VAR | NO0011202772 | MarketScreener
-(function(){function i(e){if(!window.frames[e]){if(document.body&&document.body.firstChild){var t=document.body;var n=document.createElement("iframe");n.style.display="none";n.name=e;n.title=e;t.insertBefore(n,t.firstChild)}else{setTimeout(function(){i(e)},5)}}}function e(n,o,r,f,s){function e(e,t,n,i){if(typeof n!=="function"){return}if(!window[o]){window[o]=[]}var a=false;if(s){a=s(e,i,n)}if(!a){window[o].push({command:e,version:t,callback:n,parameter:i})}}e.stub=true;e.stubVersion=2;function t(i){if(!window[n]||window[n].stub!==true){return}if(!i.data){return}var a=typeof i.data==="string";var e;try{e=a?JSON.parse(i.data):i.data}catch(t){return}if(e[r]){var o=e[r];window[n](o.command,o.version,function(e,t){var n={};n[f]={returnValue:e,success:t,callId:o.callId};if(i.source){i.source.postMessage(a?JSON.stringify(n):n,"*")}},o.parameter)}}if(typeof window[n]!=="function"){window[n]=e;if(window.addEventListener){window.addEventListener("message",t,false)}else{window.attachEvent("onmessage",t)}}}e("__tcfapi
-__tcfapiBuffer
-__tcfapiCall
-__tcfapiReturn");i("__tcfapiLocator")})();
-(function(){window.__gpp_addFrame=function(e){if(!window.frames[e]){if(document.body){var t=document.createElement("iframe");t.style.cssText="display:none";t.name=e;document.body.appendChild(t)}else{window.setTimeout(window.__gpp_addFrame,10,e)}}};window.__gpp_stub=function(){var e=arguments;__gpp.queue=__gpp.queue||[];__gpp.events=__gpp.events||[];if(!e.length||e.length==1&&e[0]=="queue"){return __gpp.queue}if(e.length==1&&e[0]=="events"){return __gpp.events}var t=e[0];var p=e.length>1?e[1]:null;var s=e.length>2?e[2]:null;if(t==="ping"){p({gppVersion:"1.1",cmpStatus:"stub",cmpDisplayStatus:"hidden",signalStatus:"not ready",supportedAPIs:["2:tcfeuv2
-5:tcfcav1
-6:uspv1
-7:usnat
-8:usca
-9:usva
-10:usco
-11:usut
-12:usct"],cmpId:"7",sectionList:[],applicableSections:[],gppString:"",parsedSections:{}},true)}else if(t==="addEventListener"){if(!("lastId"in __gpp)){__gpp.lastId=0}__gpp.lastId++;var n=__gpp.lastId;__gpp.events.push({id:n,callback:p,parameter:s});p({eventName:"listenerRegistered",listenerId:n,data:true,pingData:{gppVersion:"1.1",cmpStatus:"stub",cmpDisplayStatus:"hidden",signalStatus:"not ready",supportedAPIs:["2:tcfeuv2
-5:tcfcav1
-6:uspv1
-7:usnat
-8:usca
-9:usva
-10:usco
-11:usut
-12:usct"],cmpId:"7",sectionList:[],applicableSections:[],gppString:"",parsedSections:{}}},true)}else if(t==="removeEventListener"){var a=false;for(var i=0;i
-(function(){(function(e,i,o){var n=document.createElement("link");n.rel="preconnect";n.as="script";var t=document.createElement("link");t.rel="dns-prefetch";t.as="script";var r=document.createElement("script");r.id="spcloader";r.type="text/javascript";r["async"]=true;r.charset="utf-8";window.didomiConfig=window.didomiConfig||{};window.didomiConfig.sdkPath=window.didomiConfig.sdkPath||o||"https://sdk.privacy-center.org/";const d=window.didomiConfig.sdkPath;var a=d+e+"/loader.js?target_type=notice&target="+i;if(window.didomiConfig&&window.didomiConfig.user){var c=window.didomiConfig.user;var s=c.country;var f=c.region;if(s){a=a+"&country="+s;if(f){a=a+"®ion="+f}}}n.href=d;t.href=d;r.src=a;var m=document.getElementsByTagName("script")[0];m.parentNode.insertBefore(n,m);m.parentNode.insertBefore(t,m);m.parentNode.insertBefore(r,m)})("176f5f07-e2b2-4464-b372-8b65dc4bce7e
-QLN3ppyw")})();
-function clearCmpConsentAndRedirect(sUrl) {
-if (window.Didomi && typeof window.Didomi.reset === 'function') {
-window.Didomi.reset();
-}
-window.location.replace(sUrl);
-}
-window.didomiEventListeners = window.didomiEventListeners || [];
-window.didomiEventListeners.push({
-event: 'notice.clickdisagree',
-listener: function (context) {
-clearCmpConsentAndRedirect('/services/solutions/?utmzb_campaign=cmp++popin_cmp_refuser-s-abonner+refuser-s-abonner+&utmzb_content=++++&utmzb_source=popin&utmzb_medium=url_declenchement');
-}
-});
-window.didomiOnReady = window.didomiOnReady || [];
-window.didomiOnReady.push(function (Didomi) {
-var originalButton = document.getElementById('didomi-notice-learn-more-button');
-var popupView = document.querySelector('.didomi-popup-view');
-if (originalButton && popupView && !document.getElementById('didomi-client-link')) {
-originalButton.style.display = 'none';
-var newButton = document.createElement('div');
-newButton.id = 'didomi-client-link';
-newButton.innerHTML = originalButton.innerHTML;
-newButton.onclick = function(e) {
-e.preventDefault();
-window.location.replace('/login/');
-};
-popupView.appendChild(newButton);
-addEventListener("resize", (event) => {
-var originalButton = document.getElementById('didomi-notice-learn-more-button');
-if (originalButton) {
-originalButton.style.display = 'none';
-}
-})
-}
-});
-var aAdsList = [];
-var aAdsListSize = [];
-var aAdsListCA = [];
-var aAdsQueue = [];
-window.googletag = window.googletag || { cmd: [] };
-googletag.cmd.push(function() {
-googletag.pubads().disableInitialLoad();
-});
-Array.prototype.pushEvent = function(callback) {this.push = function(e) {Array.prototype.push.call(this, e);callback(this);};};
-{
-"@context": "http://schema.org",
-"@type": "WebSite",
-"name": "MarketScreener",
-"url": "https://www.marketscreener.com/",
-"potentialAction": {
-"@type": "SearchAction",
-"target": {
-"@type": "EntryPoint",
-"urlTemplate": "https://www.marketscreener.com/search/?q={search_term_string}"
-},
-"query-input": "required name=search_term_string"
-}
-}
-9ef18.RPwTrl0RJOfBerc8RawGLK4DsqsuLCz_QyHgkmp4KF4.LbZF3gV3TKL3KIRzFYFKSc1b6p54Ska-KEbXoC0ffwQUmXCdNV9q0vgJjw
-aAdsList.push('SearchBar');
-aAdsListSize.push(null);
-aAdsListCA.push(['US']);
-Log In
-Create an account
-Continue with Google
-Continue with Apple
-Continue with LinkedIn
-or by email
-Continue with an email
-Create an account with Google
-Create an account with Apple
-Create an account with LinkedIn
-or by email
-Create an account
-Back
-Enter your password
-Continue
-Forgot your password ?
-Log in
-Subscribe
-Markets
-Stocks
-Top Capitalization
-United States
-North America
-Europe
-Asia
-Middle East
-Sector Research
-Company Calendar
-Equity Analysis
-Most popular
-HONEYWELL INTERNATIONAL INC.
-KEEL INFRASTRUCTURE CORP.
-CUSHMAN & WAKEFIELD LIMITED
-INDIVIOR PHARMACEUTICALS, INC.
-TOWER SEMICONDUCTOR LTD.
-AMAROQ LTD.
-TRULIEVE CANNABIS CORP.
-Indices
-Homepage
-Rankings
-Europe
-America
-Asia
-Africa
-Index Analysis
-Indices News
-S&P 500
-DOW JONES
-NASDAQ 100
-TSX COMP
-FTSE 100
-DAX
-CAC 40
-EURO STOXX 50
-Currency / Forex
-Homepage
-Rankings
-Currency Cross Rate
-Currency Converter
-Forex Analysis
-Currencies News
-USD / EUR
-USD / CAD
-USD / MXN
-USD / BRL
-USD / INR
-Commodities
-Homepage
-Energy
-Precious metals
-Agriculture
-Industrial Metals
-Livestock and Cattle
-GOLD
-CRUDE OIL (WTI)
-CRUDE OIL (BRENT)
-SILVER
-PLATINUM
-Cryptocurrencies
-Homepage
-Rankings
-Charts
-Analysis
-News
-BITCOIN"/>
-BITCOIN
-ETHEREUM"/>
-ETHEREUM
-BINANCE COIN"/>
-BINANCE COIN
-SOLANA"/>
-SOLANA
-CARDANO"/>
-CARDANO
-CHAINLINK"/>
-CHAINLINK
-Interest Rates
-Homepage
-Yield Curve
-Developed Markets
-Emerging Markets
-ETF
-Summary
-Screener
-Analysis
-News
-News
-All News
-Macroeconomics
-Policy
-Geopolitics
-Technology
-International Trade
-Military conflicts
-Taxation
-Sustainable development
-Legal, Regulation and Crime
-Companies
-Financial Results
-Analyst Recommendations
-Transcripts
-Press releases
-Insider transaction
-Controversies
-Innovations and expansions
-IPOs
-Rumors
-Activism
-Negative surprises
-Positive surprises
-New Contracts
-Indices
-Currency / Forex
-Commodities
-Cryptocurrencies
-ETF
-Interest Rates
-Funds
-Economy
-Sectors
-All our articles
-Most Read News
-Key News
-Business Insiders
-Analysis
-All Articles
-Must Read
-Interviews
-Stocks
-Indices
-Currencies
-Commodities
-ETF
-Cryptocurrencies
-Interest Rates
-Calendar
-Economic Calendar
-Company Calendar
-Dividend calendar
-Stock Picks
-All our investments
-United States
-Europe
-Asia, Pacific
-Portfolios
-USA Portfolio
-European Portfolio
-Asian Portfolio
-Virtual Portfolios
-Watchlists
-My Watchlists
-Watchlists
-My previous session
-My most visited
-Most popular
-Investment Style
-Homepage
-Dividend Aristocrats
-Top ROE
-Undervalued stocks
-Low volatility
-Monthly dividends
-Low capital intensity
-Investment Themes
-Homepage
-The future of mobility
-US Basketball
-Blockchain
-Space Exploration
-5G
-The genomic revolution
-Trading
-Market Timing
-Key News
-Pre/Post-Market Movers
-Technical Alerts
-Screeners
-Stocks
-ETF
-Insider Transactions
-Tools
-Advanced Chart
-Currency Converter
-Rankings
-Top Movers
-Short-Term Gainers & Losers
-Long-term Gainers & Losers
-Unusual Volumes
-New Historical Highs
-New Historical Lows
-Pre/Post-Market Movers
-Top Fundamentals
-Fundamental Composite
-Sales Growth
-Earnings Growth
-Profitability
-Finances
-Visibility Rankings
-Rankings Valuation
-Valuation Composite
-Market Cap
-P/E
-Enterprise Value
-Yield
-Price to Book (PBR)
-Free Cash Flow (FCF)
-Top Consensus
-Consensus Composite
-Analyst Opinion
 Target Price
 Opinion Divergences
 Estimates Revisions
 Analyst Coverage
-Technical Analysis Rankings
-RSI
-GAPS
-STIM
-Daily Breakouts
-Weekly Breakouts
-Trends
-Volatility
-Top ranking ESG
-ESG MSCI
-Environment
-Social
-Governance
-Islamic Finance
-Paris Agreement
-US Edition
-Log in
-Subscribe
-Homepage
-Markets
-Stocks
-Top Capitalization
-United States
-North America
-Europe
-Asia
-Middle East
-Sector Research
-Company Calendar
-Equity Analysis
-Most popular
-HONEYWELL INTERNATIONAL INC.
-KEEL INFRASTRUCTURE CORP.
-CUSHMAN & WAKEFIELD LIMITED
-INDIVIOR PHARMACEUTICALS, INC.
-TOWER SEMICONDUCTOR LTD.
-AMAROQ LTD.
-TRULIEVE CANNABIS CORP.
-Indices
-Homepage
-Rankings
-Europe
-America
-Asia
-Africa
-Index Analysis
-Indices News
-S&P 500
-DOW JONES
-NASDAQ 100
-TSX COMP
-FTSE 100
-DAX
-CAC 40
-EURO STOXX 50
-Currency / Forex
-Homepage
-Rankings
-Currency Cross Rate
-Currency Converter
-Forex Analysis
-Currencies News
-USD / EUR
-USD / CAD
-USD / MXN
-USD / BRL
-USD / INR
-Commodities
-Homepage
-Energy
-Precious metals
-Agriculture
-Industrial Metals
-Livestock and Cattle
-GOLD
-CRUDE OIL (WTI)
-CRUDE OIL (BRENT)
-SILVER
-PLATINUM
-Cryptocurrencies
-Homepage
-Rankings
-Charts
-Analysis
-News
-BITCOIN"/>
-BITCOIN
-ETHEREUM"/>
-ETHEREUM
-BINANCE COIN"/>
-BINANCE COIN
-SOLANA"/>
-SOLANA
-CARDANO"/>
-CARDANO
-CHAINLINK"/>
-CHAINLINK
-Interest Rates
-Homepage
-Yield Curve
-Developed Markets
-Emerging Markets
-ETF
-Summary
-Screener
-Analysis
-News
-News
-All News
-Macroeconomics
-Policy
-Geopolitics
-Technology
-International Trade
-Military conflicts
-Taxation
-Sustainable development
-Legal, Regulation and Crime
-Companies
-Financial Results
-Analyst Recommendations
-Transcripts
-Press releases
-Insider transaction
-Controversies
-Innovations and expansions
-IPOs
-Rumors
-Activism
-Negative surprises
-Positive surprises
-New Contracts
-Indices
-Currency / Forex
-Commodities
-Cryptocurrencies
-ETF
-Interest Rates
-Funds
-Economy
-Sectors
-All our articles
-Most Read News
-Key News
-Business Insiders
-Analysis
-All Articles
-Must Read
-Interviews
-Stocks
-Indices
-Currencies
-Commodities
-ETF
-Cryptocurrencies
-Interest Rates
-Calendar
-Economic Calendar
-Company Calendar
-Dividend calendar
-Stock Picks
-All our investments
-United States
-Europe
-Asia, Pacific
-Portfolios
-USA Portfolio
-European Portfolio
-Asian Portfolio
-Virtual Portfolios
-Watchlists
-My Watchlists
-Watchlists
-My previous session
-My most visited
-Most popular
-Investment Style
-Homepage
-Dividend Aristocrats
-Top ROE
-Undervalued stocks
-Low volatility
-Monthly dividends
-Low capital intensity
-Investment Themes
-Homepage
-The future of mobility
-US Basketball
-Blockchain
-Space Exploration
-5G
-The genomic revolution
-Trading
-Market Timing
-Key News
-Pre/Post-Market Movers
-Technical Alerts
-Screeners
-Stocks
-ETF
-Insider Transactions
-Tools
-Advanced Chart
-Currency Converter
-Rankings
-Top Movers
-Short-Term Gainers & Losers
-Long-term Gainers & Losers
-Unusual Volumes
-New Historical Highs
-New Historical Lows
-Pre/Post-Market Movers
-Top Fundamentals
-Fundamental Composite
-Sales Growth
-Earnings Growth
-Profitability
-Finances
-Visibility Rankings
-Rankings Valuation
-Valuation Composite
-Market Cap
-P/E
-Enterprise Value
-Yield
-Price to Book (PBR)
-Free Cash Flow (FCF)
-Top Consensus
-Consensus Composite
-Analyst Opinion
-Target Price
-Opinion Divergences
-Estimates Revisions
-Analyst Coverage
-Technical Analysis Rankings
-RSI
-GAPS
-STIM
-Daily Breakouts
-Weekly Breakouts
-Trends
-Volatility
-Top ranking ESG
-ESG MSCI
-Environment
-Social
-Governance
-Islamic Finance
-Paris Agreement
-Switch edition
-aAdsList.push('Middle2');
-aAdsListSize.push([[970, 250], [1000, 180], [1000, 200], [1000, 250]]);
-aAdsListCA.push(null);
-VAR ENERGI
-Add to a list
-PDF Report
--->
-Broker Recommendations Var Energi
-Stocks
-VAR
-NO0011202772
-Oil & Gas Exploration and Production
-Real-time
-Oslo Bors
-08:08:35 2026-10-05 am EDT
-5-day change
-1st Jan Change
-51.50
-NOK
-+1.78%
--0.16%
-+56.12%
-if (typeof SS_ISE_LOADED == 'undefined') SS_ISE_LOADED = new Array();
-[{ event: "quotes", id: "368350639"}].forEach((event)=>{SS_ISE_LOADED.push(event);})
-Sep. 30
-Vår Energi Finalizes Purchase of Pandion Energy Assets, Licenses
-MT
-Sep. 29
-Vår Energi ASA (OB:VAR) completed the acquisition of Asset Portfolio from Pandion Energy AS.
-CI
-Summary
-Quotes
-Charts
-Technical Analysis
-Static Chart
-Total Return chart
-News Chart
-Sector Chart
-Comparison Chart
-Relative Strength Chart
-News
-All News
-Broker Recommendations
-Highlights
-Insiders
-Transcripts
-Press Releases
-Official Publications
-Other languages
-MarketScreener Editorial Features
-MarketScreener Strategies
-Company
-Profile
-Governance
-Share ownership
-Insider Transactions
-Connections
-Financials
-Analysts' Forecasts
-Income Statement
-Balance Sheet
-Cash flow
-Financial Ratios
-Business Segments
-Valuation
-Valuation ratios
-Dividend
-Consensus
-Analysts' Opinion
-Estimates Revisions
-Ratings
-Calendar
-Sector
-Sector performance
-Sector valuations
-Sector dividends
-Financial comparisons
-Sector ratings
-Sector consensus
-Sector revisions
-ETFs
-Broker Recommendations
-Search
+----
 Search
 See the results
 Sep. 25
 DNB Carnegie downgrades Vår Energi to sell (hold), target price NOK 46 (44)
+----
+DNB Carnegie downgrades Vår Energi to sell (hold), target price NOK 46 (44)
 FW
 Sep. 25
+Citigroup raises target price for Vår Energi to 57 Norwegian kroner (48), reiterates Buy - BN
+----
 Citigroup raises target price for Vår Energi to 57 Norwegian kroner (48), reiterates Buy - BN
 FW
 Sep. 22
 ABG Sundal Collier downgrades Var Energi to sell (hold), reiterates target price of 46 Norwegian kroner
-FW
-Sep. 11
+----
 Goldman Sachs Boosts Vår Energi's PT, Keeps at Buy
 MT
 Sep. 10
 Goldman Sachs raises its price target for Var Energi to 68 Norwegian kroner (53), reiterates buy - BN
+----
+Goldman Sachs raises its price target for Var Energi to 68 Norwegian kroner (53), reiterates buy - BN
 FW
 Sep. 04
+Barclays raises target price for Var Energi to 58 Norwegian kroner (50), reiterates overweight - BN
+----
 Barclays raises target price for Var Energi to 58 Norwegian kroner (50), reiterates overweight - BN
 FW
 Sep. 04
 Clarksons Platou Securities raises target price for Var Energi to 54 Norwegian kroner (50), reiterates buy - BN
+----
+Clarksons Platou Securities raises target price for Var Energi to 54 Norwegian kroner (50), reiterates buy - BN
 FW
 Sep. 03
+Morgan Stanley Kicks Off Vår Energi Coverage at Overweight
+----
 Morgan Stanley Kicks Off Vår Energi Coverage at Overweight
 MT
 Sep. 03
 SEB cuts its target price for Var Energi to 36 Norwegian kroner (37), reiterates sell
+----
+SEB cuts its target price for Var Energi to 36 Norwegian kroner (37), reiterates sell
 FW
 Sep. 03
+Morgan Stanley initiates coverage of Vår Energi with an overweight rating and a target price of 56 Norwegian kroner - BN
+----
 Morgan Stanley initiates coverage of Vår Energi with an overweight rating and a target price of 56 Norwegian kroner - BN
 FW
 Jul. 23
 RBC Capital Markets Downgrades Vår Energi to Sector Perform, Lowers PT
+----
+RBC Capital Markets Downgrades Vår Energi to Sector Perform, Lowers PT
 MT
 Jul. 23
+RBC downgrades Var Energi to sector perform (outperform), price target 55 Norwegian kroner - BN
+----
 RBC downgrades Var Energi to sector perform (outperform), price target 55 Norwegian kroner - BN
 FW
 Jul. 22
 DNB Carnegie raises target price for Vår Energi to 44 Norwegian kroner (43), reiterates hold
+----
+DNB Carnegie raises target price for Vår Energi to 44 Norwegian kroner (43), reiterates hold
 FW
 Jul. 22
+Nordea raises the target price for Vår Energi to 52 Norwegian kroner (50), reiterates buy
+----
 Nordea raises the target price for Vår Energi to 52 Norwegian kroner (50), reiterates buy
 FW
 Jul. 22
 Arctic raises Vår Energi target price to 50 Norwegian kroner (48), reiterates buy
+----
+Arctic raises Vår Energi target price to 50 Norwegian kroner (48), reiterates buy
 FW
 Jul. 22
+Goldman Sachs raises its target price for Var Energi to 53 Norwegian kroner (49), reiterates buy - BN
+----
 Goldman Sachs raises its target price for Var Energi to 53 Norwegian kroner (49), reiterates buy - BN
 FW
 Jul. 21
 Norne Securities raises its target price for Vår Energi to 59 Norwegian kroner (49), reiterates buy - BN
+----
+Norne Securities raises its target price for Vår Energi to 59 Norwegian kroner (49), reiterates buy - BN
 FW
 Jul. 15
+DNB Carnegie cuts Vaar Energi price target to 43 Norwegian kroner (44), reiterates hold
+----
 DNB Carnegie cuts Vaar Energi price target to 43 Norwegian kroner (44), reiterates hold
 FW
 Jul. 10
 Nordea cuts its target price for Var Energi to 50 Norwegian kroner (52), reiterates buy
+----
+Nordea cuts its target price for Var Energi to 50 Norwegian kroner (52), reiterates buy
 FW
 Jun. 26
+Goldman Sachs cuts target price for Vår Energi to 49 Norwegian kroner (55), reiterates buy - BN
+----
 Goldman Sachs cuts target price for Vår Energi to 49 Norwegian kroner (55), reiterates buy - BN
 FW
 Jun. 25
 ABG Sundal Collier Upgrades Vår Energi to Hold, Boosts PT
+----
+ABG Sundal Collier Upgrades Vår Energi to Hold, Boosts PT
 MT
 Jun. 25
+ABG Sundal Collier raises Vår Energi to Hold (Sell), target price 43 Norwegian kroner (38) - BN
+----
 ABG Sundal Collier raises Vår Energi to Hold (Sell), target price 43 Norwegian kroner (38) - BN
 FW
 Jun. 04
 Clarksons Platou Securities raises Vår Energi price target to NOK 50 (38), reiterates Buy - BN
+----
+Clarksons Platou Securities raises Vår Energi price target to NOK 50 (38), reiterates Buy - BN
 FW
 May. 12
+Arctic Securities Upgrades Vår Energi to Buy, Raises PT
+----
 Arctic Securities Upgrades Vår Energi to Buy, Raises PT
 MT
 May. 12
 Arctic upgrades Vår Energi to buy (hold), sets price target at NOK 48 - BN
-FW
-No results match your criteria
-All News
-Broker Recommendations
-Highlights
-Insiders
-Transcripts
-Press Releases
-Official Publications
-Other languages
-MarketScreener Editorial Features
-MarketScreener Strategies
-Filters
-Search
-Announcement Date
-Since
-Until
-aAdsList.push('Footer');
-aAdsListSize.push([[970, 250], [1000, 180], [1000, 200], [1000, 250]]);
-aAdsListCA.push(null);
-const RS_ASYNC = true;
-Indices
-Europe
-America
-Asia
-aAdsList.push('Right2');
-aAdsListSize.push([300, 600]);
-aAdsListCA.push(null);
-My Watchlist
-My lists
-Rankings
-More Rankings
-Rankings
-More Rankings
-Currency / Forex
-Commodities
-Cryptocurrencies
-Interest Rates
-Stock Market
-Stocks
-VAR Stock
-News Var Energi
-Broker Recommendations
-Best financial
-portal
-More than 20 years
-at your side
-1,300,000 +
-members
-Quick & easy
-cancellation
-Our Experts
-are here for you
-OUR EXPERTS ARE HERE FOR YOU
-+1 (951) 669-7394
-Contact us
--->
-Legal information
-|
-Cookie settings
-|
-MarketScreener Blog
-|
-About us
-|
-Copyright © 2026 Surperformance SAS. All rights reserved.
-Stock quotes are provided by Factset, Morningstar and S&P Capital IQ
-const GLOBAL_LOCALE = "en_US";
-const GLOBAL_LANG = "en";
-const GLOBAL_ISMOBILE = false;
-const GLOBAL_TIMEZONE = "America/New_York"
-const GLOBAL_XID = ""
-const GLOBAL_DEVICE_TOKEN = "";
-const GLOBAL_ENV = 'PROD';
-const GLOBAL_COLOR_SCHEME = 'light';
-const T = {
-error_generic: "An error has occurred"
-}
-window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); function gaEvent(eventCategory, eventAction, eventLabel, eventValue) { var eventConf = {}; eventConf['send_to'] = 'G-W5MZBYLHSG'; if (typeof eventCategory !== 'undefined') eventConf['event_category'] = eventCategory; if (typeof eventLabel !== 'undefined') eventConf['event_label'] = eventLabel; if (typeof eventValue !== 'undefined') eventConf['value'] = eventValue; gtag('event',eventAction,eventConf); }
-googletag.cmd.push(()=>{
-googletag.defineSlot('/4093671/__pixel__', [1, 1], 'div-gpt-ad-pixel').addService(googletag.pubads())
-googletag.pubads().enableSingleRequest();
-googletag.enableServices();
-})
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({
-'userStatus': 'Gratuit',
-});
-The best tools reserved for subscribers to boost the performance of your investments!
-Maximize my profits
-Maximize my profits
+----
+Unlock them now!
+Unlock them now!
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing867")) {
+if (event.target.matches(".ajax_close_teasing866")) {
+----
+Unlock them now!
+document.addEventListener("click", function(event) {
+if (event.target.matches(".ajax_close_teasing866")) {
 var element = event.target;
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.onreadystatechange = function() {
-if (xhr.readyState === 4 && xhr.status === 200) {
-element.closest('[id*="teasing_"]').remove();
-}
-};
-xhr.send();
+----
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws867")) {
-var element = event.target;
-element.closest('[id*="teasing_"]').remove();
+if (event.target.matches(".ajax_close_teasing_ws866")) {
+----
 }
-});
-function onloadUI()
-{
-}
-function onunloadUI()
-{
-}
-var country_location = "GB";
-function startAdsServiceD(){
-gaEvent('adspv', 'internal_start', 'GB');
-$(document).ready(function() {
-displayViewableAds('internal');
-$( window ).scroll(function() {
-displayViewableAds('internal');
-});
-});
-}
-$(document).ready(function() {gaEvent('adspv', 'internal', 'GB');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
+googletag.cmd.push(function() {
+googletag.pubads().setTargeting('Edition', 'en_US');
+----
+$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
+googletag.cmd.push(function() {
+googletag.pubads().setTargeting('Edition', 'en_US');
+googletag.pubads().setTargeting('UserType', 'free');
+----
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
+----
+googletag.pubads().setTargeting('Edition', 'en_US');
+googletag.pubads().setTargeting('UserType', 'free');
+googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '133025650');
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
-googletag.enableServices();
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
-try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
-});
-$(document).ready(function() { $( document).on('zbv_visible',function () {startAdsService();}); if (document[zbv_hidden]===false) { startAdsService(); } });
-gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/VAR-ENERGI-133025650/news-broker-research/"
-, 'content_group1': 'Actions' });
-window._io_config = window._io_config || {};
-window._io_config["0.2.0"] = window._io_config["0.2.0"] || [];
-window._io_config["0.2.0"].push(Object.assign({
-page_url: window.location.href,
-page_url_canonical: (document.querySelector('link[rel="canonical"]') || {}).href || window.location.href,
-page_title: document.title,
-page_type: "default",
-page_language: "en",
-user_status: "anonymous"
-}));
-const liveHtml_BASE_URL = "https://live.marketscreener.com";
-const liveHtml_AUTH = { hkKey: "220c7fd8cb283b91061096d4983fe9b8", pvKey: "79b3987514efae6dafcff646e21f882c", uKey:"L3F1b3RlL3N0b2NrL1ZBUi1FTkVSR0ktMTMzMDI1NjUwL25ld3MtYnJva2VyLXJlc2VhcmNoLw==" };
-const liveHtml_TOJS = [];
-Select your edition
-All financial news and data tailored to specific country editions
-NORTH AMERICA
-United-States
-Canada
-MIDDLE EAST
-Saudi Arabia
-United Arab Emirates
-EUROPE
-France
-Deutschland
-Suisse
-Schweiz
-Italia
-Österreich
-België
-Nederland
-España
-Sverige
-United Kingdom
-APAC
-Australia
-India
-Hong Kong
