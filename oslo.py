@@ -366,6 +366,8 @@ DATA_WZORY = [
     re.compile(r"\b\d{1,2}[./]\d{1,2}[./]\d{2,4}\b"),
     re.compile(r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.? \d{1,2}\b"),
     re.compile(r"\b\d{1,2}\.? (?:jan|feb|mar|apr|mai|maj|may|jun|jul|aug|sep|okt|oct|nov|des|dec)[a-z]*\b", re.I),
+    re.compile(r"\b\d{1,2}\.? (?:tammi|helmi|maalis|huhti|touko|kes[aä]|hein[aä]|elo|syys|loka|marras|joulu)\w*"
+               r"(?: \d{1,2}[.:]\d{2})?", re.I),
     re.compile(r"\b\d{1,2}/\d{1,2}\b"),
     re.compile(r"\b\d{1,2}:\d{2}(?:am|pm)?\b", re.I),
 ]
@@ -389,10 +391,12 @@ def tekst_strony(html_bytes: bytes) -> str:
 SZUM_UI = re.compile(r'^"?[A-Z0-9_]+(\.[A-Z0-9_]+)+"')
 
 
-def data_z_otoczenia(linie, i):
-    """Pierwszy napis wygladajacy na date: w wierszu, potem do 3 wierszy wyzej, potem do 6 nizej (JSON Nordnet ma
-    date po naglowku). Kopiowany 1:1, bez interpretacji."""
-    kolejnosc = [i] + list(range(i - 1, max(i - 4, -1), -1)) + list(range(i + 1, min(i + 7, len(linie))))
+def data_z_otoczenia(linie, i, najpierw_nizej=False):
+    """Pierwszy napis wygladajacy na date: w wierszu, potem do 3 wierszy wyzej i do 6 nizej (Nordnet podaje date
+    pod naglowkiem, wiec tam najpierw nizej). Kopiowany 1:1, bez interpretacji."""
+    wyzej = list(range(i - 1, max(i - 4, -1), -1))
+    nizej = list(range(i + 1, min(i + 7, len(linie))))
+    kolejnosc = [i] + (nizej + wyzej if najpierw_nizej else wyzej + nizej)
     for j in kolejnosc:
         if len(linie[j]) > 400:
             continue
@@ -419,7 +423,7 @@ def rekomendacje(s):
                 if not (15 <= len(l) <= 400) or not REK_WZOR.search(l) or SZUM_UI.search(l) or l in widziane:
                     continue
                 widziane.add(l)
-                wiersze.append([t, nazwa, data_z_otoczenia(linie, i), l, r.url, utc()])
+                wiersze.append([t, nazwa, data_z_otoczenia(linie, i, nazwa.startswith("nordnet")), l, r.url, utc()])
                 okna.append("\n".join(x for x in linie[max(i - 3, 0):i + 7] if len(x) <= 400))
                 n += 1
             # zapisujemy tylko okna wokol trafien (strona ma do 1 MB tekstu); pelna odpowiedz potwierdza sha256
