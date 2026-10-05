@@ -2,48 +2,108 @@ Target Price
 Opinion Divergences
 Estimates Revisions
 Analyst Coverage
+Technical Analysis Rankings
+RSI
+GAPS
+STIM
+Daily Breakouts
+Weekly Breakouts
 ----
 BlueNord ASA: Ex Dividend NOK 66.82 Today
 AQ
 Jul. 10
 Fearnley cuts its target price for Bluenord to 694 Norwegian kroner (710), reiterates buy - BN
+FW
+Jul. 10
+Pareto Securities raises Bluenord target price to 610 Norwegian kroner (600), reiterates buy
+FW
+Jul. 09
+BlueNord ASA Announces Production Results for Second Quarter 2026
 ----
 Fearnley cuts its target price for Bluenord to 694 Norwegian kroner (710), reiterates buy - BN
 FW
 Jul. 10
 Pareto Securities raises Bluenord target price to 610 Norwegian kroner (600), reiterates buy
+FW
+Jul. 09
+BlueNord ASA Announces Production Results for Second Quarter 2026
+CI
+Jul. 09
+BlueNord ASA Declares A Cash Dividend for Second Quarter 2026, Payable on or About 4 August 2026
 ----
 Unlock them now!
 Unlock them now!
 document.addEventListener("click", function(event) {
 if (event.target.matches(".ajax_close_teasing866")) {
+var element = event.target;
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.onreadystatechange = function() {
+if (xhr.readyState === 4 && xhr.status === 200) {
 ----
 Unlock them now!
 document.addEventListener("click", function(event) {
 if (event.target.matches(".ajax_close_teasing866")) {
 var element = event.target;
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.onreadystatechange = function() {
+if (xhr.readyState === 4 && xhr.status === 200) {
+element.closest('[id*="teasing_"]').remove();
 ----
 }
 });
 document.addEventListener("click", function(event) {
 if (event.target.matches(".ajax_close_teasing_ws866")) {
+var element = event.target;
+element.closest('[id*="teasing_"]').remove();
+}
+});
+DAILY FREE LIMIT REACHED
+To continue browsing,
 ----
 }
 $(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
+googletag.pubads().setTargeting('UserType', 'free');
+googletag.pubads().setTargeting('Content', 'equities');
+googletag.pubads().setTargeting('codezb', '1413217');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
+googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
 ----
 $(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
+googletag.pubads().setTargeting('Content', 'equities');
+googletag.pubads().setTargeting('codezb', '1413217');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
+googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 ----
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
+googletag.pubads().setTargeting('codezb', '1413217');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
+googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
+});
 ----
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413217');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
+googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
+});
+gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/BLUENORD-ASA-1413217/news/"

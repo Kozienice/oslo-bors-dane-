@@ -2,58 +2,130 @@ Target Price
 Opinion Divergences
 Estimates Revisions
 Analyst Coverage
+Technical Analysis Rankings
+RSI
+GAPS
+STIM
+Daily Breakouts
+Weekly Breakouts
 ----
 if (typeof SS_ISE_LOADED == 'undefined') SS_ISE_LOADED = new Array();
 [{ event: "quotes", id: "63927"}].forEach((event)=>{SS_ISE_LOADED.push(event);})
 Aug. 31
 SB1 Markets raises AF Gruppen price target to 230 Norwegian kroner (210), reiterates buy
+FW
+Aug. 28
+DNB Carnegie raises its price target for AF Gruppen to 156 Norwegian kroner (150), reiterates sell
+FW
+Summary
+Quotes
 ----
 SB1 Markets raises AF Gruppen price target to 230 Norwegian kroner (210), reiterates buy
 FW
 Aug. 28
 DNB Carnegie raises its price target for AF Gruppen to 156 Norwegian kroner (150), reiterates sell
+FW
+Summary
+Quotes
+Charts
+Technical Analysis
+Static Chart
 ----
 Status buyback of own shares
 AQ
 Sep. 11
 AF Gruppen ASA initiates share buyback program
+AQ
+Sep. 10
+Tranche Update on AF Gruppen ASA (OB:AFG)'s Equity Buyback Plan announced on September 19, 2025.
+CI
+Aug. 31
+SB1 Markets raises AF Gruppen price target to 230 Norwegian kroner (210), reiterates buy
 ----
 AF Gruppen Unit Wins Contracts for High-voltage Installations at Transformer Stations in Norway
 MT
 Jun. 29
 Builds and upgrades transformer stations
+AQ
+Jun. 29
+AF Gruppen ASA Subsidiary AF Elkraft Receives Statnett Contracts For High-Voltage Installations At Tønsberg, Eiker And Hof Transformer Stations With Contract Value Slightly Above NOK 500 Million
+CI
+No results match your criteria
+All News
 ----
 Unlock them now!
 Unlock them now!
 document.addEventListener("click", function(event) {
 if (event.target.matches(".ajax_close_teasing866")) {
+var element = event.target;
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.onreadystatechange = function() {
+if (xhr.readyState === 4 && xhr.status === 200) {
 ----
 Unlock them now!
 document.addEventListener("click", function(event) {
 if (event.target.matches(".ajax_close_teasing866")) {
 var element = event.target;
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.onreadystatechange = function() {
+if (xhr.readyState === 4 && xhr.status === 200) {
+element.closest('[id*="teasing_"]').remove();
 ----
 }
 });
 document.addEventListener("click", function(event) {
 if (event.target.matches(".ajax_close_teasing_ws866")) {
+var element = event.target;
+element.closest('[id*="teasing_"]').remove();
+}
+});
+function onloadUI()
+{
 ----
 }
 $(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
+googletag.pubads().setTargeting('UserType', 'free');
+googletag.pubads().setTargeting('Content', 'equities');
+googletag.pubads().setTargeting('codezb', '1413069');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
+googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
 ----
 $(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
+googletag.pubads().setTargeting('Content', 'equities');
+googletag.pubads().setTargeting('codezb', '1413069');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
+googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 ----
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
+googletag.pubads().setTargeting('codezb', '1413069');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
+googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
+});
 ----
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413069');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
+googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
+});
+$(document).ready(function() { $( document).on('zbv_visible',function () {startAdsService();}); if (document[zbv_hidden]===false) { startAdsService(); } });
