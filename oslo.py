@@ -362,7 +362,7 @@ REK_WZOR = re.compile(
     r"(target|price objective|rating|upgrad|downgrad|initiat|coverage|riktkurs|kursm[aå]l|kursmaal|anbefal|"
     r"oppgrader|nedgrader|h[oö]jer|s[aä]nker|tavoitehin|suositus|kursziel)", re.I)
 DATA_WZORY = [
-    re.compile(r"\b\d{4}-\d{2}-\d{2}\b"),
+    re.compile(r"\b\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2})?"),
     re.compile(r"\b\d{1,2}[./]\d{1,2}[./]\d{2,4}\b"),
     re.compile(r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.? \d{1,2}\b"),
     re.compile(r"\b\d{1,2}\.? (?:jan|feb|mar|apr|mai|maj|may|jun|jul|aug|sep|okt|oct|nov|des|dec)[a-z]*\b", re.I),
@@ -385,9 +385,17 @@ def tekst_strony(html_bytes: bytes) -> str:
     return "\n".join(l for l in linie if l)
 
 
+# klucze tlumaczen interfejsu (np. 'PAGE_INSTRUMENT.ANALYST_RATINGS...":"') to szum, nie depesze
+SZUM_UI = re.compile(r'^"?[A-Z0-9_]+(\.[A-Z0-9_]+)+"')
+
+
 def data_z_otoczenia(linie, i):
-    """Pierwszy napis wygladajacy na date w wierszu albo w 3 wierszach wyzej - kopiowany 1:1, bez interpretacji."""
-    for j in range(i, max(i - 4, -1), -1):
+    """Pierwszy napis wygladajacy na date: w wierszu, potem do 3 wierszy wyzej, potem do 6 nizej (JSON Nordnet ma
+    date po naglowku). Kopiowany 1:1, bez interpretacji."""
+    kolejnosc = [i] + list(range(i - 1, max(i - 4, -1), -1)) + list(range(i + 1, min(i + 7, len(linie))))
+    for j in kolejnosc:
+        if len(linie[j]) > 400:
+            continue
         for w in DATA_WZORY:
             m = w.search(linie[j])
             if m:
@@ -408,11 +416,11 @@ def rekomendacje(s):
             linie = tekst_strony(r.content).split("\n")
             widziane, n, okna = set(), 0, []
             for i, l in enumerate(linie):
-                if not (15 <= len(l) <= 400) or not REK_WZOR.search(l) or l in widziane:
+                if not (15 <= len(l) <= 400) or not REK_WZOR.search(l) or SZUM_UI.search(l) or l in widziane:
                     continue
                 widziane.add(l)
                 wiersze.append([t, nazwa, data_z_otoczenia(linie, i), l, r.url, utc()])
-                okna.append("\n".join(x for x in linie[max(i - 3, 0):i + 1] if len(x) <= 400))
+                okna.append("\n".join(x for x in linie[max(i - 3, 0):i + 7] if len(x) <= 400))
                 n += 1
             # zapisujemy tylko okna wokol trafien (strona ma do 1 MB tekstu); pelna odpowiedz potwierdza sha256
             plik = RAW / "rekomendacje" / f"{t}_{nazwa}.txt"
