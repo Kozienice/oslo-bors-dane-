@@ -11,7 +11,7 @@ Weekly Breakouts
 ----
 Search
 See the results
-03:09am
+Oct. 05
 Danske Bank lowers price target for Norwegian to 13 Norwegian kroner (14), reiterates hold - BN
 FW
 Sep. 01
@@ -240,10 +240,10 @@ Broker Recommendations
 Highlights
 Insiders
 ----
-Maximize my profits
-Maximize my profits
+Unlock them now!
+Unlock them now!
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing868")) {
+if (event.target.matches(".ajax_close_teasing866")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -251,9 +251,9 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
 ----
-Maximize my profits
+Unlock them now!
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing868")) {
+if (event.target.matches(".ajax_close_teasing866")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -265,7 +265,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws868")) {
+if (event.target.matches(".ajax_close_teasing_ws866")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }
