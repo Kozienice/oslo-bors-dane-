@@ -1,4 +1,4 @@
-# Oslo Bors - dane z 2026-10-05 14:11 CEST (skrypt 0.2.0)
+# Oslo Bors - dane z 2026-10-05 14:13 CEST (skrypt 0.2.0)
 
 Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie wpisano recznie.
 
@@ -7,7 +7,7 @@ Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie w
 - FRED DCOILBRENTEU: OK 2026-09-29 113.96
 - FRED MCOILBRENTEU: OK 2026-08-01 91.08
 - FRED PNGASEUUSDM: OK 2026-07-01 17.93000000000000
-- Kursy Yahoo (eksperymentalne, klasa 4): VAR 51.6 (2026-10-05, sesja w toku); NAS 11.67 (2026-10-05, sesja w toku); AFG 193.2 (2026-10-05, sesja w toku); TGS 134.7 (2026-10-05, sesja w toku); BNOR 573.0 (2026-10-05, sesja w toku); EQNR 407.2 (2026-10-05, sesja w toku); AKRBP 343.7 (2026-10-05, sesja w toku); OBX 1980.8199 (2026-10-05, sesja w toku); bledy: brak
+- Kursy Yahoo (eksperymentalne, klasa 4): VAR 51.58 (2026-10-05, sesja w toku); NAS 11.675 (2026-10-05, sesja w toku); AFG 193.2 (2026-10-05, sesja w toku); TGS 134.7 (2026-10-05, sesja w toku); BNOR 572.0 (2026-10-05, sesja w toku); EQNR 407.0 (2026-10-05, sesja w toku); AKRBP 343.6 (2026-10-05, sesja w toku); OBX 1981.11 (2026-10-05, sesja w toku); bledy: brak
 - Rekomendacje (eksperymentalne): 12/12 stron OK, 378 wierszy w rekomendacje.csv; bledy: brak
 
 Pliki: komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json
