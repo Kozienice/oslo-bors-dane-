@@ -5,6 +5,7 @@ name: pobierz-dane-oslo
 # 14:40 UTC = 16:40 Oslo latem (po zamknieciu sesji 16:20) / 15:40 zima (przed zamknieciem)
 # 15:40 UTC = 17:40 Oslo latem / 16:40 zima (po zamknieciu sesji)
 # GitHub moze opozniac zaplanowane uruchomienia o kilka-kilkadziesiat minut.
+# 05.10.2026: harmonogram nie uruchomil sie ani razu (0 przebiegow 'schedule' od 02.10) -> ponowne zapisanie pliku rejestruje cron w GitHub.
 on:
   workflow_dispatch:
   schedule:
