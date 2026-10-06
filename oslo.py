@@ -38,7 +38,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.5.2"
+WERSJA = "0.5.3"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -587,30 +587,39 @@ def prasa(s):
         for proba in range(2):
             time.sleep(3 if proba == 0 else 20)  # wiele portali stoi na jednym CMS (Labrador) - nie zasypujemy serwera
             r = get(s, url, zr)
-            if r is not None and r.status_code == 200 and b"<item" in r.content:
+            if r is not None and r.status_code == 200 and (b"<item" in r.content or b"<entry" in r.content):
                 break
-        if r is None or r.status_code != 200 or b"<item" not in r.content:
+        if r is None or r.status_code != 200 or not (b"<item" in r.content or b"<entry" in r.content):
             poczatek = (r.content[:160].decode("utf-8", "replace") if r is not None else "").replace("\n", " ")
             blad(zr, f"{portal}: HTTP {getattr(r, 'status_code', None)}, brak <item>; poczatek: {poczatek}")
             na_portal[portal] = 0
             continue
         zapisz(RAW / "prasa" / f"{portal}.xml", r.content, zr, r.url, r.status_code)
         n = 0
-        for it in re.findall(r"(?s)<item>(.*?)</item>", r.content.decode("utf-8", "replace")):
-            pole = lambda t: tekst_xml((re.search(r"(?s)<%s>(.*?)</%s>" % (t, t), it) or [None, ""])[1])
-            link, tyt = pole("link"), pole("title")
+        tresc = r.content.decode("utf-8", "replace")
+        atom = "<entry" in tresc and "<item" not in tresc
+        for it in re.findall(r"(?s)<entry[ >](.*?)</entry>" if atom else r"(?s)<item>(.*?)</item>", tresc):
+            pole = lambda t: tekst_xml((re.search(r"(?s)<%s(?:\s[^>]*)?>(.*?)</%s>" % (t, t), it) or [None, ""])[1])
+            if atom:
+                link = html.unescape((re.search(r'<link[^>]*href="([^"]+)"', it) or [None, ""])[1])
+                tyt = pole("title")
+            else:
+                link, tyt = pole("link"), pole("title")
             if not (link and tyt):
                 continue
             m = re.search(r"/(\d{5,})(?:\?|/?$)", link)
             klucz = m.group(1) if m else hashlib.sha256(link.split("?")[0].encode()).hexdigest()[:12]
             try:
-                pub = utc(parsedate_to_datetime(pole("pubDate")).astimezone(timezone.utc))
+                if atom:
+                    pub = utc(datetime.fromisoformat((pole("published") or pole("updated")).replace("Z", "+00:00")).astimezone(timezone.utc))
+                else:
+                    pub = utc(parsedate_to_datetime(pole("pubDate")).astimezone(timezone.utc))
             except Exception:
                 pub = ""
             aid = f"{portal}:{klucz}"
             wiersze[aid] = {"id": aid, "portal": portal, "opublikowano_utc": pub, "czas_oslo": oslo_czas(pub) if pub else "",
                             "pluss": "tak" if ("/pluss/" in link or tyt.startswith("(+)")) else "",
-                            "tytul": tyt.removeprefix("(+)").strip(), "lead": pole("description")[:300], "trafienia": "", "adres": link}
+                            "tytul": tyt.removeprefix("(+)").strip(), "lead": (pole("summary") if atom else pole("description"))[:300], "trafienia": "", "adres": link}
             n += 1
         na_portal[portal] = n
     # Finansavisen: mapa artykulow biezacego miesiaca (+ poprzedniego w pierwszych 3 dniach)
