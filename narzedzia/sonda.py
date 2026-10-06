@@ -6,15 +6,14 @@ import requests
 
 UA = "oslo-bors-dane/sonda (+https://github.com/Kozienice/oslo-bors-dane-)"
 OUT = Path("sonda"); OUT.mkdir(exist_ok=True)
-DOMENY = ["https://www.kapital.no", "https://www.shifter.no", "https://www.nettavisen.no", "https://www.abcnyheter.no",
-          "https://www.nrk.no", "https://www.ilaks.no", "https://www.kyst.no", "https://www.tekfisk.no", "https://www.intrafish.no",
-          "https://www.upstreamonline.com", "https://www.tradewindsnews.com", "https://www.europower.no", "https://www.energiwatch.no",
-          "https://www.offshore-energy.biz", "https://www.petro.no", "https://energi24.no", "https://www.mef.no", "https://www.anleggsmaskinen.no",
-          "https://www.byggfakta.no", "https://www.inderes.no", "https://www.investtech.com", "https://kommunikasjon.ntb.no",
-          "https://www.regjeringen.no", "https://www.sodir.no", "https://www.banenor.no", "https://www.vegvesen.no",
-          "https://www.mynewsdesk.com", "https://www.finansavisen.no", "https://www.borsen.dk", "https://www.placera.se",
-          "https://www.di.se", "https://www.kauppalehti.fi", "https://www.hegnar.no", "https://www.investornytt.no",
-          "https://www.minerva.no", "https://www.aksjelive.no", "https://www.nordnet.no/blogg", "https://www.newsweb.no"]
+DOMENY = ["https://www.placera.se", "https://www.di.se", "https://www.kauppalehti.fi", "https://www.hegnar.no",
+          "https://www.investornytt.no", "https://www.minerva.no", "https://www.aksjelive.no", "https://www.nordnet.no/blogg",
+          "https://www.borsen.dk", "https://kommunikasjon.ntb.no", "https://www.mynewsdesk.com", "https://www.banenor.no",
+          "https://www.inderes.no", "https://www.byggeindustrien.no", "https://www.byggmesteren.as", "https://www.mtbeoffshore.no",
+          "https://www.sysla.no", "https://www.energiogklima.no", "https://www.e24.no", "https://www.mining.com",
+          "https://www.northernminer.com", "https://www.fishfarmingexpert.com", "https://www.splash247.com", "https://gcaptain.com",
+          "https://www.hellenicshippingnews.com", "https://www.offshore-mag.com", "https://www.oilprice.com", "https://www.aftenposten.no",
+          "https://www.vg.no", "https://www.tv2.no", "https://www.estatenyheter.no", "https://www.boligprodusentene.no"]
 RSS = ["/?lab_viewport=rss", "/rss", "/rss.xml", "/feed", "/feed/", "/rss/", "/rss/nyheter", "/api/feed/rss/", "/nyheter/rss"]
 ZAKAZ = re.compile(r"(?i)(scrap|crawl|data extraction|text and data mining|TDM|tekst- og datautvinning|datautvinning|"
                    r"large language|LLM|artificial intelligence|kunstig intelligens|\bAI\b|media monitoring|medieovervåk)")

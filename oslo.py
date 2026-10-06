@@ -24,6 +24,7 @@ Zasady (jak w ev-dane-pl):
 
 import csv
 import gzip
+from email.utils import parsedate_to_datetime
 import hashlib
 import html
 import io
@@ -37,7 +38,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.5.0"
+WERSJA = "0.5.1"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -535,7 +536,16 @@ PRASA_RSS = {
     "anlegg": "https://anlegg.bygg.no/?lab_viewport=rss",
     "estate": "https://www.estatenyheter.no/?lab_viewport=rss",
     "tu": "https://www.tu.no/?lab_viewport=rss",
+    # sonda 3 (07.10.2026): robots.txt bez blokady botow AI i bez zakazu, kanal RSS z data
+    "shifter": "https://www.shifter.no/?lab_viewport=rss",
+    "kyst": "https://www.kyst.no/?lab_viewport=rss",
+    "ilaks": "https://ilaks.no/feed/",
+    "offshore_energy": "https://www.offshore-energy.biz/feed",
+    "anleggsmaskinen": "https://anleggsmaskinen.no/feed/",
+    "vegvesen": "https://www.vegvesen.no/rss",
 }
+# POMINIETE po sondzie 3 (robots.txt blokuje boty AI lub zabrania scrapingu/ekstrakcji): energiwatch.no, europower.no,
+# intrafish.no, investtech.com, nettavisen.no, nrk.no, tradewindsnews.com, upstreamonline.com
 PRASA_FA_SITEMAP = "https://ws.finansavisen.no/sitemap/sitemap-articles-{rok}-{mies}.xml"  # robots.txt: Crawl-delay 10
 PRASA_DNI = 60
 # slowa kluczowe -> ticker lub temat (tytul, lead i adres, bez rozrozniania wielkosci liter)
@@ -581,18 +591,18 @@ def prasa(s):
         for it in re.findall(r"(?s)<item>(.*?)</item>", r.content.decode("utf-8", "replace")):
             pole = lambda t: tekst_xml((re.search(r"(?s)<%s>(.*?)</%s>" % (t, t), it) or [None, ""])[1])
             link, tyt = pole("link"), pole("title")
-            m = re.search(r"/(\d{5,})(?:\?|$)", link)
-            if not (m and tyt):
+            if not (link and tyt):
                 continue
+            m = re.search(r"/(\d{5,})(?:\?|/?$)", link)
+            klucz = m.group(1) if m else hashlib.sha256(link.split("?")[0].encode()).hexdigest()[:12]
             try:
-                pub = datetime.strptime(pole("pubDate"), "%a, %d %b %Y %H:%M:%S %z").astimezone(timezone.utc)
-                pub = utc(pub)
+                pub = utc(parsedate_to_datetime(pole("pubDate")).astimezone(timezone.utc))
             except Exception:
                 pub = ""
-            aid = f"{portal}:{m.group(1)}"
+            aid = f"{portal}:{klucz}"
             wiersze[aid] = {"id": aid, "portal": portal, "opublikowano_utc": pub, "czas_oslo": oslo_czas(pub) if pub else "",
                             "pluss": "tak" if ("/pluss/" in link or tyt.startswith("(+)")) else "",
-                            "tytul": tyt.removeprefix("(+)").strip(), "lead": pole("description"), "trafienia": "", "adres": link}
+                            "tytul": tyt.removeprefix("(+)").strip(), "lead": pole("description")[:300], "trafienia": "", "adres": link}
             n += 1
         na_portal[portal] = n
     # Finansavisen: mapa artykulow biezacego miesiaca (+ poprzedniego w pierwszych 3 dniach)
