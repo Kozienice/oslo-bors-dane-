@@ -20,11 +20,14 @@ GitHub Actions pobiera surowe dane w dni robocze i zapisuje je w `data/`. Zadani
   (pozycje >= 0,5% kapitalu, aktualizacja w dni sesyjne ok. 15:30). Surowe: `data/raw/finanstilsynet/instruments.json.gz`
   (sha256 pliku gz i sha256 oryginalnej odpowiedzi w status.json). Pochodne: `data/shorty.csv` (ostatni stan kazdej spolki),
   `data/shorty_pozycje.csv` (aktywne pozycje z nazwami posiadaczy), `data/shorty_historia.csv` (zdarzenia z 120 dni).
-- Prasa NO (od 0.5.0): naglowki z kanalow publicznych - RSS bygg.no, anlegg.bygg.no, estatenyheter.no, tu.no (tytul, data,
-  lead) i mapa artykulow Finansavisen biezacego miesiaca (tytul, data; robots.txt Crawl-delay 10 przestrzegany). Jedno
-  zapytanie na portal na przebieg, tresci artykulow nie pobieramy. `data/prasa.csv` akumuluje 60 dni; kolumna `trafienia`
-  = slowa kluczowe spolek i tematow. Celowo POMINIETE: dn.no i e24.no - ich warunki (robots.txt, warunki RSS) zabraniaja
-  automatycznego przetwarzania i uzycia tresci jako wejscia dla systemow AI bez umowy.
+- Prasa NO (od 0.5.0, zrodla od 0.5.3): naglowki z kanalow publicznych - RSS/Atom: bygg.no, anlegg.bygg.no,
+  estatenyheter.no, tu.no, shifter.no, kyst.no, ilaks.no, offshore-energy.biz, anleggsmaskinen.no, vegvesen.no (tytul, data,
+  lead do 300 znakow) oraz mapa artykulow Finansavisen biezacego miesiaca (tytul, data). Jedno zapytanie na portal na przebieg
+  (pauza 3 s, jedna ponowna proba), tresci artykulow nie pobieramy. `data/prasa.csv` akumuluje 60 dni; `trafienia` = slowa
+  kluczowe spolek i tematow. Celowo POMINIETE (robots.txt lub warunki kanalu zabraniaja automatycznego przetwarzania albo
+  blokuja boty AI; wynik sondy w `sonda/wynik3.json`): dn.no, e24.no, energiwatch.no, europower.no, intrafish.no,
+  investtech.com, nettavisen.no, nrk.no, tradewindsnews.com, upstreamonline.com. Nowe portale: `narzedzia/sonda.py`
+  (workflow sonda-portali) sprawdza robots.txt i kanaly przed dodaniem.
 
 ## Kontrola
 `data/status.json`: czas uruchomienia (UTC i Oslo), dla kazdego pliku adres, kod HTTP, rozmiar, sha256,
