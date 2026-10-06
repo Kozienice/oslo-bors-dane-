@@ -37,7 +37,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.3.1"
+WERSJA = "0.4.0"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -469,7 +469,10 @@ def podsumowanie():
     sh = k.get("shorty") or {}
     linie.append(f"- Shorty Finanstilsynet (klasa 1): {'OK' if sh.get('ok') else 'BLAD'}, {sh.get('z_pozycjami', 0)} spolek z pozycjami, "
                  f"{sh.get('aktywnych_pozycji', 0)} aktywnych pozycji, ostatnie zdarzenie {sh.get('ostatnia_data', '')}")
-    linie += ["", "Pliki: komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, shorty.csv, shorty_pozycje.csv, shorty_historia.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json"]
+    pr = k.get("prasa_bygg") or {}
+    linie.append(f"- Prasa branzowa bygg.no: {'OK' if pr.get('ok') else 'BLAD'}, {pr.get('wierszy_w_pliku', 0)} artykulow w prasa.csv "
+                 f"({pr.get('z_trafieniami', 0)} z trafieniami), nowych w tym przebiegu {pr.get('nowych_pobranych', 0)}")
+    linie += ["", "Pliki: prasa.csv, komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, shorty.csv, shorty_pozycje.csv, shorty_historia.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json"]
     (DATA / "podsumowanie.md").write_text("\n".join(linie) + "\n", encoding="utf-8")
 
 
@@ -521,12 +524,85 @@ def shorty(s):
                                     "aktywnych_pozycji": len(pozycje), "ostatnia_data": ost_data}
 
 
+# ---------------------------------------------------------------- prasa branzowa (bygg.no) - tytul, data, lead
+
+PRASA_STRONY = ["https://anlegg.bygg.no/", "https://www.bygg.no/"]
+PRASA_LINK = re.compile(r'href="((?:https?://(?:www\.|anlegg\.)?bygg\.no)?/[^"\s]+?/(\d{7}))"')
+PRASA_MAX_NOWYCH = 80
+PRASA_DNI = 60
+# slowa kluczowe -> ticker lub temat (dopasowanie w tytule, leadzie i adresie, bez rozrozniania wielkosci liter)
+PRASA_KLUCZE = {
+    "AFG": [r"\bAF[- ]?(gruppen|selskap|anlegg|bygg|decom|energi)\b", r"\bAF\b", r"betonmast", r"\bmepas\b", r"stad[- ]skipstunnel"],
+    "VEI": [r"veidekke"], "SNTIA": [r"\bhent\b", r"sentia"], "NRC": [r"\bnrc\b"],
+    "NOM": [r"nordic mining", r"engebø", r"førdefjord"], "NHY": [r"\bhydro\b"],
+    "FEN": [r"fensfelt", r"rare earths norway", r"sjeldne jordarter"],
+    "OBOS": [r"\bobos\b"], "SKANSKA": [r"skanska"], "NCC": [r"\bncc\b"], "PEAB": [r"\bpeab\b"], "CONSTO": [r"consto"],
+    "KONKURS": [r"konkurs"], "TVIST": [r"tvist|forlik|søksmål|stevning|rettssak"],
+}
+
+
+def meta(htm: str, nazwa: str) -> str:
+    m = re.search(r'<meta[^>]+(?:property|name)="%s"[^>]+content="([^"]*)"' % re.escape(nazwa), htm) or \
+        re.search(r'<meta[^>]+content="([^"]*)"[^>]+(?:property|name)="%s"' % re.escape(nazwa), htm)
+    return html.unescape(m.group(1)).strip() if m else ""
+
+
+def prasa(s):
+    """Prasa branzowa NO (bygg.no, anlegg.bygg.no): lista artykulow ze stron glownych + metadane publiczne kazdego
+    artykulu (og:title, og:description = lead, article:published_time). Tresci spod paywalla NIE pobieramy - artykul
+    (+)/PLUSS ma tylko tytul, date i lead, tak jak pokazuje je strona bez logowania. Akumulacja w data/prasa.csv (60 dni)."""
+    zr = "prasa_bygg"
+    plik = DATA / "prasa.csv"
+    stare = {}
+    if plik.exists():
+        for w in csv.DictReader(plik.open(encoding="utf-8")):
+            stare[w["id"]] = w
+    znalezione = {}
+    for strona in PRASA_STRONY:
+        r = get(s, strona, zr)
+        if r is None or r.status_code != 200:
+            blad(zr, f"strona {strona}: HTTP {getattr(r, 'status_code', None)}")
+            continue
+        zapisz(RAW / "prasa" / (strona.split("//")[1].strip("/").replace(".", "_") + ".html"), r.content, zr, r.url, r.status_code)
+        baza = strona.rstrip("/")
+        for href, aid in PRASA_LINK.findall(r.content.decode("utf-8", "replace")):
+            if "stillinger." in href:
+                continue
+            znalezione.setdefault(aid, href if href.startswith("http") else baza + href)
+    nowe = sorted((a for a in znalezione if a not in stare), reverse=True)[:PRASA_MAX_NOWYCH]
+    pobrane = 0
+    for aid in nowe:
+        url = znalezione[aid]
+        r = get(s, url, zr)
+        if r is None or r.status_code != 200:
+            continue
+        htm = r.content.decode("utf-8", "replace")
+        tytul = meta(htm, "og:title")
+        lead = meta(htm, "og:description") or meta(htm, "description")
+        pub = meta(htm, "article:published_time")
+        tekst = f"{tytul} {lead} {url}".lower()
+        traf = [k for k, wz in PRASA_KLUCZE.items() if any(re.search(w, tekst, re.I) for w in wz)]
+        stare[aid] = {"id": aid, "opublikowano_utc": pub, "czas_oslo": oslo_czas(pub) if pub else "",
+                      "paywall": "tak" if tytul.startswith("(+)") else "nie", "tytul": tytul.removeprefix("(+)").strip(),
+                      "lead": lead, "trafienia": " ".join(traf), "adres": url, "pobrano_utc": utc()}
+        pobrane += 1
+    granica = (datetime.now(timezone.utc) - timedelta(days=PRASA_DNI)).strftime("%Y-%m-%d")
+    wiersze = [w for w in stare.values() if (w.get("opublikowano_utc") or "9999") >= granica]
+    wiersze.sort(key=lambda w: (w.get("opublikowano_utc") or "", w["id"]), reverse=True)
+    pola = ["id", "opublikowano_utc", "czas_oslo", "paywall", "tytul", "lead", "trafienia", "adres", "pobrano_utc"]
+    zapisz_csv(plik, pola, [[w.get(p, "") for p in pola] for w in wiersze])
+    status["kontrole"]["prasa_bygg"] = {"ok": bool(znalezione), "linkow_na_stronach": len(znalezione), "nowych_pobranych": pobrane,
+                                        "wierszy_w_pliku": len(wiersze),
+                                        "z_trafieniami": sum(1 for w in wiersze if w.get("trafienia")),
+                                        "najnowszy": wiersze[0]["opublikowano_utc"] if wiersze else ""}
+
+
 # ---------------------------------------------------------------- start
 
 def main():
     DATA.mkdir(exist_ok=True)
     s = sesja()
-    for krok in (newsweb, norges_bank, fred, kursy, rekomendacje, shorty):
+    for krok in (newsweb, norges_bank, fred, kursy, rekomendacje, shorty, prasa):
         try:
             krok(s)
         except Exception:
