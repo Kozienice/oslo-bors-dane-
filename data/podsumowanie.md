@@ -1,4 +1,4 @@
-# Oslo Bors - dane z 2026-10-06 18:33 CEST (skrypt 0.2.0)
+# Oslo Bors - dane z 2026-10-06 18:37 CEST (skrypt 0.3.0)
 
 Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie wpisano recznie.
 
@@ -9,5 +9,6 @@ Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie w
 - FRED PNGASEUUSDM: OK 2026-07-01 17.93000000000000
 - Kursy Yahoo (eksperymentalne, klasa 4): VAR 51.24 (2026-10-06); NAS 11.74 (2026-10-06); AFG 192.2 (2026-10-06); TGS 136.7 (2026-10-06); BNOR 568.0 (2026-10-06); EQNR 410.0 (2026-10-06); AKRBP 339.2 (2026-10-06); OBX 1966.72 (2026-10-06); bledy: brak
 - Rekomendacje (eksperymentalne): 12/12 stron OK, 368 wierszy w rekomendacje.csv; bledy: brak
+- Shorty Finanstilsynet (klasa 1): OK, 99 spolek z pozycjami, 88 aktywnych pozycji, ostatnie zdarzenie 2026-10-05
 
-Pliki: komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json
+Pliki: komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, shorty.csv, shorty_pozycje.csv, shorty_historia.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json
