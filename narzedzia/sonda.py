@@ -19,12 +19,12 @@ RSS = ["/?lab_viewport=rss", "/rss", "/rss.xml", "/feed", "/feed/", "/rss/", "/r
 ZAKAZ = re.compile(r"(?i)(scrap|crawl|data extraction|text and data mining|TDM|tekst- og datautvinning|datautvinning|"
                    r"large language|LLM|artificial intelligence|kunstig intelligens|\bAI\b|media monitoring|medieovervåk)")
 BOTY = re.compile(r"(?i)user-agent:\s*(anthropic-ai|claudebot|claude-web|gptbot|ccbot)")
-s = requests.Session(); s.headers["User-Agent"] = UA
 wynik = {}
-for baza in DOMENY:
+def sonduj(baza):
+    s = requests.Session(); s.headers["User-Agent"] = UA
     d = {}
     try:
-        r = s.get(baza.split("/blogg")[0] + "/robots.txt", timeout=25); time.sleep(1)
+        r = s.get(baza.split("/blogg")[0] + "/robots.txt", timeout=10); time.sleep(0.3)
         t = r.text if r.status_code == 200 else ""
         d["robots_http"] = r.status_code
         d["robots_blokuje_boty_ai"] = bool(BOTY.search(t))
@@ -38,7 +38,7 @@ for baza in DOMENY:
     for k in RSS:
         url = baza.rstrip("/") + k
         try:
-            r = s.get(url, timeout=25); time.sleep(1)
+            r = s.get(url, timeout=10); time.sleep(0.3)
         except Exception as e:
             continue
         t = r.content[:300000].decode("utf-8", "replace")
@@ -50,4 +50,8 @@ for baza in DOMENY:
                              "opis_zakaz": sorted(set(m.group(0).lower() for m in ZAKAZ.finditer(opis))), "przyklad": tyt}
             break
     wynik[baza] = d
+
+from concurrent.futures import ThreadPoolExecutor
+with ThreadPoolExecutor(10) as ex:
+    list(ex.map(sonduj, DOMENY))
 (OUT / "wynik3.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
