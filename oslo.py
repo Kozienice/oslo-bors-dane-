@@ -23,6 +23,7 @@ Zasady (jak w ev-dane-pl):
 """
 
 import csv
+import gzip
 import hashlib
 import html
 import io
@@ -36,7 +37,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.2.0"
+WERSJA = "0.3.0"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -465,8 +466,59 @@ def podsumowanie():
     zle_r = [n for n, w in (rk.get("per_strona") or {}).items() if not w.get("ok")]
     linie.append(f"- Rekomendacje (eksperymentalne): {rk.get('ok', 0)}/{rk.get('stron', 0)} stron OK, "
                  f"{rk.get('wierszy', 0)} wierszy w rekomendacje.csv; bledy: {', '.join(zle_r) or 'brak'}")
-    linie += ["", "Pliki: komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json"]
+    sh = k.get("shorty") or {}
+    linie.append(f"- Shorty Finanstilsynet (klasa 1): {'OK' if sh.get('ok') else 'BLAD'}, {sh.get('z_pozycjami', 0)} spolek z pozycjami, "
+                 f"{sh.get('aktywnych_pozycji', 0)} aktywnych pozycji, ostatnie zdarzenie {sh.get('ostatnia_data', '')}")
+    linie += ["", "Pliki: komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, shorty.csv, shorty_pozycje.csv, shorty_historia.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json"]
     (DATA / "podsumowanie.md").write_text("\n".join(linie) + "\n", encoding="utf-8")
+
+
+# ---------------------------------------------------------------- shorty (Finanstilsynet, klasa 1)
+
+SSR = "https://ssr.finanstilsynet.no/api/v2/instruments"
+SHORTY_DNI = 120
+
+
+def shorty(s):
+    """Rejestr krotkich pozycji Finanstilsynet (publikowane pozycje >= 0,5% kapitalu, aktualizacja w dni sesyjne ok. 15:30).
+    Surowa odpowiedz: data/raw/finanstilsynet/instruments.json.gz; pochodne: shorty.csv (ostatni stan kazdej spolki),
+    shorty_pozycje.csv (aktywne pozycje z ostatniego zdarzenia), shorty_historia.csv (zdarzenia z ostatnich SHORTY_DNI dni)."""
+    zr = "shorty"
+    r = get(s, SSR, zr)
+    if r is None or r.status_code != 200:
+        status["kontrole"]["shorty"] = {"ok": False, "http": getattr(r, "status_code", None)}
+        return
+    notuj(zr, "sha256_odpowiedzi", hashlib.sha256(r.content).hexdigest())
+    zapisz(RAW / "finanstilsynet" / "instruments.json.gz", gzip.compress(r.content, mtime=0), zr, r.url, r.status_code)
+    dane = r.json()
+    if isinstance(dane, dict):
+        dane = dane.get("instruments") or dane.get("items") or list(dane.values())
+    granica = (datetime.now(timezone.utc) - timedelta(days=SHORTY_DNI)).strftime("%Y-%m-%d")
+    stan, pozycje, historia = [], [], []
+    for ins in dane:
+        isin, emitent = ins.get("isin", ""), ins.get("issuerName", "")
+        zd = sorted(ins.get("events") or [], key=lambda e: str(e.get("date", "")))
+        for e in zd:
+            if str(e.get("date", ""))[:10] >= granica:
+                historia.append([isin, emitent, str(e.get("date", ""))[:10], e.get("shortPercent", ""), e.get("shares", ""),
+                                 len(e.get("activePositions") or [])])
+        if not zd:
+            continue
+        ost = zd[-1]
+        akt = ost.get("activePositions") or []
+        stan.append([isin, emitent, str(ost.get("date", ""))[:10], ost.get("shortPercent", ""), ost.get("shares", ""), len(akt)])
+        for p in akt:
+            pozycje.append([isin, emitent, str(ost.get("date", ""))[:10], p.get("positionHolder", ""),
+                            p.get("shortPercent", ""), p.get("shares", ""), str(p.get("date", ""))[:10]])
+    stan.sort(key=lambda w: w[1])
+    pozycje.sort(key=lambda w: (w[1], -float(w[4] or 0)))
+    historia.sort(key=lambda w: (w[1], w[2]))
+    zapisz_csv(DATA / "shorty.csv", ["isin", "emitent", "data_ostatniego_zdarzenia", "short_proc_lacznie", "akcje", "pozycji"], stan)
+    zapisz_csv(DATA / "shorty_pozycje.csv", ["isin", "emitent", "data_zdarzenia", "posiadacz", "short_proc", "akcje", "data_pozycji"], pozycje)
+    zapisz_csv(DATA / "shorty_historia.csv", ["isin", "emitent", "data", "short_proc_lacznie", "akcje", "pozycji"], historia)
+    ost_data = max((w[2] for w in stan), default="")
+    status["kontrole"]["shorty"] = {"ok": bool(stan), "klasa": 1, "instrumentow": len(dane), "z_pozycjami": len(stan),
+                                    "aktywnych_pozycji": len(pozycje), "ostatnia_data": ost_data}
 
 
 # ---------------------------------------------------------------- start
@@ -474,7 +526,7 @@ def podsumowanie():
 def main():
     DATA.mkdir(exist_ok=True)
     s = sesja()
-    for krok in (newsweb, norges_bank, fred, kursy, rekomendacje):
+    for krok in (newsweb, norges_bank, fred, kursy, rekomendacje, shorty):
         try:
             krok(s)
         except Exception:
