@@ -20,11 +20,28 @@ ZAKAZ = re.compile(r"(?i)(scrap|crawl|data extraction|text and data mining|TDM|t
                    r"large language|LLM|artificial intelligence|kunstig intelligens|\bAI\b|media monitoring|medieovervåk)")
 BOTY = re.compile(r"(?i)user-agent:\s*(anthropic-ai|claudebot|claude-web|gptbot|ccbot)")
 wynik = {}
+class Odp:
+    pass
+def pobierz(s, url, limit=300_000, czas=12):
+    """GET z limitem bajtow i calkowitego czasu (serwery potrafia saczyc dane bez konca)."""
+    t0 = time.time()
+    r = s.get(url, timeout=(5, 5), stream=True)
+    buf = b""
+    for kaw in r.iter_content(16384):
+        buf += kaw
+        if len(buf) >= limit or time.time() - t0 > czas:
+            break
+    r.close()
+    o = Odp(); o.status_code = r.status_code; o.url = r.url; o.content = buf; o.text = buf.decode("utf-8", "replace")
+    time.sleep(0.3)
+    return o
+def zapisz_czastkowo():
+    (OUT / "wynik3.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
 def sonduj(baza):
     s = requests.Session(); s.headers["User-Agent"] = UA
     d = {}
     try:
-        r = s.get(baza.split("/blogg")[0] + "/robots.txt", timeout=10); time.sleep(0.3)
+        r = pobierz(s, baza.split("/blogg")[0] + "/robots.txt")
         t = r.text if r.status_code == 200 else ""
         d["robots_http"] = r.status_code
         d["robots_blokuje_boty_ai"] = bool(BOTY.search(t))
@@ -35,10 +52,14 @@ def sonduj(baza):
     except Exception as e:
         d["robots_blad"] = str(e)[:120]
     d["rss"] = {}
+    t_start = time.time()
     for k in RSS:
+        if time.time() - t_start > 90:
+            d["rss_przerwane"] = True
+            break
         url = baza.rstrip("/") + k
         try:
-            r = s.get(url, timeout=10); time.sleep(0.3)
+            r = pobierz(s, url)
         except Exception as e:
             continue
         t = r.content[:300000].decode("utf-8", "replace")
@@ -50,6 +71,7 @@ def sonduj(baza):
                              "opis_zakaz": sorted(set(m.group(0).lower() for m in ZAKAZ.finditer(opis))), "przyklad": tyt}
             break
     wynik[baza] = d
+    zapisz_czastkowo()
 
 from concurrent.futures import ThreadPoolExecutor
 with ThreadPoolExecutor(10) as ex:
