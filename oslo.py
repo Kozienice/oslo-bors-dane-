@@ -37,7 +37,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.4.0"
+WERSJA = "0.4.1"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -528,7 +528,8 @@ def shorty(s):
 
 PRASA_STRONY = ["https://anlegg.bygg.no/", "https://www.bygg.no/"]
 PRASA_LINK = re.compile(r'href="((?:https?://(?:www\.|anlegg\.)?bygg\.no)?/[^"\s]+?/(\d{7}))"')
-PRASA_MAX_NOWYCH = 80
+PRASA_MAX_NOWYCH = 30
+PRASA_PAUZA = 4.0  # bygg.no zwraca strone-blokade (ok. 2 kB) przy szybkich zapytaniach (test 06.10.2026)
 PRASA_DNI = 60
 # slowa kluczowe -> ticker lub temat (dopasowanie w tytule, leadzie i adresie, bez rozrozniania wielkosci liter)
 PRASA_KLUCZE = {
@@ -556,7 +557,8 @@ def prasa(s):
     stare = {}
     if plik.exists():
         for w in csv.DictReader(plik.open(encoding="utf-8")):
-            stare[w["id"]] = w
+            if w.get("tytul"):
+                stare[w["id"]] = w
     znalezione = {}
     for strona in PRASA_STRONY:
         r = get(s, strona, zr)
@@ -570,14 +572,21 @@ def prasa(s):
                 continue
             znalezione.setdefault(aid, href if href.startswith("http") else baza + href)
     nowe = sorted((a for a in znalezione if a not in stare), reverse=True)[:PRASA_MAX_NOWYCH]
-    pobrane = 0
+    pobrane, blokady = 0, 0
     for aid in nowe:
         url = znalezione[aid]
+        time.sleep(PRASA_PAUZA)
         r = get(s, url, zr)
         if r is None or r.status_code != 200:
             continue
         htm = r.content.decode("utf-8", "replace")
         tytul = meta(htm, "og:title")
+        if not tytul:
+            blokady += 1
+            if blokady >= 3:
+                blad(zr, f"3 odpowiedzi bez metadanych (blokada?), ostatnia {len(r.content)} B; reszta w nastepnym przebiegu")
+                break
+            continue
         lead = meta(htm, "og:description") or meta(htm, "description")
         pub = meta(htm, "article:published_time")
         tekst = f"{tytul} {lead} {url}".lower()
@@ -591,7 +600,7 @@ def prasa(s):
     wiersze.sort(key=lambda w: (w.get("opublikowano_utc") or "", w["id"]), reverse=True)
     pola = ["id", "opublikowano_utc", "czas_oslo", "paywall", "tytul", "lead", "trafienia", "adres", "pobrano_utc"]
     zapisz_csv(plik, pola, [[w.get(p, "") for p in pola] for w in wiersze])
-    status["kontrole"]["prasa_bygg"] = {"ok": bool(znalezione), "linkow_na_stronach": len(znalezione), "nowych_pobranych": pobrane,
+    status["kontrole"]["prasa_bygg"] = {"ok": bool(znalezione), "linkow_na_stronach": len(znalezione), "nowych_pobranych": pobrane, "do_pobrania_pozniej": max(0, len([a for a in znalezione if a not in stare])),
                                         "wierszy_w_pliku": len(wiersze),
                                         "z_trafieniami": sum(1 for w in wiersze if w.get("trafienia")),
                                         "najnowszy": wiersze[0]["opublikowano_utc"] if wiersze else ""}
