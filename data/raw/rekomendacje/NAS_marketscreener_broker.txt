@@ -9,8 +9,8 @@ STIM
 Daily Breakouts
 Weekly Breakouts
 ----
-Search
-See the results
+Pareto: Demand holding up well at Norwegian, could return to 2025 profit levels
+FW
 Oct. 05
 Danske Bank lowers price target for Norwegian to 13 Norwegian kroner (14), reiterates hold - BN
 FW
@@ -215,24 +215,13 @@ FW
 Mar. 03
 DNB Carnegie Lowers Price Target for Norwegian to 20 Norwegian Kroner (22), Reiterates Buy
 FW
-Feb. 17
-Barclays Raises Price Target for Norwegian to 22 Norwegian Kroner (19.30), Reiterates Overweight - BN
+No results match your criteria
+All News
 ----
 Barclays cuts Norwegian price target to 20 NOK (22), reiterates overweight - BN
 FW
 Mar. 03
 DNB Carnegie Lowers Price Target for Norwegian to 20 Norwegian Kroner (22), Reiterates Buy
-FW
-Feb. 17
-Barclays Raises Price Target for Norwegian to 22 Norwegian Kroner (19.30), Reiterates Overweight - BN
-FW
-No results match your criteria
-All News
-----
-DNB Carnegie Lowers Price Target for Norwegian to 20 Norwegian Kroner (22), Reiterates Buy
-FW
-Feb. 17
-Barclays Raises Price Target for Norwegian to 22 Norwegian Kroner (19.30), Reiterates Overweight - BN
 FW
 No results match your criteria
 All News
@@ -240,10 +229,10 @@ Broker Recommendations
 Highlights
 Insiders
 ----
-Unlock them now!
-Unlock them now!
+Maximize my profits
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing866")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -251,9 +240,9 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
 ----
-Unlock them now!
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing866")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -265,7 +254,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws866")) {
+if (event.target.matches(".ajax_close_teasing_ws867")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }
