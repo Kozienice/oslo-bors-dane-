@@ -38,7 +38,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.5.1"
+WERSJA = "0.5.2"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -546,11 +546,13 @@ PRASA_RSS = {
 }
 # POMINIETE po sondzie 3 (robots.txt blokuje boty AI lub zabrania scrapingu/ekstrakcji): energiwatch.no, europower.no,
 # intrafish.no, investtech.com, nettavisen.no, nrk.no, tradewindsnews.com, upstreamonline.com
+PRASA_ANGIELSKIE = {"offshore_energy"}
 PRASA_FA_SITEMAP = "https://ws.finansavisen.no/sitemap/sitemap-articles-{rok}-{mies}.xml"  # robots.txt: Crawl-delay 10
 PRASA_DNI = 60
 # slowa kluczowe -> ticker lub temat (tytul, lead i adres, bez rozrozniania wielkosci liter)
 PRASA_KLUCZE = {
-    "VAR": [r"vår energi", r"var energi"], "NAS": [r"\bnorwegian\b(?! cruise)", r"widerøe"], "TGS": [r"\btgs\b"],
+    "VAR": [r"vår energi", r"var energi"], "TGS": [r"\btgs\b"],
+    "NAS": [r"norwegian air", r"norwegian-(sjef|konsern|aksje)", r"\bnorwegians\b", r"widerøe", r"\bnas\b"],
     "BNOR": [r"bluenord"], "EQNR": [r"equinor"], "AKRBP": [r"aker bp"],
     "AFG": [r"\bAF[- ]?(gruppen|selskap|anlegg|bygg|decom|energi|dotter)\b", r"\bAF\b", r"betonmast", r"\bmepas\b", r"stad[- ]skipstunnel"],
     "VEI": [r"veidekke"], "SNTIA": [r"\bhent\b", r"sentia"], "NRC": [r"\bnrc\b"],
@@ -581,9 +583,15 @@ def prasa(s):
                 wiersze[w["id"]] = {p_: w.get(p_, "") for p_ in pola}
     na_portal = {}
     for portal, url in PRASA_RSS.items():
-        r = get(s, url, zr)
+        r = None
+        for proba in range(2):
+            time.sleep(3 if proba == 0 else 20)  # wiele portali stoi na jednym CMS (Labrador) - nie zasypujemy serwera
+            r = get(s, url, zr)
+            if r is not None and r.status_code == 200 and b"<item" in r.content:
+                break
         if r is None or r.status_code != 200 or b"<item" not in r.content:
-            blad(zr, f"{portal}: HTTP {getattr(r, 'status_code', None)}")
+            poczatek = (r.content[:160].decode("utf-8", "replace") if r is not None else "").replace("\n", " ")
+            blad(zr, f"{portal}: HTTP {getattr(r, 'status_code', None)}, brak <item>; poczatek: {poczatek}")
             na_portal[portal] = 0
             continue
         zapisz(RAW / "prasa" / f"{portal}.xml", r.content, zr, r.url, r.status_code)
@@ -636,6 +644,8 @@ def prasa(s):
     na_portal["finansavisen"] = n
     for w in wiersze.values():
         tekst = f"{w['tytul']} {w['lead']} {w['adres']}"
+        if w["portal"] not in PRASA_ANGIELSKIE:  # w tekstach norweskich samo 'Norwegian' to prawie zawsze linia lotnicza
+            tekst += " norwegian-aksje" if re.search(r"\bnorwegian\b(?! cruise)", tekst, re.I) else ""
         w["trafienia"] = " ".join(k for k, wz in PRASA_KLUCZE.items() if any(re.search(x, tekst, re.I) for x in wz))
     granica = (teraz_ - timedelta(days=PRASA_DNI)).strftime("%Y-%m-%d")
     lista = [w for w in wiersze.values() if (w.get("opublikowano_utc") or "9999") >= granica]
