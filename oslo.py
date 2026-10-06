@@ -37,7 +37,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.4.1"
+WERSJA = "0.4.2"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -471,7 +471,7 @@ def podsumowanie():
                  f"{sh.get('aktywnych_pozycji', 0)} aktywnych pozycji, ostatnie zdarzenie {sh.get('ostatnia_data', '')}")
     pr = k.get("prasa_bygg") or {}
     linie.append(f"- Prasa branzowa bygg.no: {'OK' if pr.get('ok') else 'BLAD'}, {pr.get('wierszy_w_pliku', 0)} artykulow w prasa.csv "
-                 f"({pr.get('z_trafieniami', 0)} z trafieniami), nowych w tym przebiegu {pr.get('nowych_pobranych', 0)}")
+                 f"({pr.get('z_trafieniami', 0)} z trafieniami, {pr.get('bez_daty', 0)} jeszcze bez daty i leadu)")
     linie += ["", "Pliki: prasa.csv, komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, shorty.csv, shorty_pozycje.csv, shorty_historia.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json"]
     (DATA / "podsumowanie.md").write_text("\n".join(linie) + "\n", encoding="utf-8")
 
@@ -548,62 +548,90 @@ def meta(htm: str, nazwa: str) -> str:
     return html.unescape(m.group(1)).strip() if m else ""
 
 
+def elementy_listy(o):
+    """Wszystkie elementy itemListElement w zagniezdzonym JSON-LD (lista albo slownik na dowolnym poziomie)."""
+    if isinstance(o, list):
+        for x in o:
+            yield from elementy_listy(x)
+    elif isinstance(o, dict):
+        for el in o.get("itemListElement") or []:
+            yield el
+        for k, v in o.items():
+            if k != "itemListElement" and isinstance(v, (list, dict)):
+                yield from elementy_listy(v)
+
+
 def prasa(s):
-    """Prasa branzowa NO (bygg.no, anlegg.bygg.no): lista artykulow ze stron glownych + metadane publiczne kazdego
-    artykulu (og:title, og:description = lead, article:published_time). Tresci spod paywalla NIE pobieramy - artykul
-    (+)/PLUSS ma tylko tytul, date i lead, tak jak pokazuje je strona bez logowania. Akumulacja w data/prasa.csv (60 dni)."""
+    """Prasa branzowa NO (bygg.no, anlegg.bygg.no). Zrodlo 1: strony glowne - lista artykulow z danych strukturalnych
+    (JSON-LD ItemList: headline + url), bez dodatkowych zapytan. Zrodlo 2 (uzupelnienie, max PRASA_MAX_NOWYCH na przebieg,
+    przerwane po 3 blokadach): publiczne metadane strony artykulu - lead (og:description), data (article:published_time),
+    oznaczenie (+)/PLUSS. Tresci spod paywalla NIE pobieramy. Akumulacja w data/prasa.csv (60 dni od publikacji albo
+    od pierwszego zauwazenia, gdy daty jeszcze brak)."""
     zr = "prasa_bygg"
     plik = DATA / "prasa.csv"
-    stare = {}
+    pola = ["id", "opublikowano_utc", "czas_oslo", "pierwsze_widziane_utc", "paywall", "tytul", "lead", "trafienia", "adres"]
+    wiersze = {}
     if plik.exists():
         for w in csv.DictReader(plik.open(encoding="utf-8")):
             if w.get("tytul"):
-                stare[w["id"]] = w
-    znalezione = {}
+                wiersze[w["id"]] = {p_: w.get(p_, "") for p_ in pola}
+    na_stronach = 0
     for strona in PRASA_STRONY:
         r = get(s, strona, zr)
         if r is None or r.status_code != 200:
             blad(zr, f"strona {strona}: HTTP {getattr(r, 'status_code', None)}")
             continue
         zapisz(RAW / "prasa" / (strona.split("//")[1].strip("/").replace(".", "_") + ".html"), r.content, zr, r.url, r.status_code)
+        htm = r.content.decode("utf-8", "replace")
         baza = strona.rstrip("/")
-        for href, aid in PRASA_LINK.findall(r.content.decode("utf-8", "replace")):
-            if "stillinger." in href:
+        for blok in re.findall(r'(?s)<script[^>]+application/ld\+json[^>]*>(.*?)</script>', htm):
+            try:
+                ld = json.loads(blok)
+            except Exception:
                 continue
-            znalezione.setdefault(aid, href if href.startswith("http") else baza + href)
-    nowe = sorted((a for a in znalezione if a not in stare), reverse=True)[:PRASA_MAX_NOWYCH]
+            for el in elementy_listy(ld):
+                it = el.get("item") or {}
+                url, tyt = it.get("url", ""), html.unescape(it.get("headline", "")).replace("\u00ad", "").strip()
+                m = re.search(r"/(\d{7})$", url)
+                if not (m and tyt):
+                    continue
+                na_stronach += 1
+                aid = m.group(1)
+                pelny = url if url.startswith("http") else baza + url
+                w = wiersze.setdefault(aid, {p_: "" for p_ in pola})
+                w.update({"id": aid, "tytul": w.get("tytul") or tyt, "adres": w.get("adres") or pelny})
+                w["pierwsze_widziane_utc"] = w.get("pierwsze_widziane_utc") or utc()
+    # uzupelnienie metadanych (najnowsze najpierw)
     pobrane, blokady = 0, 0
-    for aid in nowe:
-        url = znalezione[aid]
+    for aid in sorted((a for a, w in wiersze.items() if not w.get("opublikowano_utc")), reverse=True)[:PRASA_MAX_NOWYCH]:
         time.sleep(PRASA_PAUZA)
-        r = get(s, url, zr)
+        r = get(s, wiersze[aid]["adres"], zr)
         if r is None or r.status_code != 200:
             continue
         htm = r.content.decode("utf-8", "replace")
-        tytul = meta(htm, "og:title")
-        if not tytul:
+        tyt = meta(htm, "og:title")
+        if not tyt:
             blokady += 1
             if blokady >= 3:
-                blad(zr, f"3 odpowiedzi bez metadanych (blokada?), ostatnia {len(r.content)} B; reszta w nastepnym przebiegu")
+                blad(zr, f"3 odpowiedzi bez metadanych (blokada, {len(r.content)} B); reszta w nastepnym przebiegu")
                 break
             continue
-        lead = meta(htm, "og:description") or meta(htm, "description")
         pub = meta(htm, "article:published_time")
-        tekst = f"{tytul} {lead} {url}".lower()
-        traf = [k for k, wz in PRASA_KLUCZE.items() if any(re.search(w, tekst, re.I) for w in wz)]
-        stare[aid] = {"id": aid, "opublikowano_utc": pub, "czas_oslo": oslo_czas(pub) if pub else "",
-                      "paywall": "tak" if tytul.startswith("(+)") else "nie", "tytul": tytul.removeprefix("(+)").strip(),
-                      "lead": lead, "trafienia": " ".join(traf), "adres": url, "pobrano_utc": utc()}
+        wiersze[aid].update({"opublikowano_utc": pub, "czas_oslo": oslo_czas(pub) if pub else "",
+                             "paywall": "tak" if tyt.startswith("(+)") else "nie",
+                             "lead": meta(htm, "og:description") or meta(htm, "description")})
         pobrane += 1
+    for w in wiersze.values():
+        tekst = f"{w['tytul']} {w['lead']} {w['adres']}".lower()
+        w["trafienia"] = " ".join(k for k, wz in PRASA_KLUCZE.items() if any(re.search(x, tekst, re.I) for x in wz))
     granica = (datetime.now(timezone.utc) - timedelta(days=PRASA_DNI)).strftime("%Y-%m-%d")
-    wiersze = [w for w in stare.values() if (w.get("opublikowano_utc") or "9999") >= granica]
-    wiersze.sort(key=lambda w: (w.get("opublikowano_utc") or "", w["id"]), reverse=True)
-    pola = ["id", "opublikowano_utc", "czas_oslo", "paywall", "tytul", "lead", "trafienia", "adres", "pobrano_utc"]
-    zapisz_csv(plik, pola, [[w.get(p, "") for p in pola] for w in wiersze])
-    status["kontrole"]["prasa_bygg"] = {"ok": bool(znalezione), "linkow_na_stronach": len(znalezione), "nowych_pobranych": pobrane, "do_pobrania_pozniej": max(0, len([a for a in znalezione if a not in stare])),
-                                        "wierszy_w_pliku": len(wiersze),
-                                        "z_trafieniami": sum(1 for w in wiersze if w.get("trafienia")),
-                                        "najnowszy": wiersze[0]["opublikowano_utc"] if wiersze else ""}
+    lista = [w for w in wiersze.values() if (w.get("opublikowano_utc") or w.get("pierwsze_widziane_utc") or "9999") >= granica]
+    lista.sort(key=lambda w: w["id"], reverse=True)
+    zapisz_csv(plik, pola, [[w.get(p_, "") for p_ in pola] for w in lista])
+    status["kontrole"]["prasa_bygg"] = {"ok": na_stronach > 0, "pozycji_na_stronach": na_stronach, "uzupelnionych_metadanych": pobrane,
+                                        "bez_daty": sum(1 for w in lista if not w.get("opublikowano_utc")),
+                                        "wierszy_w_pliku": len(lista), "z_trafieniami": sum(1 for w in lista if w.get("trafienia")),
+                                        "najnowszy_id": lista[0]["id"] if lista else ""}
 
 
 # ---------------------------------------------------------------- start
