@@ -65,45 +65,45 @@ element.closest('[id*="teasing_"]').remove();
 DAILY FREE LIMIT REACHED
 ----
 }
-$(document).ready(function() {gaEvent('adspv', 'internal', 'NL');});
+$(document).ready(function() {gaEvent('adspv', 'businessAD', 'XX');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413301');
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
 googletag.enableServices();
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
-----
-$(document).ready(function() {gaEvent('adspv', 'internal', 'NL');});
-googletag.cmd.push(function() {
-googletag.pubads().setTargeting('Edition', 'en_US');
-googletag.pubads().setTargeting('UserType', 'free');
-googletag.pubads().setTargeting('Content', 'equities');
-googletag.pubads().setTargeting('codezb', '1413301');
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
-googletag.enableServices();
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
-try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
-----
-googletag.cmd.push(function() {
-googletag.pubads().setTargeting('Edition', 'en_US');
-googletag.pubads().setTargeting('UserType', 'free');
-googletag.pubads().setTargeting('Content', 'equities');
-googletag.pubads().setTargeting('codezb', '1413301');
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
-googletag.enableServices();
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
-try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
-});
-----
-googletag.pubads().setTargeting('Edition', 'en_US');
-googletag.pubads().setTargeting('UserType', 'free');
-googletag.pubads().setTargeting('Content', 'equities');
-googletag.pubads().setTargeting('codezb', '1413301');
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
-googletag.enableServices();
-var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
-try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 });
 gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/TGS-ASA-1413301/news/"
+----
+$(document).ready(function() {gaEvent('adspv', 'businessAD', 'XX');});
+googletag.cmd.push(function() {
+googletag.pubads().setTargeting('Edition', 'en_US');
+googletag.pubads().setTargeting('UserType', 'free');
+googletag.pubads().setTargeting('Content', 'equities');
+googletag.pubads().setTargeting('codezb', '1413301');
+googletag.enableServices();
+});
+gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/TGS-ASA-1413301/news/"
+, 'content_group1': 'Actions' });
+----
+googletag.cmd.push(function() {
+googletag.pubads().setTargeting('Edition', 'en_US');
+googletag.pubads().setTargeting('UserType', 'free');
+googletag.pubads().setTargeting('Content', 'equities');
+googletag.pubads().setTargeting('codezb', '1413301');
+googletag.enableServices();
+});
+gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/TGS-ASA-1413301/news/"
+, 'content_group1': 'Actions' });
+window._io_config = window._io_config || {};
+----
+googletag.pubads().setTargeting('Edition', 'en_US');
+googletag.pubads().setTargeting('UserType', 'free');
+googletag.pubads().setTargeting('Content', 'equities');
+googletag.pubads().setTargeting('codezb', '1413301');
+googletag.enableServices();
+});
+gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/TGS-ASA-1413301/news/"
+, 'content_group1': 'Actions' });
+window._io_config = window._io_config || {};
+window._io_config["0.2.0"] = window._io_config["0.2.0"] || [];
