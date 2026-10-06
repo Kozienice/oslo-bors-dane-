@@ -42,10 +42,10 @@ FW
 Aug. 14
 Norwegian Air Shuttle : NAS) – Grant of share options
 ----
-100% Free Registration
-100% Free Registration
+Maximize my profits
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing869")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -53,9 +53,9 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
 ----
-100% Free Registration
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing869")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -67,7 +67,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws869")) {
+if (event.target.matches(".ajax_close_teasing_ws867")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }
@@ -76,45 +76,45 @@ function onloadUI()
 {
 ----
 }
-$(document).ready(function() {gaEvent('adspv', 'businessAD', 'XX');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413204');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
 googletag.enableServices();
-});
-$(document).ready(function() { $( document).on('zbv_visible',function () {startAdsService();}); if (document[zbv_hidden]===false) { startAdsService(); } });
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
 ----
-$(document).ready(function() {gaEvent('adspv', 'businessAD', 'XX');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413204');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
 googletag.enableServices();
-});
-$(document).ready(function() { $( document).on('zbv_visible',function () {startAdsService();}); if (document[zbv_hidden]===false) { startAdsService(); } });
-gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/NORWEGIAN-AIR-SHUTTLE-ASA-1413204/news/"
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 ----
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413204');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
 googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 });
-$(document).ready(function() { $( document).on('zbv_visible',function () {startAdsService();}); if (document[zbv_hidden]===false) { startAdsService(); } });
-gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/NORWEGIAN-AIR-SHUTTLE-ASA-1413204/news/"
-, 'content_group1': 'Actions' });
 ----
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413204');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
 googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 });
 $(document).ready(function() { $( document).on('zbv_visible',function () {startAdsService();}); if (document[zbv_hidden]===false) { startAdsService(); } });
-gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/NORWEGIAN-AIR-SHUTTLE-ASA-1413204/news/"
-, 'content_group1': 'Actions' });
-window._io_config = window._io_config || {};
