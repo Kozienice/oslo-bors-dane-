@@ -590,8 +590,11 @@ def prasa(s):
             except Exception:
                 continue
             for el in elementy_listy(ld):
-                it = el.get("item") or {}
-                url, tyt = it.get("url", ""), html.unescape(it.get("headline", "")).replace("\u00ad", "").strip()
+                it = el.get("item") if isinstance(el, dict) else None
+                if not isinstance(it, dict):
+                    continue
+                url, tyt = str(it.get("url") or ""), it.get("headline") or ""
+                tyt = html.unescape(tyt if isinstance(tyt, str) else str(tyt)).replace("\u00ad", "").strip()
                 m = re.search(r"/(\d{7})$", url)
                 if not (m and tyt):
                     continue
