@@ -111,7 +111,7 @@ Equinor ASA, Aker BP ASA And Vår Energi ASA Establish Strategic Exploration Col
 Maximize my profits
 Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing867")) {
+if (event.target.matches(".ajax_close_teasing868")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -121,7 +121,7 @@ if (xhr.readyState === 4 && xhr.status === 200) {
 ----
 Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing867")) {
+if (event.target.matches(".ajax_close_teasing868")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -133,7 +133,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws867")) {
+if (event.target.matches(".ajax_close_teasing_ws868")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }
