@@ -37,7 +37,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.4.2"
+WERSJA = "0.5.0"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -469,9 +469,9 @@ def podsumowanie():
     sh = k.get("shorty") or {}
     linie.append(f"- Shorty Finanstilsynet (klasa 1): {'OK' if sh.get('ok') else 'BLAD'}, {sh.get('z_pozycjami', 0)} spolek z pozycjami, "
                  f"{sh.get('aktywnych_pozycji', 0)} aktywnych pozycji, ostatnie zdarzenie {sh.get('ostatnia_data', '')}")
-    pr = k.get("prasa_bygg") or {}
-    linie.append(f"- Prasa branzowa bygg.no: {'OK' if pr.get('ok') else 'BLAD'}, {pr.get('wierszy_w_pliku', 0)} artykulow w prasa.csv "
-                 f"({pr.get('z_trafieniami', 0)} z trafieniami, {pr.get('bez_daty', 0)} jeszcze bez daty i leadu)")
+    pr = k.get("prasa") or {}
+    linie.append(f"- Prasa NO (RSS bygg/anlegg/estate/tu + mapa Finansavisen): {'OK' if pr.get('ok') else 'BLAD'}, "
+                 f"{pr.get('wierszy_w_pliku', 0)} naglowkow w prasa.csv ({pr.get('z_trafieniami', 0)} z trafieniami); w kanalach: {pr.get('pozycji_w_kanalach', {})}")
     linie += ["", "Pliki: prasa.csv, komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, shorty.csv, shorty_pozycje.csv, shorty_historia.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json"]
     (DATA / "podsumowanie.md").write_text("\n".join(linie) + "\n", encoding="utf-8")
 
@@ -524,117 +524,117 @@ def shorty(s):
                                     "aktywnych_pozycji": len(pozycje), "ostatnia_data": ost_data}
 
 
-# ---------------------------------------------------------------- prasa branzowa (bygg.no) - tytul, data, lead
+# ---------------------------------------------------------------- prasa NO - tytul, data, lead z kanalow publicznych
 
-PRASA_STRONY = ["https://anlegg.bygg.no/", "https://www.bygg.no/"]
-PRASA_LINK = re.compile(r'href="((?:https?://(?:www\.|anlegg\.)?bygg\.no)?/[^"\s]+?/(\d{7}))"')
-PRASA_MAX_NOWYCH = 30
-PRASA_PAUZA = 4.0  # bygg.no zwraca strone-blokade (ok. 2 kB) przy szybkich zapytaniach (test 06.10.2026)
+# Zrodla wybrane po sondzie 06.10.2026 (narzedzia/sonda.py): tylko portale, ktore publikuja kanal RSS albo mape strony
+# i nie zabraniaja automatycznego przetwarzania. POMINIETE CELOWO: dn.no (robots.txt: scraping, monitoring mediow i
+# ekstrakcja danych wymagaja umowy; blokada botow AI) i e24.no (warunki RSS i robots.txt zabraniaja uzycia tresci jako
+# wejscia dla LLM i automatycznego przetwarzania bez zgody).
+PRASA_RSS = {
+    "bygg": "https://www.bygg.no/?lab_viewport=rss",
+    "anlegg": "https://anlegg.bygg.no/?lab_viewport=rss",
+    "estate": "https://www.estatenyheter.no/?lab_viewport=rss",
+    "tu": "https://www.tu.no/?lab_viewport=rss",
+}
+PRASA_FA_SITEMAP = "https://ws.finansavisen.no/sitemap/sitemap-articles-{rok}-{mies}.xml"  # robots.txt: Crawl-delay 10
 PRASA_DNI = 60
-# slowa kluczowe -> ticker lub temat (dopasowanie w tytule, leadzie i adresie, bez rozrozniania wielkosci liter)
+# slowa kluczowe -> ticker lub temat (tytul, lead i adres, bez rozrozniania wielkosci liter)
 PRASA_KLUCZE = {
-    "AFG": [r"\bAF[- ]?(gruppen|selskap|anlegg|bygg|decom|energi)\b", r"\bAF\b", r"betonmast", r"\bmepas\b", r"stad[- ]skipstunnel"],
+    "VAR": [r"vår energi", r"var energi"], "NAS": [r"\bnorwegian\b(?! cruise)", r"widerøe"], "TGS": [r"\btgs\b"],
+    "BNOR": [r"bluenord"], "EQNR": [r"equinor"], "AKRBP": [r"aker bp"],
+    "AFG": [r"\bAF[- ]?(gruppen|selskap|anlegg|bygg|decom|energi|dotter)\b", r"\bAF\b", r"betonmast", r"\bmepas\b", r"stad[- ]skipstunnel"],
     "VEI": [r"veidekke"], "SNTIA": [r"\bhent\b", r"sentia"], "NRC": [r"\bnrc\b"],
-    "NOM": [r"nordic mining", r"engebø", r"førdefjord"], "NHY": [r"\bhydro\b"],
+    "NOM": [r"nordic mining", r"engebø", r"førdefjord"], "NHY": [r"\bhydro\b"], "TEKNA": [r"\btekna\b"],
     "FEN": [r"fensfelt", r"rare earths norway", r"sjeldne jordarter"],
     "OBOS": [r"\bobos\b"], "SKANSKA": [r"skanska"], "NCC": [r"\bncc\b"], "PEAB": [r"\bpeab\b"], "CONSTO": [r"consto"],
+    "BOLIGSALG": [r"boligprodusent", r"nye boliger", r"boligsalg"], "RENTE": [r"norges bank", r"styringsrent"],
     "KONKURS": [r"konkurs"], "TVIST": [r"tvist|forlik|søksmål|stevning|rettssak"],
 }
 
 
-def meta(htm: str, nazwa: str) -> str:
-    m = re.search(r'<meta[^>]+(?:property|name)="%s"[^>]+content="([^"]*)"' % re.escape(nazwa), htm) or \
-        re.search(r'<meta[^>]+content="([^"]*)"[^>]+(?:property|name)="%s"' % re.escape(nazwa), htm)
-    return html.unescape(m.group(1)).strip() if m else ""
-
-
-def elementy_listy(o):
-    """Wszystkie elementy itemListElement w zagniezdzonym JSON-LD (lista albo slownik na dowolnym poziomie)."""
-    if isinstance(o, list):
-        for x in o:
-            yield from elementy_listy(x)
-    elif isinstance(o, dict):
-        for el in o.get("itemListElement") or []:
-            yield el
-        for k, v in o.items():
-            if k != "itemListElement" and isinstance(v, (list, dict)):
-                yield from elementy_listy(v)
+def tekst_xml(t: str) -> str:
+    t = re.sub(r"(?s)<!\[CDATA\[(.*?)\]\]>", r"\1", t or "")
+    return html.unescape(re.sub(r"<[^>]+>", " ", t)).replace("\u00ad", "").strip()
 
 
 def prasa(s):
-    """Prasa branzowa NO (bygg.no, anlegg.bygg.no). Zrodlo 1: strony glowne - lista artykulow z danych strukturalnych
-    (JSON-LD ItemList: headline + url), bez dodatkowych zapytan. Zrodlo 2 (uzupelnienie, max PRASA_MAX_NOWYCH na przebieg,
-    przerwane po 3 blokadach): publiczne metadane strony artykulu - lead (og:description), data (article:published_time),
-    oznaczenie (+)/PLUSS. Tresci spod paywalla NIE pobieramy. Akumulacja w data/prasa.csv (60 dni od publikacji albo
-    od pierwszego zauwazenia, gdy daty jeszcze brak)."""
-    zr = "prasa_bygg"
+    """Naglowki prasy NO: tytul, data publikacji, lead i adres z kanalow RSS (Labrador CMS: bygg.no, anlegg.bygg.no,
+    estatenyheter.no, tu.no) i z mapy artykulow Finansavisen (tytul i data, bez leadu). Tresci artykulow NIE pobieramy -
+    jedno zapytanie na portal na przebieg. Akumulacja w data/prasa.csv (60 dni)."""
+    zr = "prasa"
     plik = DATA / "prasa.csv"
-    pola = ["id", "opublikowano_utc", "czas_oslo", "pierwsze_widziane_utc", "paywall", "tytul", "lead", "trafienia", "adres"]
+    pola = ["id", "portal", "opublikowano_utc", "czas_oslo", "pluss", "tytul", "lead", "trafienia", "adres"]
     wiersze = {}
     if plik.exists():
         for w in csv.DictReader(plik.open(encoding="utf-8")):
-            if w.get("tytul"):
+            if w.get("tytul") and w.get("portal"):
                 wiersze[w["id"]] = {p_: w.get(p_, "") for p_ in pola}
-    na_stronach = 0
-    for strona in PRASA_STRONY:
-        r = get(s, strona, zr)
-        if r is None or r.status_code != 200:
-            blad(zr, f"strona {strona}: HTTP {getattr(r, 'status_code', None)}")
+    na_portal = {}
+    for portal, url in PRASA_RSS.items():
+        r = get(s, url, zr)
+        if r is None or r.status_code != 200 or b"<item" not in r.content:
+            blad(zr, f"{portal}: HTTP {getattr(r, 'status_code', None)}")
+            na_portal[portal] = 0
             continue
-        zapisz(RAW / "prasa" / (strona.split("//")[1].strip("/").replace(".", "_") + ".html"), r.content, zr, r.url, r.status_code)
-        htm = r.content.decode("utf-8", "replace")
-        baza = strona.rstrip("/")
-        for blok in re.findall(r'(?s)<script[^>]+application/ld\+json[^>]*>(.*?)</script>', htm):
-            try:
-                ld = json.loads(blok)
-            except Exception:
+        zapisz(RAW / "prasa" / f"{portal}.xml", r.content, zr, r.url, r.status_code)
+        n = 0
+        for it in re.findall(r"(?s)<item>(.*?)</item>", r.content.decode("utf-8", "replace")):
+            pole = lambda t: tekst_xml((re.search(r"(?s)<%s>(.*?)</%s>" % (t, t), it) or [None, ""])[1])
+            link, tyt = pole("link"), pole("title")
+            m = re.search(r"/(\d{5,})(?:\?|$)", link)
+            if not (m and tyt):
                 continue
-            for el in elementy_listy(ld):
-                it = el.get("item") if isinstance(el, dict) else None
-                if not isinstance(it, dict):
-                    continue
-                url, tyt = str(it.get("url") or ""), it.get("headline") or ""
-                tyt = html.unescape(tyt if isinstance(tyt, str) else str(tyt)).replace("\u00ad", "").strip()
-                m = re.search(r"/(\d{7})$", url)
-                if not (m and tyt):
-                    continue
-                na_stronach += 1
-                aid = m.group(1)
-                pelny = url if url.startswith("http") else baza + url
-                w = wiersze.setdefault(aid, {p_: "" for p_ in pola})
-                w.update({"id": aid, "tytul": w.get("tytul") or tyt, "adres": w.get("adres") or pelny})
-                w["pierwsze_widziane_utc"] = w.get("pierwsze_widziane_utc") or utc()
-    # uzupelnienie metadanych (najnowsze najpierw)
-    pobrane, blokady = 0, 0
-    for aid in sorted((a for a, w in wiersze.items() if not w.get("opublikowano_utc")), reverse=True)[:PRASA_MAX_NOWYCH]:
-        time.sleep(PRASA_PAUZA)
-        r = get(s, wiersze[aid]["adres"], zr)
+            try:
+                pub = datetime.strptime(pole("pubDate"), "%a, %d %b %Y %H:%M:%S %z").astimezone(timezone.utc)
+                pub = utc(pub)
+            except Exception:
+                pub = ""
+            aid = f"{portal}:{m.group(1)}"
+            wiersze[aid] = {"id": aid, "portal": portal, "opublikowano_utc": pub, "czas_oslo": oslo_czas(pub) if pub else "",
+                            "pluss": "tak" if ("/pluss/" in link or tyt.startswith("(+)")) else "",
+                            "tytul": tyt.removeprefix("(+)").strip(), "lead": pole("description"), "trafienia": "", "adres": link}
+            n += 1
+        na_portal[portal] = n
+    # Finansavisen: mapa artykulow biezacego miesiaca (+ poprzedniego w pierwszych 3 dniach)
+    teraz_ = datetime.now(timezone.utc)
+    miesiace = [(teraz_.year, teraz_.month)]
+    if teraz_.day <= 3:
+        pm = teraz_.replace(day=1) - timedelta(days=1)
+        miesiace.append((pm.year, pm.month))
+    n = 0
+    for rok, mies in miesiace:
+        url = PRASA_FA_SITEMAP.format(rok=rok, mies=mies)
+        r = get(s, url, zr)
+        time.sleep(10)  # Crawl-delay z robots.txt Finansavisen
         if r is None or r.status_code != 200:
+            blad(zr, f"finansavisen {rok}-{mies}: HTTP {getattr(r, 'status_code', None)}")
             continue
-        htm = r.content.decode("utf-8", "replace")
-        tyt = meta(htm, "og:title")
-        if not tyt:
-            blokady += 1
-            if blokady >= 3:
-                blad(zr, f"3 odpowiedzi bez metadanych (blokada, {len(r.content)} B); reszta w nastepnym przebiegu")
-                break
-            continue
-        pub = meta(htm, "article:published_time")
-        wiersze[aid].update({"opublikowano_utc": pub, "czas_oslo": oslo_czas(pub) if pub else "",
-                             "paywall": "tak" if tyt.startswith("(+)") else "nie",
-                             "lead": meta(htm, "og:description") or meta(htm, "description")})
-        pobrane += 1
+        zapisz(RAW / "prasa" / f"finansavisen_{rok}_{mies:02d}.xml", r.content, zr, r.url, r.status_code)
+        for u in re.findall(r"(?s)<url>(.*?)</url>", r.content.decode("utf-8", "replace")):
+            loc = tekst_xml((re.search(r"<loc>(.*?)</loc>", u) or [None, ""])[1])
+            tyt = tekst_xml((re.search(r"(?s)<news:title>(.*?)</news:title>", u) or [None, ""])[1])
+            pub = tekst_xml((re.search(r"<news:publication_date>(.*?)</news:publication_date>", u) or [None, ""])[1])
+            m = re.search(r"/(\d{6,})/", loc)
+            if not (m and tyt):
+                continue
+            pub = pub.replace(".000Z", "Z")
+            aid = f"finansavisen:{m.group(1)}"
+            stary = wiersze.get(aid, {})
+            wiersze[aid] = {"id": aid, "portal": "finansavisen", "opublikowano_utc": pub, "czas_oslo": oslo_czas(pub) if pub else "",
+                            "pluss": "", "tytul": tyt, "lead": stary.get("lead", ""), "trafienia": "", "adres": loc}
+            n += 1
+    na_portal["finansavisen"] = n
     for w in wiersze.values():
-        tekst = f"{w['tytul']} {w['lead']} {w['adres']}".lower()
+        tekst = f"{w['tytul']} {w['lead']} {w['adres']}"
         w["trafienia"] = " ".join(k for k, wz in PRASA_KLUCZE.items() if any(re.search(x, tekst, re.I) for x in wz))
-    granica = (datetime.now(timezone.utc) - timedelta(days=PRASA_DNI)).strftime("%Y-%m-%d")
-    lista = [w for w in wiersze.values() if (w.get("opublikowano_utc") or w.get("pierwsze_widziane_utc") or "9999") >= granica]
-    lista.sort(key=lambda w: w["id"], reverse=True)
+    granica = (teraz_ - timedelta(days=PRASA_DNI)).strftime("%Y-%m-%d")
+    lista = [w for w in wiersze.values() if (w.get("opublikowano_utc") or "9999") >= granica]
+    lista.sort(key=lambda w: (w.get("opublikowano_utc") or "", w["id"]), reverse=True)
     zapisz_csv(plik, pola, [[w.get(p_, "") for p_ in pola] for w in lista])
-    status["kontrole"]["prasa_bygg"] = {"ok": na_stronach > 0, "pozycji_na_stronach": na_stronach, "uzupelnionych_metadanych": pobrane,
-                                        "bez_daty": sum(1 for w in lista if not w.get("opublikowano_utc")),
-                                        "wierszy_w_pliku": len(lista), "z_trafieniami": sum(1 for w in lista if w.get("trafienia")),
-                                        "najnowszy_id": lista[0]["id"] if lista else ""}
+    status["kontrole"]["prasa"] = {"ok": any(na_portal.values()), "pozycji_w_kanalach": na_portal, "wierszy_w_pliku": len(lista),
+                                   "z_trafieniami": sum(1 for w in lista if w.get("trafienia")),
+                                   "najnowszy": lista[0]["opublikowano_utc"] if lista else "",
+                                   "pominiete_celowo": "dn.no, e24.no (warunki portali zabraniaja automatycznego przetwarzania)"}
 
 
 # ---------------------------------------------------------------- start

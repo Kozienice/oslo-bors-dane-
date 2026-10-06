@@ -4,7 +4,7 @@ Warstwa danych dla projektu "Oslo Bors" (zadania zaplanowane PORTFEL i PIATEK w 
 GitHub Actions pobiera surowe dane w dni robocze i zapisuje je w `data/`. Zadania czytaja je przez
 `https://raw.githubusercontent.com/Kozienice/oslo-bors-dane-/main/data/...` i licza w kodzie.
 
-## Co jest pobierane (oslo.py, wersja 0.4)
+## Co jest pobierane (oslo.py, wersja 0.5)
 - API newsweb: lista komunikatow 26 tickerow z 14 dni (`data/komunikaty.csv`, surowe `data/raw/newsweb/lista/`),
   tresc komunikatow z 7 dni (`data/raw/newsweb/tresc/{messageId}.json` i `.txt`),
   zalaczniki PDF dla flaggingu, transakcji insiderow i inside information (EKSPERYMENTALNE, adres nieudokumentowany).
@@ -20,10 +20,11 @@ GitHub Actions pobiera surowe dane w dni robocze i zapisuje je w `data/`. Zadani
   (pozycje >= 0,5% kapitalu, aktualizacja w dni sesyjne ok. 15:30). Surowe: `data/raw/finanstilsynet/instruments.json.gz`
   (sha256 pliku gz i sha256 oryginalnej odpowiedzi w status.json). Pochodne: `data/shorty.csv` (ostatni stan kazdej spolki),
   `data/shorty_pozycje.csv` (aktywne pozycje z nazwami posiadaczy), `data/shorty_historia.csv` (zdarzenia z 120 dni).
-- Prasa branzowa NO (od 0.4.0): strony glowne anlegg.bygg.no i www.bygg.no -> lista artykulow; dla kazdego nowego
-  artykulu publiczne metadane strony: tytul (og:title), lead (og:description), data (article:published_time). Tresci spod
-  paywalla nie pobieramy (artykuly (+)/PLUSS: kolumna paywall = tak). `data/prasa.csv` akumuluje 60 dni; kolumna `trafienia`
-  = slowa kluczowe spolek i tematow (AFG, VEI, SNTIA, NRC, NOM, FEN, OBOS, konkurs, tvist ...). Surowe strony glowne: `data/raw/prasa/`.
+- Prasa NO (od 0.5.0): naglowki z kanalow publicznych - RSS bygg.no, anlegg.bygg.no, estatenyheter.no, tu.no (tytul, data,
+  lead) i mapa artykulow Finansavisen biezacego miesiaca (tytul, data; robots.txt Crawl-delay 10 przestrzegany). Jedno
+  zapytanie na portal na przebieg, tresci artykulow nie pobieramy. `data/prasa.csv` akumuluje 60 dni; kolumna `trafienia`
+  = slowa kluczowe spolek i tematow. Celowo POMINIETE: dn.no i e24.no - ich warunki (robots.txt, warunki RSS) zabraniaja
+  automatycznego przetwarzania i uzycia tresci jako wejscia dla systemow AI bez umowy.
 
 ## Kontrola
 `data/status.json`: czas uruchomienia (UTC i Oslo), dla kazdego pliku adres, kod HTTP, rozmiar, sha256,
