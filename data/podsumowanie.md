@@ -1,4 +1,4 @@
-# Oslo Bors - dane z 2026-10-06 23:23 CEST (skrypt 0.5.2)
+# Oslo Bors - dane z 2026-10-06 23:26 CEST (skrypt 0.5.3)
 
 Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie wpisano recznie.
 
@@ -10,6 +10,6 @@ Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie w
 - Kursy Yahoo (eksperymentalne, klasa 4): VAR 51.24 (2026-10-06); NAS 11.74 (2026-10-06); AFG 192.2 (2026-10-06); TGS 136.7 (2026-10-06); BNOR 568.0 (2026-10-06); EQNR 410.0 (2026-10-06); AKRBP 339.2 (2026-10-06); OBX 1966.72 (2026-10-06); bledy: brak
 - Rekomendacje (eksperymentalne): 12/12 stron OK, 368 wierszy w rekomendacje.csv; bledy: brak
 - Shorty Finanstilsynet (klasa 1): OK, 99 spolek z pozycjami, 88 aktywnych pozycji, ostatnie zdarzenie 2026-10-05
-- Prasa NO (RSS bygg/anlegg/estate/tu + mapa Finansavisen): OK, 997 naglowkow w prasa.csv (73 z trafieniami); w kanalach: {'bygg': 61, 'anlegg': 46, 'estate': 83, 'tu': 118, 'shifter': 52, 'kyst': 150, 'ilaks': 12, 'offshore_energy': 50, 'anleggsmaskinen': 20, 'vegvesen': 0, 'finansavisen': 410}
+- Prasa NO (RSS bygg/anlegg/estate/tu + mapa Finansavisen): OK, 1047 naglowkow w prasa.csv (74 z trafieniami); w kanalach: {'bygg': 61, 'anlegg': 46, 'estate': 83, 'tu': 118, 'shifter': 52, 'kyst': 150, 'ilaks': 12, 'offshore_energy': 50, 'anleggsmaskinen': 20, 'vegvesen': 50, 'finansavisen': 410}
 
 Pliki: prasa.csv, komunikaty.csv, rekomendacje.csv, waluty.csv, kursy.csv, shorty.csv, shorty_pozycje.csv, shorty_historia.csv, fred/*_ostatnie.csv, raw/ (surowe odpowiedzi), status.json
