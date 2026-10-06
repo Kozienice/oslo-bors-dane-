@@ -37,7 +37,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.3.0"
+WERSJA = "0.3.1"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -307,7 +307,7 @@ def kursy(s):
     symbole.update(INDEKSY_YAHOO)
     for nazwa, sym in symbole.items():
         url = f"https://query1.finance.yahoo.com/v8/finance/chart/{sym}"
-        r = get(s, url, zr, params={"range": "1mo", "interval": "1d"})
+        r = get(s, url, zr, params={"range": "1y", "interval": "1d"})
         if r is None or r.status_code != 200:
             wynik[nazwa] = {"ok": False, "http": getattr(r, "status_code", None)}
             continue

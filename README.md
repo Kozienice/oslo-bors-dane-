@@ -10,7 +10,7 @@ GitHub Actions pobiera surowe dane w dni robocze i zapisuje je w `data/`. Zadani
   zalaczniki PDF dla flaggingu, transakcji insiderow i inside information (EKSPERYMENTALNE, adres nieudokumentowany).
 - Norges Bank: kursy referencyjne USD, EUR, SEK -> NOK (`data/waluty.csv`).
 - FRED: DCOILBRENTEU, MCOILBRENTEU, PNGASEUUSDM (`data/fred/`).
-- Kursy zamkniecia z Yahoo chart API (EKSPERYMENTALNE, klasa 4): `data/kursy.csv`.
+- Kursy zamkniecia z Yahoo chart API (EKSPERYMENTALNE, klasa 4), 1 rok sesji (od 0.3.1, wczesniej 1 miesiac): `data/kursy.csv`.
 - Rekomendacje brokerow (EKSPERYMENTALNE od 0.2.0): listy depesz MarketScreener (news-broker-research, news) dla
   VAR, NAS, AFG, TGS, BNOR oraz strony Nordnet z depeszami Direkt/TDN. Surowe: `data/raw/rekomendacje/{ticker}_{zrodlo}.txt`
   (okna tekstu bez znacznikow wokol trafien; w status.json sha256 pliku i sha256 oryginalnej odpowiedzi). Pochodne:
