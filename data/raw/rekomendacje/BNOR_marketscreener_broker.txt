@@ -285,7 +285,7 @@ element.closest('[id*="teasing_"]').remove();
 DAILY FREE LIMIT REACHED
 ----
 }
-$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'NL');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
@@ -295,7 +295,7 @@ var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== nu
 googletag.enableServices();
 var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
 ----
-$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'NL');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
