@@ -5,12 +5,11 @@ import requests
 
 UA = "oslo-bors-dane/sonda (+https://github.com/Kozienice/oslo-bors-dane-)"
 OUT = Path("sonda"); OUT.mkdir(exist_ok=True)
-DOMENY = {
-    "dn": "https://www.dn.no", "e24": "https://e24.no", "finansavisen": "https://www.finansavisen.no",
-    "nordnet": "https://www.nordnet.no", "estatenyheter": "https://www.estatenyheter.no", "tu": "https://www.tu.no",
-}
-KANDYDACI = ["/robots.txt", "/rss", "/rss/", "/rss.xml", "/feed", "/rss2/", "/sitemap.xml", "/sitemap-news.xml",
-             "/sitemap_news.xml", "/news-sitemap.xml", "/sitemaps/news.xml", "/"]
+DOMENY = {}
+DODATKOWE = ["https://www.bygg.no/robots.txt", "https://anlegg.bygg.no/robots.txt", "https://www.bygg.no/?lab_viewport=rss",
+             "https://anlegg.bygg.no/?lab_viewport=rss", "https://ws.finansavisen.no/sitemap/sitemap-articles-2026-10.xml",
+             "https://www.nordnet.no/sitemaps/stocks/1.xml", "https://www.finansavisen.no/vilkar", "https://www.estatenyheter.no/?lab_viewport=rss"]
+KANDYDACI = []
 s = requests.Session(); s.headers["User-Agent"] = UA
 wynik = {}
 for nazwa, baza in DOMENY.items():
@@ -49,4 +48,15 @@ for nazwa, baza in DOMENY.items():
                         except Exception as e:
                             wynik[nazwa][u] = {"blad": str(e)[:200]}
         wynik[nazwa][url] = info
-(OUT / "wynik.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
+wynik["dodatkowe"] = {}
+for url in DODATKOWE:
+    try:
+        r = s.get(url, timeout=30); time.sleep(10)
+        fn = OUT / f"dod_{hashlib.md5(url.encode()).hexdigest()[:8]}.txt"; fn.write_bytes(r.content[:600_000])
+        t = r.content[:600_000].decode("utf-8", "replace")
+        wynik["dodatkowe"][url] = {"http": r.status_code, "bajty": len(r.content), "final": r.url, "plik": str(fn),
+                                   "rss_items": t.count("<item"), "sitemap_urls": t.count("<url>")}
+    except Exception as e:
+        wynik["dodatkowe"][url] = {"blad": str(e)[:200]}
+(OUT / "wynik2.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
+if False: (OUT / "wynik.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
