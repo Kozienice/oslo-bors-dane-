@@ -4,7 +4,7 @@ Warstwa danych dla projektu "Oslo Bors" (zadania zaplanowane PORTFEL i PIATEK w 
 GitHub Actions pobiera surowe dane w dni robocze i zapisuje je w `data/`. Zadania czytaja je przez
 `https://raw.githubusercontent.com/Kozienice/oslo-bors-dane-/main/data/...` i licza w kodzie.
 
-## Co jest pobierane (oslo.py, wersja 0.5)
+## Co jest pobierane (oslo.py, wersja 0.6)
 - API newsweb: lista komunikatow 26 tickerow z 14 dni (`data/komunikaty.csv`, surowe `data/raw/newsweb/lista/`),
   tresc komunikatow z 7 dni (`data/raw/newsweb/tresc/{messageId}.json` i `.txt`),
   zalaczniki PDF dla flaggingu, transakcji insiderow i inside information (EKSPERYMENTALNE, adres nieudokumentowany).
@@ -21,12 +21,15 @@ GitHub Actions pobiera surowe dane w dni robocze i zapisuje je w `data/`. Zadani
   (sha256 pliku gz i sha256 oryginalnej odpowiedzi w status.json). Pochodne: `data/shorty.csv` (ostatni stan kazdej spolki),
   `data/shorty_pozycje.csv` (aktywne pozycje z nazwami posiadaczy), `data/shorty_historia.csv` (zdarzenia z 120 dni).
 - Prasa NO (od 0.5.0, zrodla od 0.5.3): naglowki z kanalow publicznych - RSS/Atom: bygg.no, anlegg.bygg.no,
-  estatenyheter.no, tu.no, shifter.no, kyst.no, ilaks.no, offshore-energy.biz, anleggsmaskinen.no, vegvesen.no (tytul, data,
-  lead do 300 znakow) oraz mapa artykulow Finansavisen biezacego miesiaca (tytul, data). Jedno zapytanie na portal na przebieg
+  estatenyheter.no, tu.no, shifter.no, kyst.no, ilaks.no, offshore-energy.biz, anleggsmaskinen.no, vegvesen.no,
+  boligprodusentene.no, investornytt.no, energiogklima.no, byggmesteren.as, fishfarmingexpert.com, gcaptain.com,
+  hellenicshippingnews.com, northernminer.com (tytul, data, lead do 300 znakow), mapa artykulow Finansavisen biezacego
+  miesiaca i mapa news offshore-mag.com (tytul, data). Jedno zapytanie na portal na przebieg
   (pauza 3 s, jedna ponowna proba), tresci artykulow nie pobieramy. `data/prasa.csv` akumuluje 60 dni; `trafienia` = slowa
   kluczowe spolek i tematow. Celowo POMINIETE (robots.txt lub warunki kanalu zabraniaja automatycznego przetwarzania albo
   blokuja boty AI; wynik sondy w `sonda/wynik3.json`): dn.no, e24.no, energiwatch.no, europower.no, intrafish.no,
-  investtech.com, nettavisen.no, nrk.no, tradewindsnews.com, upstreamonline.com. Nowe portale: `narzedzia/sonda.py`
+  investtech.com, nettavisen.no, nrk.no, tradewindsnews.com, upstreamonline.com, aftenposten.no, vg.no, tv2.no,
+  aksjelive.no, borsen.dk, di.se, kauppalehti.fi, placera.se, oilprice.com. Nowe portale: `narzedzia/sonda.py`
   (workflow sonda-portali) sprawdza robots.txt i kanaly przed dodaniem.
 
 ## Kontrola

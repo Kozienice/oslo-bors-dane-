@@ -38,7 +38,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.5.3"
+WERSJA = "0.6.0"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -543,10 +543,22 @@ PRASA_RSS = {
     "offshore_energy": "https://www.offshore-energy.biz/feed",
     "anleggsmaskinen": "https://anleggsmaskinen.no/feed/",
     "vegvesen": "https://www.vegvesen.no/rss",
+    # sonda 5 (07.10.2026): robots.txt bez blokady botow AI i bez zakazu, kanal RSS z data
+    "boligprodusentene": "https://www.boligprodusentene.no/rss",
+    "investornytt": "https://www.investornytt.no/?lab_viewport=rss",
+    "energiogklima": "https://www.energiogklima.no/rss.xml",
+    "byggmesteren": "https://byggmesteren.as/feed/",
+    "fishfarmingexpert": "https://www.fishfarmingexpert.com/?lab_viewport=rss",
+    "gcaptain": "https://gcaptain.com/feed/",
+    "hellenic_shipping": "https://www.hellenicshippingnews.com/feed/",  # robots.txt Crawl-delay 30 - jedno zapytanie na przebieg
+    "northernminer": "https://www.northernminer.com/feed/",
 }
-# POMINIETE po sondzie 3 (robots.txt blokuje boty AI lub zabrania scrapingu/ekstrakcji): energiwatch.no, europower.no,
-# intrafish.no, investtech.com, nettavisen.no, nrk.no, tradewindsnews.com, upstreamonline.com
-PRASA_ANGIELSKIE = {"offshore_energy"}
+# mapy news (news:title + news:publication_date), robots.txt bez zakazu
+PRASA_NEWS_SITEMAP = {"offshore_mag": "https://www.offshore-mag.com/sitemap-google-news.xml"}
+# POMINIETE po sondach 3 i 5 (robots.txt blokuje boty AI lub zabrania scrapingu/ekstrakcji): energiwatch.no, europower.no,
+# intrafish.no, investtech.com, nettavisen.no, nrk.no, tradewindsnews.com, upstreamonline.com, aftenposten.no, vg.no, tv2.no,
+# aksjelive.no (E24), borsen.dk, di.se, kauppalehti.fi, placera.se, oilprice.com; niedostepne (403): mining.com, splash247.com
+PRASA_ANGIELSKIE = {"offshore_energy", "fishfarmingexpert", "gcaptain", "hellenic_shipping", "northernminer", "offshore_mag"}
 PRASA_FA_SITEMAP = "https://ws.finansavisen.no/sitemap/sitemap-articles-{rok}-{mies}.xml"  # robots.txt: Crawl-delay 10
 PRASA_DNI = 60
 # slowa kluczowe -> ticker lub temat (tytul, lead i adres, bez rozrozniania wielkosci liter)
@@ -560,6 +572,8 @@ PRASA_KLUCZE = {
     "FEN": [r"fensfelt", r"rare earths norway", r"sjeldne jordarter"],
     "OBOS": [r"\bobos\b"], "SKANSKA": [r"skanska"], "NCC": [r"\bncc\b"], "PEAB": [r"\bpeab\b"], "CONSTO": [r"consto"],
     "BOLIGSALG": [r"boligprodusent", r"nye boliger", r"boligsalg"], "RENTE": [r"norges bank", r"styringsrent"],
+    "FRAKT": [r"\bvlcc\b", r"tanker rates?", r"freight rates?", r"\bsuezmax\b", r"\baframax\b", r"baltic (dry|exchange)"],
+    "KRYT_MIN": [r"rare earths?", r"critical (raw )?minerals?", r"kritiske mineral", r"sjeldne jordarter"],
     "KONKURS": [r"konkurs"], "TVIST": [r"tvist|forlik|søksmål|stevning|rettssak"],
 }
 
@@ -651,6 +665,30 @@ def prasa(s):
                             "pluss": "", "tytul": tyt, "lead": stary.get("lead", ""), "trafienia": "", "adres": loc}
             n += 1
     na_portal["finansavisen"] = n
+    for portal, url in PRASA_NEWS_SITEMAP.items():
+        time.sleep(3)
+        r = get(s, url, zr)
+        if r is None or r.status_code != 200 or b"<news:title" not in r.content:
+            blad(zr, f"{portal}: HTTP {getattr(r, 'status_code', None)}, brak news:title")
+            na_portal[portal] = 0
+            continue
+        zapisz(RAW / "prasa" / f"{portal}.xml", r.content, zr, r.url, r.status_code)
+        n = 0
+        for u in re.findall(r"(?s)<url>(.*?)</url>", r.content.decode("utf-8", "replace")):
+            loc = tekst_xml((re.search(r"<loc>(.*?)</loc>", u) or [None, ""])[1])
+            tyt = tekst_xml((re.search(r"(?s)<news:title>(.*?)</news:title>", u) or [None, ""])[1])
+            pub = tekst_xml((re.search(r"<news:publication_date>(.*?)</news:publication_date>", u) or [None, ""])[1])
+            if not (loc and tyt):
+                continue
+            try:
+                pub = utc(datetime.fromisoformat(pub.replace("Z", "+00:00")).astimezone(timezone.utc))
+            except Exception:
+                pub = ""
+            aid = f"{portal}:{hashlib.sha256(loc.encode()).hexdigest()[:12]}"
+            wiersze[aid] = {"id": aid, "portal": portal, "opublikowano_utc": pub, "czas_oslo": oslo_czas(pub) if pub else "",
+                            "pluss": "", "tytul": tyt, "lead": "", "trafienia": "", "adres": loc}
+            n += 1
+        na_portal[portal] = n
     for w in wiersze.values():
         tekst = f"{w['tytul']} {w['lead']} {w['adres']}"
         if w["portal"] not in PRASA_ANGIELSKIE:  # w tekstach norweskich samo 'Norwegian' to prawie zawsze linia lotnicza
