@@ -42,21 +42,10 @@ CI
 Aug. 31
 SB1 Markets raises AF Gruppen price target to 230 Norwegian kroner (210), reiterates buy
 ----
-AF Gruppen Unit Wins Contracts for High-voltage Installations at Transformer Stations in Norway
-MT
-Jun. 29
-Builds and upgrades transformer stations
-AQ
-Jun. 29
-AF Gruppen ASA Subsidiary AF Elkraft Receives Statnett Contracts For High-Voltage Installations At Tønsberg, Eiker And Hof Transformer Stations With Contract Value Slightly Above NOK 500 Million
-CI
-No results match your criteria
-All News
-----
 Maximize my profits
 Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing867")) {
+if (event.target.matches(".ajax_close_teasing868")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -66,7 +55,7 @@ if (xhr.readyState === 4 && xhr.status === 200) {
 ----
 Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing867")) {
+if (event.target.matches(".ajax_close_teasing868")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -78,7 +67,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws867")) {
+if (event.target.matches(".ajax_close_teasing_ws868")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }
@@ -87,7 +76,7 @@ function onloadUI()
 {
 ----
 }
-$(document).ready(function() {gaEvent('adspv', 'internal', 'CA');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
@@ -97,7 +86,7 @@ var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== nu
 googletag.enableServices();
 var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
 ----
-$(document).ready(function() {gaEvent('adspv', 'internal', 'CA');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
