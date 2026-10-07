@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests
-      - run: timeout 480 python -u narzedzia/sonda.py 2>&1 | tee sonda/log4.txt || true
+      - run: timeout 480 python -u narzedzia/sonda.py 2>&1 | tee sonda/log5.txt || true
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

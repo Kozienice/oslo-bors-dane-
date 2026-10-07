@@ -1,5 +1,5 @@
 """Sonda portali NO: robots.txt (zakazy dla botow AI i scrapingu), kanaly RSS i mapy news. Zapisuje TYLKO podsumowanie
-(sonda/wynik4.json) - bez kopii stron."""
+(sonda/wynik5.json) - bez kopii stron."""
 import json, re, time
 from pathlib import Path
 import requests
@@ -22,20 +22,22 @@ wynik = {}
 class Odp:
     pass
 def pobierz(s, url, limit=300_000, czas=12):
-    """GET z limitem bajtow i calkowitego czasu (serwery potrafia saczyc dane bez konca)."""
-    t0 = time.time()
-    r = s.get(url, timeout=(5, 5), stream=True)
-    buf = b""
-    for kaw in r.iter_content(16384):
-        buf += kaw
-        if len(buf) >= limit or time.time() - t0 > czas:
-            break
-    r.close()
-    o = Odp(); o.status_code = r.status_code; o.url = r.url; o.content = buf; o.text = buf.decode("utf-8", "replace")
+    """curl z twardym limitem czasu (-m) - requests potrafil wisiec na saczacych serwerach."""
+    import subprocess
+    try:
+        p = subprocess.run(["curl", "-sSL", "-m", str(czas), "--max-redirs", "8", "-A", UA,
+                            "-w", "\n__META__%{http_code} %{url_effective}", url], capture_output=True, timeout=czas + 5)
+    except subprocess.TimeoutExpired:
+        raise RuntimeError("timeout")
+    out = p.stdout
+    i = out.rfind(b"\n__META__")
+    meta = out[i + 9:].decode("utf-8", "replace").split(" ", 1) if i >= 0 else ["0", url]
+    o = Odp(); o.status_code = int(meta[0] or 0); o.url = meta[1] if len(meta) > 1 else url
+    o.content = (out[:i] if i >= 0 else out)[:limit]; o.text = o.content.decode("utf-8", "replace")
     time.sleep(0.3)
     return o
 def zapisz_czastkowo():
-    (OUT / "wynik4.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
+    (OUT / "wynik5.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
 def sonduj(baza):
     print("start", baza, flush=True)
     s = requests.Session(); s.headers["User-Agent"] = UA
@@ -77,4 +79,4 @@ def sonduj(baza):
 from concurrent.futures import ThreadPoolExecutor
 with ThreadPoolExecutor(16) as ex:
     list(ex.map(sonduj, DOMENY))
-(OUT / "wynik4.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
+(OUT / "wynik5.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
