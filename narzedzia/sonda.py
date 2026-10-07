@@ -1,5 +1,5 @@
 """Sonda portali NO: robots.txt (zakazy dla botow AI i scrapingu), kanaly RSS i mapy news. Zapisuje TYLKO podsumowanie
-(sonda/wynik3.json) - bez kopii stron."""
+(sonda/wynik4.json) - bez kopii stron."""
 import json, re, time
 from pathlib import Path
 import requests
@@ -35,8 +35,9 @@ def pobierz(s, url, limit=300_000, czas=12):
     time.sleep(0.3)
     return o
 def zapisz_czastkowo():
-    (OUT / "wynik3.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
+    (OUT / "wynik4.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
 def sonduj(baza):
+    print("start", baza, flush=True)
     s = requests.Session(); s.headers["User-Agent"] = UA
     d = {}
     try:
@@ -71,8 +72,9 @@ def sonduj(baza):
             break
     wynik[baza] = d
     zapisz_czastkowo()
+    print("gotowe", baza, flush=True)
 
 from concurrent.futures import ThreadPoolExecutor
-with ThreadPoolExecutor(10) as ex:
+with ThreadPoolExecutor(16) as ex:
     list(ex.map(sonduj, DOMENY))
-(OUT / "wynik3.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
+(OUT / "wynik4.json").write_text(json.dumps(wynik, ensure_ascii=False, indent=1))
