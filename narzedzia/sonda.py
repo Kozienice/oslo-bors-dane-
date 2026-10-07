@@ -48,7 +48,17 @@ def sonduj(baza):
         d["robots_http"] = r.status_code
         d["robots_blokuje_boty_ai"] = bool(BOTY.search(t))
         d["robots_uwagi"] = sorted(set(m.group(0).lower() for m in ZAKAZ.finditer("\n".join(l for l in t.splitlines() if l.strip().startswith("#")))))[:8]
-        d["robots_disallow_all"] = bool(re.search(r"(?ims)^user-agent:\s*\*\s*$(?:\n(?!user-agent).*)*?^disallow:\s*/\s*$", t))
+        # blok "User-agent: *" bez regex z nawrotami (poprzednia wersja wieszala sie na dlugich plikach)
+        bloki, biez = [], None
+        for l in t.splitlines():
+            l2 = l.split("#")[0].strip()
+            if l2.lower().startswith("user-agent:"):
+                if biez is None or biez[1]:
+                    biez = [[], []]; bloki.append(biez)
+                biez[0].append(l2.split(":", 1)[1].strip())
+            elif biez is not None and ":" in l2:
+                biez[1].append(l2)
+        d["robots_disallow_all"] = any("*" in ua and any(r.lower().replace(" ", "") == "disallow:/" for r in reg) for ua, reg in bloki)
         d["crawl_delay"] = (re.search(r"(?im)^crawl-delay:\s*(\S+)", t) or [None, None])[1]
         d["sitemapy"] = re.findall(r"(?im)^\s*sitemap:\s*(\S+)", t)[:6]
     except Exception as e:
