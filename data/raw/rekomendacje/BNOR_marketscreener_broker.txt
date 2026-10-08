@@ -251,10 +251,10 @@ FW
 No results match your criteria
 All News
 ----
-Unlock them now!
-Unlock them now!
+100% Free Registration
+100% Free Registration
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing866")) {
+if (event.target.matches(".ajax_close_teasing869")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -262,9 +262,9 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
 ----
-Unlock them now!
+100% Free Registration
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing866")) {
+if (event.target.matches(".ajax_close_teasing869")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -276,7 +276,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws866")) {
+if (event.target.matches(".ajax_close_teasing_ws869")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }
@@ -285,7 +285,7 @@ element.closest('[id*="teasing_"]').remove();
 DAILY FREE LIMIT REACHED
 ----
 }
-$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'GB');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
@@ -295,7 +295,7 @@ var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== nu
 googletag.enableServices();
 var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
 ----
-$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'GB');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
