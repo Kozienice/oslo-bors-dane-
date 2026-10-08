@@ -38,7 +38,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-WERSJA = "0.6.0"
+WERSJA = "0.6.1"
 DATA = Path("data")
 RAW = DATA / "raw"
 OSLO = ZoneInfo("Europe/Oslo")
@@ -318,12 +318,22 @@ def kursy(s):
             ts = res.get("timestamp", []) or []
             q = res["indicators"]["quote"][0]
             meta = res.get("meta", {})
-            n = 0
+            n, z_meta = 0, False
+            # rano Yahoo zwraca ostatnia sesje z close=None (07-08.10.2026, PB-118/PB-121), a zamkniecie
+            # jest w meta.regularMarketPrice z regularMarketTime po aukcji zamkniecia (16:20 Oslo)
+            rmt, rmp = meta.get("regularMarketTime"), meta.get("regularMarketPrice")
+            meta_d, meta_po_zamknieciu = "", False
+            if rmt and rmp is not None:
+                mt = datetime.fromtimestamp(rmt, tz=timezone.utc).astimezone(OSLO)
+                meta_d, meta_po_zamknieciu = mt.strftime("%Y-%m-%d"), (mt.hour, mt.minute) >= (16, 20)
             for i, t in enumerate(ts):
                 c = q.get("close", [None])[i]
-                if c is None:
-                    continue
                 d = datetime.fromtimestamp(t, tz=timezone.utc).astimezone(OSLO).strftime("%Y-%m-%d")
+                if c is None:
+                    if i == len(ts) - 1 and d == meta_d and meta_po_zamknieciu:
+                        c, z_meta = rmp, True
+                    else:
+                        continue
                 wiersze.append([nazwa, d, round(c, 4), q.get("volume", [None])[i], meta.get("currency", "")])
                 n += 1
             ost = [w for w in wiersze if w[0] == nazwa]
@@ -333,6 +343,7 @@ def kursy(s):
             wynik[nazwa] = {"ok": n > 0, "sesji": n, "ostatnia_sesja": ost[-1][1] if ost else "",
                             "ostatnie_zamkniecie": ost[-1][2] if ost else None,
                             "sesja_w_toku": w_toku,
+                            "ostatnie_zamkniecie_z_meta": z_meta,
                             "waluta": meta.get("currency", "")}
         except Exception as e:
             wynik[nazwa] = {"ok": False, "blad": f"{type(e).__name__}: {e}"[:200]}
