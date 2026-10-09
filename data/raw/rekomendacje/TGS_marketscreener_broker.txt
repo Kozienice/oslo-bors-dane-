@@ -31,6 +31,28 @@ Charts
 Technical Analysis
 Static Chart
 ----
+Search
+See the results
+04:46am
+DNB Carnegie cuts price target for TGS to NOK 100 (110), reiterates sell
+FW
+04:38am
+SB1 reiterates sell for TGS, price target 100 Norwegian kroner
+FW
+Sep. 03
+SEB Bank Upgrades TGS to Buy Rating, Boosts PT
+----
+DNB Carnegie cuts price target for TGS to NOK 100 (110), reiterates sell
+FW
+04:38am
+SB1 reiterates sell for TGS, price target 100 Norwegian kroner
+FW
+Sep. 03
+SEB Bank Upgrades TGS to Buy Rating, Boosts PT
+MT
+Sep. 03
+SEB raises TGS to buy (hold), target price 173 Norwegian kroner (130)
+----
 SEB raises TGS to buy (hold), target price 173 Norwegian kroner (130)
 FW
 Jul. 29
@@ -226,35 +248,13 @@ FW
 Feb. 16
 SB1 Markets Raises Target Price for TGS to 70 Norwegian Kroner (from 60), Reiterates Sell
 FW
-Feb. 13
-Fearnley Raises Target Price for TGS to 115 Norwegian Kroner (80), Reiterates Hold - BN
+No results match your criteria
+All News
 ----
 Pareto Securities Raises Target Price for TGS to 110 Norwegian Kroner (85), Reiterates Hold
 FW
 Feb. 16
 SB1 Markets Raises Target Price for TGS to 70 Norwegian Kroner (from 60), Reiterates Sell
-FW
-Feb. 13
-Fearnley Raises Target Price for TGS to 115 Norwegian Kroner (80), Reiterates Hold - BN
-FW
-Nov. 12
-SEB raises target price for TGS to NOK 145 (100), reiterates buy recommendation
-----
-SB1 Markets Raises Target Price for TGS to 70 Norwegian Kroner (from 60), Reiterates Sell
-FW
-Feb. 13
-Fearnley Raises Target Price for TGS to 115 Norwegian Kroner (80), Reiterates Hold - BN
-FW
-Nov. 12
-SEB raises target price for TGS to NOK 145 (100), reiterates buy recommendation
-FW
-No results match your criteria
-All News
-----
-Fearnley Raises Target Price for TGS to 115 Norwegian Kroner (80), Reiterates Hold - BN
-FW
-Nov. 12
-SEB raises target price for TGS to NOK 145 (100), reiterates buy recommendation
 FW
 No results match your criteria
 All News
@@ -262,10 +262,10 @@ Broker Recommendations
 Highlights
 Insiders
 ----
-100% Free Registration
-100% Free Registration
+Maximize my profits
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing869")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -273,9 +273,9 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
 ----
-100% Free Registration
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing869")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -287,7 +287,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws869")) {
+if (event.target.matches(".ajax_close_teasing_ws867")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }

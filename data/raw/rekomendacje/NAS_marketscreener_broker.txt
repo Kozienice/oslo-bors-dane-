@@ -9,6 +9,17 @@ STIM
 Daily Breakouts
 Weekly Breakouts
 ----
+Search
+See the results
+03:18am
+Barclays cuts Norwegian to equal weight (overweight), target price NOK 11.5 (20)
+FW
+Oct. 06
+Pareto: Demand holding up well at Norwegian, could return to 2025 profit levels
+FW
+Oct. 05
+Danske Bank lowers price target for Norwegian to 13 Norwegian kroner (14), reiterates hold - BN
+----
 Pareto: Demand holding up well at Norwegian, could return to 2025 profit levels
 FW
 Oct. 05
@@ -204,24 +215,13 @@ FW
 Mar. 09
 Barclays cuts Norwegian price target to 20 NOK (22), reiterates overweight - BN
 FW
-Mar. 03
-DNB Carnegie Lowers Price Target for Norwegian to 20 Norwegian Kroner (22), Reiterates Buy
+No results match your criteria
+All News
 ----
 Danske Bank cuts Norwegian price target to NOK 15 (17), reiterates Hold - BN
 FW
 Mar. 09
 Barclays cuts Norwegian price target to 20 NOK (22), reiterates overweight - BN
-FW
-Mar. 03
-DNB Carnegie Lowers Price Target for Norwegian to 20 Norwegian Kroner (22), Reiterates Buy
-FW
-No results match your criteria
-All News
-----
-Barclays cuts Norwegian price target to 20 NOK (22), reiterates overweight - BN
-FW
-Mar. 03
-DNB Carnegie Lowers Price Target for Norwegian to 20 Norwegian Kroner (22), Reiterates Buy
 FW
 No results match your criteria
 All News
@@ -229,10 +229,10 @@ Broker Recommendations
 Highlights
 Insiders
 ----
-100% Free Registration
-100% Free Registration
+Maximize my profits
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing869")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -240,9 +240,9 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
 ----
-100% Free Registration
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing869")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -254,7 +254,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws869")) {
+if (event.target.matches(".ajax_close_teasing_ws867")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }
