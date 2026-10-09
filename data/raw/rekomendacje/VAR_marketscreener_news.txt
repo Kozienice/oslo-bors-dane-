@@ -9,17 +9,6 @@ STIM
 Daily Breakouts
 Weekly Breakouts
 ----
-Citi: ConocoPhillips' Norwegian assets a good fit for Vaar Energi
-FW
-Oct. 07
-Equinor's LNG plant upgrade cost soars
-RE
-Summary
-Quotes
-Charts
-Technical Analysis
-Static Chart
-----
 Vår Energi ASA (OB:VAR) completed the acquisition of Asset Portfolio from Pandion Energy AS.
 CI
 Sep. 25
@@ -153,7 +142,7 @@ function onloadUI()
 {
 ----
 }
-$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'GB');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
@@ -163,7 +152,7 @@ var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== nu
 googletag.enableServices();
 var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
 ----
-$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'GB');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
