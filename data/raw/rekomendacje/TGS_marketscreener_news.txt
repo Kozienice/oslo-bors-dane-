@@ -33,10 +33,21 @@ Static Chart
 ----
 Search
 See the results
-04:46am
+01:31am
+SEB raises target price for TGS to 175 Norwegian kroner (173), reiterates buy
+FW
+01:08am
+TGS : Enters Strategic AI Collaboration with Galdor Exploration
+PU
+Oct. 09
+DNB Carnegie cuts price target for TGS to NOK 100 (110), reiterates sell
+----
+TGS : Enters Strategic AI Collaboration with Galdor Exploration
+PU
+Oct. 09
 DNB Carnegie cuts price target for TGS to NOK 100 (110), reiterates sell
 FW
-04:38am
+Oct. 09
 SB1 reiterates sell for TGS, price target 100 Norwegian kroner
 FW
 Oct. 08
@@ -44,7 +55,7 @@ TGS Q3 2026 Operational Update
 ----
 DNB Carnegie cuts price target for TGS to NOK 100 (110), reiterates sell
 FW
-04:38am
+Oct. 09
 SB1 reiterates sell for TGS, price target 100 Norwegian kroner
 FW
 Oct. 08
@@ -53,10 +64,10 @@ GL
 Oct. 07
 TGS Webcast Details for Q3 2026 Presentation
 ----
-Unlock them now!
-Unlock them now!
+Maximize my profits
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing866")) {
+if (event.target.matches(".ajax_close_teasing868")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -64,9 +75,9 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
 ----
-Unlock them now!
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing866")) {
+if (event.target.matches(".ajax_close_teasing868")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -78,7 +89,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws866")) {
+if (event.target.matches(".ajax_close_teasing_ws868")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }
@@ -87,45 +98,45 @@ element.closest('[id*="teasing_"]').remove();
 DAILY FREE LIMIT REACHED
 ----
 }
-$(document).ready(function() {gaEvent('adspv', 'businessAD', 'XX');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'GB');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413301');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
 googletag.enableServices();
-});
-gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/TGS-ASA-1413301/news/"
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
 ----
-$(document).ready(function() {gaEvent('adspv', 'businessAD', 'XX');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'GB');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413301');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
 googletag.enableServices();
-});
-gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/TGS-ASA-1413301/news/"
-, 'content_group1': 'Actions' });
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 ----
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413301');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
 googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 });
-gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/TGS-ASA-1413301/news/"
-, 'content_group1': 'Actions' });
-window._io_config = window._io_config || {};
 ----
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
 googletag.pubads().setTargeting('Content', 'equities');
 googletag.pubads().setTargeting('codezb', '1413301');
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.defineSlot('/4093671/_'+e+'_/internal_'+e, aAdsListSize[iAdsPos], 'zpp'+e).addService(googletag.pubads());}iAdsPos++;});
 googletag.enableServices();
+var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== null && (aAdsListCA[iAdsPos] === null || aAdsListCA[iAdsPos] == country_location)) { googletag.display('zpp'+e); }iAdsPos++;});
+try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 });
 gtag('config', 'G-W5MZBYLHSG', { 'anonymize_ip': true, 'page_path': "/quote/stock/TGS-ASA-1413301/news/"
-, 'content_group1': 'Actions' });
-window._io_config = window._io_config || {};
-window._io_config["0.2.0"] = window._io_config["0.2.0"] || [];
