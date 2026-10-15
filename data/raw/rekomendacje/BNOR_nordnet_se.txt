@@ -24,12 +24,12 @@ PAGE_INSTRUMENT.ANALYST_RATINGS.PRICE_TARGETS_CHART.HIGH_DOT":"Högst
 key":"aiSearchUser"
 "id":"5142247272873984
 key":"hasSeenAnalystRatings"
+"id":"5191467583406080
+key":"randomCustomersLastCharSixPercent"
 "id":"5285755564589056
 key":"teamFxTestUser"
 "id":"5396815491629056
 key":"randomCustomersTwentyFivePercent"
-"id":"5554767729000448
-key":"utm_content"
 ----
 rolloutId":"rollout-300235-23765831649
 experimentIds":[],"variables":[]
@@ -230,6 +230,39 @@ currentValue":-516599960.097459,"unit":"CURRENCY
 numberOfDecimals":0,"graphType":"BAR
 ----
 description":"
+slug":"salmo-salar
+country":"NO
+rating":2,"joinedAt":1432196443733,"followerCount":92,"followingCount":1},"reactions":[{"type":"LIKE
+count":0,"selected":false}],"status":"LIVE
+taggedProfiles":[],"translation":{"language":"sv
+message":"Goldman Sachs sitter på 5,3% eller 25567202 aktier totalt på egen och klientkonton.
+originalLanguage":"no"},"type":"COMMENT
+updatedAt":1792052608500},"totalChildCount":0,"context":{"instrument":{"id":"8ab25f20-9b03-46b2-a810-d7005788a160
+name":"BlueNord
+----
+description":"
+slug":"jpeace
+country":"NO
+rating":3,"joinedAt":1702501160309,"followerCount":1,"followingCount":0},"reactions":[{"type":"LIKE
+count":0,"selected":false}],"status":"LIVE
+taggedProfiles":[],"type":"COMMENT"}],"createdAt":1792048924967,"id":"a1b2a490-40cc-431e-bf0d-ec21656a492d
+message":"Skal vi ned nå da?
+profile":{"id":"f6c2ee74-c700-4596-9887-bf4b62339ee7
+username":"Pasjo
+avatarUri":"https://cdn.prod.nntech.io/shareville-media/static/profiles/avatars/people_png/teal_09.png
+----
+description":"
+slug":"pasjo
+country":"NO
+rating":2,"joinedAt":1561466322724,"followerCount":8,"followingCount":8},"reactions":[{"type":"LIKE
+count":0,"selected":false}],"status":"LIVE
+taggedProfiles":[],"translation":{"language":"sv
+message":"Ska vi ner nu då?
+originalLanguage":"no"},"type":"COMMENT"},"totalChildCount":1,"context":{"instrument":{"id":"8ab25f20-9b03-46b2-a810-d7005788a160
+name":"BlueNord
+legacyInstrumentId":16105726,"instrumentId":"8ab25f20-9b03-46b2-a810-d7005788a160
+----
+description":"
 slug":"bernard951
 country":"NO
 rating":2,"joinedAt":1774193435803,"followerCount":0,"followingCount":2},"reactions":[{"type":"LIKE
@@ -306,39 +339,6 @@ originalLanguage":"no"},"type":"COMMENT"}],"createdAt":1791899970474,"id":"1b563
 message":"Har jeg forstått riktig:\
 Uansett hva kursen på BN er når Vår overtar, så skal vi ha 9,?? aksjer pr BN aksje i tilegg til ca 76 kr pr aksje. - eller vil de tallene endres med BN aksjeverdien?\
 ----
-description":"
-slug":"gammel-rotte
-country":"DK
-rating":null,"joinedAt":1747213443397,"followerCount":0,"followingCount":0},"reactions":[{"type":"LIKE
-count":2,"selected":false}],"status":"LIVE
-taggedProfiles":[],"translation":{"language":"sv
-message":"Okej, jag var visst en dag för tidig med det. :-)
-originalLanguage":"da"},"type":"COMMENT"}],"createdAt":1791884232289,"id":"462af8bc-4304-4e7e-8ff9-c7262753d95f
-message":"Ok
-profile":{"id":"799cdfc2-5534-49de-a576-d55730402428
-----
-description":"Kjøp på topp, selg på bunn. Når jeg kjøper, så burde du shorte :)))
-slug":"ppguser
-country":"NO
-rating":3,"joinedAt":1585155865721,"followerCount":20,"followingCount":15},"reactions":[{"type":"LIKE
-count":2,"selected":false}],"status":"LIVE
-taggedProfiles":[],"translation":{"language":"sv
-message":"Okej
-originalLanguage":"en"},"type":"COMMENT"
-"attributes":[],"childCount":0,"children":[],"createdAt":1791884398012,"id":"6b518482-b4b1-4fce-a247-5bd820a3a8f2
-message":"Ja uhvertfall før uka er over
-----
-description":"
-slug":"pasjo
-country":"NO
-rating":2,"joinedAt":1561466322724,"followerCount":8,"followingCount":8},"reactions":[{"type":"LIKE
-count":0,"selected":false}],"status":"LIVE
-taggedProfiles":[],"translation":{"language":"sv
-message":"Ja i alla fall innan veckan är slut
-originalLanguage":"no"},"type":"COMMENT"
-"attributes":[],"childCount":0,"children":[],"createdAt":1791962468975,"id":"f1b598ae-2143-4d68-951d-cd683b52f30a
-message":"I dag skjedde det ;-)
-----
 Planen er at 2030 blir mitt siste år som lønnet ansatt og går da inn i pensjonisttilværelsen :-) Målet er at innen 2035 så er årlig utbytte såpass bra at det utgjør et solid tillegg til alders og tjenestepensjon :-)
 slug":"travellingman
 country":"NO
@@ -371,6 +371,28 @@ message":"Men finns det någon god anledning till att denna ska vidare upp?
 originalLanguage":"no"},"type":"COMMENT"
 "attributes":[],"childCount":0,"children":[],"createdAt":1791965542569,"id":"a18c6dc5-f969-464a-a2b4-443cb7fef049
 message":"Jo fremtidig fusjon
+----
+description":"
+slug":"marivar
+country":"NO
+rating":1,"joinedAt":1792005511491,"followerCount":0,"followingCount":0},"reactions":[{"type":"LIKE
+count":0,"selected":false}],"status":"LIVE
+taggedProfiles":[],"translation":{"language":"sv
+message":"Enligt analys på Simply Wallstreet; \\"Future Cash Flow value\\" med \\"Discounted Cash Flow\\" modell för BlueNord antas vara 1.594,69 , dvs 62,2% undervärderad per 14/10-'26\
+\
+Så sett en mycket bra framtid ;-)
+originalLanguage":"no"},"type":"COMMENT"}],"createdAt":1791876289675,"id":"6b72602b-20ec-4dfa-b0d2-429e959885ea
+----
+description":"
+slug":"gammel-rotte
+country":"DK
+rating":null,"joinedAt":1747213443397,"followerCount":0,"followingCount":0},"reactions":[{"type":"LIKE
+count":3,"selected":false}],"status":"LIVE
+taggedProfiles":[],"translation":{"language":"sv
+message":"tror den kryssar 600 i dag.
+originalLanguage":"da"},"type":"COMMENT"},"totalChildCount":8,"context":{"instrument":{"id":"8ab25f20-9b03-46b2-a810-d7005788a160
+name":"BlueNord
+legacyInstrumentId":16105726,"instrumentId":"8ab25f20-9b03-46b2-a810-d7005788a160
 ----
 description":"
 slug":"vizzy
@@ -1010,7 +1032,7 @@ message":"Q3 utbytte fra Vår legges til kontantutbetalingen hvis fusjonen gjenn
 ----
 slug":"alamo
 country":"NO
-rating":3,"joinedAt":1503097725912,"followerCount":70,"followingCount":10},"reactions":[{"type":"LIKE
+rating":3,"joinedAt":1503097725912,"followerCount":71,"followingCount":10},"reactions":[{"type":"LIKE
 count":0,"selected":false}],"status":"LIVE
 taggedProfiles":[],"translation":{"language":"sv
 message":"Den enda nedsidan är väl om förvärvet skulle falla isär av en eller annan anledning (väldigt osannolikt) och att man inte får ränta på ränta-effekten fram till förvärvet.
@@ -1083,36 +1105,3 @@ message":"Hej, någon kanske vet, när vi kommer att få nya Vår-aktier och ext
 originalLanguage":"en"},"type":"COMMENT"},"totalChildCount":3,"context":{"instrument":{"id":"8ab25f20-9b03-46b2-a810-d7005788a160
 name":"BlueNord
 legacyInstrumentId":16105726,"instrumentId":"8ab25f20-9b03-46b2-a810-d7005788a160
-----
-description":"
-slug":"lottomannen
-country":"NO
-rating":0,"joinedAt":1710940311220,"followerCount":5,"followingCount":30},"reactions":[{"type":"LIKE
-count":3,"selected":false}],"status":"LIVE
-taggedProfiles":[],"translation":{"language":"sv
-message":"ingen:https://e24.no/boers-og-finans/i/5pWAjK/vaar-energi-slaar-seg-sammen-med-bluenord
-originalLanguage":"nb"},"type":"COMMENT"
-"attributes":[],"childCount":0,"children":[],"createdAt":1789630939316,"id":"5e1ca435-5922-41f6-9613-c05ebed0d76d
-message":"Aldri..
-----
-description":"
-slug":"harikkepeiling2021
-country":"NO
-rating":1,"joinedAt":1620636887745,"followerCount":5,"followingCount":7},"reactions":[{"type":"LIKE
-count":2,"selected":false}],"status":"LIVE
-taggedProfiles":[],"translation":{"language":"sv
-message":"Aldrig..
-originalLanguage":"nb"},"type":"COMMENT"}],"createdAt":1789560710594,"id":"a6478301-8952-4a9d-9756-52378d48c4b5
-message":"Hei, noen som har en formening om når neste utbytte/utbetaling vil forekomme?
-profile":{"id":"d747189b-1e97-44a3-a535-56de276fc490
-----
-description":"
-slug":"sjorover
-country":"NO
-rating":0,"joinedAt":1738181905387,"followerCount":1,"followingCount":1},"reactions":[{"type":"LIKE
-count":0,"selected":false}],"status":"LIVE
-taggedProfiles":[],"translation":{"language":"sv
-message":"Hej, någon som har en uppfattning om när nästa utdelning/utbetalning kommer att ske?
-originalLanguage":"no"},"type":"COMMENT"},"totalChildCount":2,"context":{"instrument":{"id":"8ab25f20-9b03-46b2-a810-d7005788a160
-name":"BlueNord
-legacyInstrumentId":19595818,"instrumentId":"8ab25f20-9b03-46b2-a810-d7005788a160
