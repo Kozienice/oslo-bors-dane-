@@ -1,5 +1,5 @@
 }
-$(document).ready(function() {gaEvent('adspv', 'internal', 'SE');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
@@ -9,7 +9,7 @@ var iAdsPos = 0; aAdsList.forEach(function(e) { if (aAdsListSize[iAdsPos] !== nu
 try{googletag.pubads().getSlots().forEach(function(slot){if(slot.getSlotElementId().startsWith('zpp')){;}else{googletag.pubads().refresh([slot],{changeCorrelator: false});}})}catch(error){console.error(error)}
 });
 ----
-$(document).ready(function() {gaEvent('adspv', 'internal', 'SE');});
+$(document).ready(function() {gaEvent('adspv', 'internal', 'US');});
 googletag.cmd.push(function() {
 googletag.pubads().setTargeting('Edition', 'en_US');
 googletag.pubads().setTargeting('UserType', 'free');
