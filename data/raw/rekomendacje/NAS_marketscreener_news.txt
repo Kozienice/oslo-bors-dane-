@@ -9,8 +9,8 @@ STIM
 Daily Breakouts
 Weekly Breakouts
 ----
-Search
-See the results
+Sweden: Hotel industry growth expected to slow - Visita
+FW
 Oct. 14
 SB1 Markets cuts price target for Norwegian to 12 Norwegian kroner
 FW
@@ -91,16 +91,16 @@ AQ
 Sep. 04
 Norwegian Air Shuttle ASA Reports Operating Results for the Month of August 2026
 CI
-Sep. 03
-Swedish hotel market strengthens, RevPAR up 9 percent, fastest growth since 2023
-FW
 Become a member to access more news
 New member
+No results match your criteria
+All News
+Broker Recommendations
 ----
-100% Free Registration
-100% Free Registration
+Maximize my profits
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing869")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -108,9 +108,9 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.onreadystatechange = function() {
 if (xhr.readyState === 4 && xhr.status === 200) {
 ----
-100% Free Registration
+Maximize my profits
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing869")) {
+if (event.target.matches(".ajax_close_teasing867")) {
 var element = event.target;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "/mods_a/ajax_teasing.php?action=hide&idT="+element.getAttribute('data-idteasing'), true);
@@ -122,7 +122,7 @@ element.closest('[id*="teasing_"]').remove();
 }
 });
 document.addEventListener("click", function(event) {
-if (event.target.matches(".ajax_close_teasing_ws869")) {
+if (event.target.matches(".ajax_close_teasing_ws867")) {
 var element = event.target;
 element.closest('[id*="teasing_"]').remove();
 }
