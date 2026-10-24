@@ -4,6 +4,7 @@ name: monitor-represji
 # Osobny workflow i osobny katalog data/represja: nie dotyka plikow z oslo.py ani data/status.json.
 # 05:10 UTC w poniedzialek = 07:10 Oslo latem / 06:10 zima. Dane sa glownie miesieczne, wiec raz w tygodniu
 # wystarczy, a zadanie miesieczne w Claude zawsze trafia na dane nie starsze niz tydzien.
+# 24.10.2026: nowe repo z czysta historia (bufor bezpieczenstwa) -> ponowne zapisanie pliku rejestruje cron w GitHub.
 on:
   workflow_dispatch:
   schedule:

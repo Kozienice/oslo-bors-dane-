@@ -10,6 +10,7 @@ name: pobierz-dane-oslo
 # GitHub moze opozniac zaplanowane uruchomienia o kilka-kilkadziesiat minut.
 # 05.10.2026: harmonogram nie uruchomil sie ani razu (0 przebiegow 'schedule' od 02.10) -> ponowne zapisanie pliku rejestruje cron w GitHub.
 # 05.10.2026: pierwsze przebiegi 'schedule' z duzym opoznieniem (04:45 -> 11:51, 14:40 -> 21:37, 15:40 -> 22:09 UTC).
+# 24.10.2026: nowe repo z czysta historia (bufor bezpieczenstwa) -> ponowne zapisanie pliku rejestruje cron w GitHub.
 on:
   workflow_dispatch:
   schedule:
