@@ -1,0 +1,43 @@
+name: monitor-represji
+
+# Monitor represji finansowej (represja.py) - liczby dla Norges Bank, NBP, Fed i EBC.
+# Osobny workflow i osobny katalog data/represja: nie dotyka plikow z oslo.py ani data/status.json.
+# 05:10 UTC w poniedzialek = 07:10 Oslo latem / 06:10 zima. Dane sa glownie miesieczne, wiec raz w tygodniu
+# wystarczy, a zadanie miesieczne w Claude zawsze trafia na dane nie starsze niz tydzien.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "10 5 * * 1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor-represji
+  cancel-in-progress: false
+
+jobs:
+  represja:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r wymagania.txt
+      - name: represja
+        run: python represja.py
+        continue-on-error: true
+      - name: zapisz zmiany
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/represja
+          if git diff --cached --quiet; then
+            echo "brak zmian w danych"
+          else
+            git commit -m "represja: $(date -u +%Y-%m-%dT%H:%MZ)"
+            git pull --rebase
+            git push
+          fi

@@ -1,0 +1,585 @@
+{
+ "https://www.minerva.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [],
+  "rss": {
+   "https://www.minerva.no/?lab_viewport=rss": {
+    "final": "https://www.minerva.no/?lab_viewport=rss",
+    "pozycji": 25,
+    "pubDate": 24,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Fransk sentralbanksjef advarer om å bli «gradvis kvalt» av høyere renter",
+     "Kanskje NRK skulle dekke olje og gass mer, og grønne aktivister mindre?"
+    ]
+   }
+  }
+ },
+ "https://www.investornytt.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [],
+  "rss": {
+   "https://www.investornytt.no/?lab_viewport=rss": {
+    "final": "https://www.investornytt.no/?lab_viewport=rss",
+    "pozycji": 114,
+    "pubDate": 113,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Eks-CIA-sjef inn i Zeniths uranjakt",
+     "Volumet eksploderer – nå kan aksjen ta av"
+    ]
+   }
+  }
+ },
+ "https://www.byggeindustrien.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [],
+  "rss": {
+   "https://www.byggeindustrien.no/?lab_viewport=rss": {
+    "final": "https://www.bygg.no/?lab_viewport=rss",
+    "pozycji": 57,
+    "pubDate": 56,
+    "opis_zakaz": [],
+    "przyklad": [
+     "NCC selger Industry for milliardbeløp",
+     "Angriper norm som drar opp kostnader: – Helt meningsløs tilnærming"
+    ]
+   }
+  }
+ },
+ "https://www.di.se": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [
+   "ai",
+   "crawl",
+   "data extraction",
+   "large language",
+   "llm",
+   "scrap"
+  ],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.di.se/sitemap.xml",
+   "https://www.di.se/sitemap-news.xml"
+  ],
+  "rss": {
+   "https://www.di.se/rss": {
+    "final": "https://www.di.se/rss",
+    "pozycji": 20,
+    "pubDate": 20,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Winsth: Riksbanken höjer i november",
+     "Krisande Diamyd hade 305 miljoner i kassan"
+    ]
+   }
+  }
+ },
+ "https://www.mtbeoffshore.no": {
+  "robots_http": 0,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [],
+  "rss": {}
+ },
+ "https://www.energiogklima.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [
+   "crawl"
+  ],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.energiogklima.no/sitemap.xml"
+  ],
+  "rss": {
+   "https://www.energiogklima.no/rss.xml": {
+    "final": "https://www.energiogklima.no/rss.xml",
+    "pozycji": 25,
+    "pubDate": 25,
+    "opis_zakaz": [],
+    "przyklad": [
+     "– Det er dyrt å ha skyhøye ambisjoner",
+     "Skal bli en «pest og plage» for regjeringen"
+    ]
+   }
+  }
+ },
+ "https://www.borsen.dk": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [
+   "crawl"
+  ],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://borsen.dk/sitemap.xml"
+  ],
+  "rss": {
+   "https://www.borsen.dk/rss": {
+    "final": "https://borsen.dk:443/rss",
+    "pozycji": 26,
+    "pubDate": 26,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Giftig cocktail rammer de dyre boliger: Nu spår mæglere prisfald",
+     "Se listen: De tager største spring på Top 1000-listen"
+    ]
+   }
+  }
+ },
+ "https://www.e24.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [
+   "ai",
+   "crawl",
+   "large language",
+   "text and data mining"
+  ],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://e24.no/sitemaps/files/articles-48hrs.xml",
+   "https://e24.no/sitemap.xml"
+  ],
+  "rss": {
+   "https://www.e24.no/rss": {
+    "final": "https://e24.no/rss",
+    "pozycji": 39,
+    "pubDate": 39,
+    "opis_zakaz": [
+     "ai",
+     "large language",
+     "llm",
+     "scrap",
+     "tdm",
+     "text and data mining"
+    ],
+    "przyklad": [
+     "Det er sluttsummen som teller",
+     "Statsbudsjettet kan gi gass i økonomien: – Overraskende"
+    ]
+   }
+  }
+ },
+ "https://www.byggmesteren.as": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://byggmesteren.as/sitemap_index.xml"
+  ],
+  "rss": {
+   "https://www.byggmesteren.as/rss": {
+    "final": "https://byggmesteren.as/feed/",
+    "pozycji": 10,
+    "pubDate": 10,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Byggmester om BerryAlloc Nordic Universal: – Et nytt gulv du kan stole på",
+     "Meling, Klimabygg og Timberbygg i finalen"
+    ]
+   }
+  }
+ },
+ "https://www.mynewsdesk.com": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://sitemaps.mynewsdesk.com/sitemap.xml",
+   "https://www.mynewsdesk.com/post-sitemap.xml",
+   "https://www.mynewsdesk.com/page-sitemap.xml",
+   "https://www.mynewsdesk.com/customer_case-sitemap.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.banenor.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.banenor.no/nb-no/sitemap.xml",
+   "https://www.banenor.no/en/sitemap.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.fishfarmingexpert.com": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [],
+  "rss": {
+   "https://www.fishfarmingexpert.com/?lab_viewport=rss": {
+    "final": "https://www.fishfarmingexpert.com/?lab_viewport=rss",
+    "pozycji": 65,
+    "pubDate": 62,
+    "opis_zakaz": [],
+    "przyklad": [
+     "SalMar's Q3 harvest volume increased by 12.8% year on year",
+     "Empty article - Title"
+    ]
+   }
+  }
+ },
+ "https://www.mining.com": {
+  "robots_http": 403,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [],
+  "rss": {}
+ },
+ "https://www.northernminer.com": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.northernminer.com/sitemap_index.xml"
+  ],
+  "rss": {
+   "https://www.northernminer.com/rss": {
+    "final": "https://www.northernminer.com/feed/",
+    "pozycji": 20,
+    "pubDate": 20,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Discovery silver project clears key Mexico hurdle",
+     "Canterra grows Newfoundland copper-zinc resource 55% as grades fall"
+    ]
+   }
+  }
+ },
+ "https://gcaptain.com": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://gcaptain.com/sitemap.xml"
+  ],
+  "rss": {
+   "https://gcaptain.com/rss": {
+    "final": "https://gcaptain.com/feed/",
+    "pozycji": 12,
+    "pubDate": 12,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Iran’s Offshore Oil Stockpile Nears Exhaustion as Blockade Chokes New Supply",
+     "South Korean Operator Emerges as New Force in Arctic LNG Shipping"
+    ]
+   }
+  }
+ },
+ "https://www.hellenicshippingnews.com": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": "30",
+  "sitemapy": [],
+  "rss": {
+   "https://www.hellenicshippingnews.com/rss": {
+    "final": "https://www.hellenicshippingnews.com/feed/",
+    "pozycji": 20,
+    "pubDate": 20,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Baltic dry bulk freight index hits six-week low",
+     "Newbuilding Activity Booming"
+    ]
+   }
+  }
+ },
+ "https://www.aftenposten.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [
+   "ai",
+   "crawl",
+   "large language",
+   "text and data mining"
+  ],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.aftenposten.no/sitemaps/files/articles-48hrs.xml",
+   "https://www.aftenposten.no/sitemap.xml"
+  ],
+  "rss": {
+   "https://www.aftenposten.no/rss": {
+    "final": "https://www.aftenposten.no/rss",
+    "pozycji": 42,
+    "pubDate": 42,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Regjeringen vil bruke 608 milliarder kroner fra Oljefondet: – Antyder et nøytralt budsjett",
+     "Opplysninger til Aftenposten: Kommunene får 3,3 milliarder mer i frie inntekter"
+    ]
+   }
+  }
+ },
+ "https://www.oilprice.com": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://oilprice.com/sitemap_index.xml",
+   "https://oilprice.com/sitemap.xml",
+   "https://oilprice.com/googlenews.xml"
+  ],
+  "rss": {
+   "https://www.oilprice.com/rss.xml": {
+    "final": "https://oilprice.com/rss.xml",
+    "pozycji": 15,
+    "pubDate": 16,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Chevron, Shell and BP Pull Workers From the Gulf Ahead of Hurricane",
+     "Brent Back Above $100 as Houthis Hit Saudi Infrastructure"
+    ]
+   }
+  }
+ },
+ "https://www.estatenyheter.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [],
+  "rss": {
+   "https://www.estatenyheter.no/?lab_viewport=rss": {
+    "final": "https://www.estatenyheter.no/?lab_viewport=rss",
+    "pozycji": 84,
+    "pubDate": 82,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Stor oversikt: Dette tjente arkitektselskapene",
+     "Hun skal lede The Hoxtons første hotell i Norden"
+    ]
+   }
+  }
+ },
+ "https://www.placera.se": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.placera.se/sitemap.xml",
+   "https://www.placera.se/news-sitemap.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.boligprodusentene.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [],
+  "rss": {
+   "https://www.boligprodusentene.no/rss": {
+    "final": "https://www.boligprodusentene.no/rss",
+    "pozycji": 5,
+    "pubDate": 5,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Statsbudsjettet 2027 - Hva betyr det for byggenæringen?",
+     "NOU 2026: 9 Veien mot et bedre og mer forutsigbart skattesystem"
+    ]
+   }
+  }
+ },
+ "https://www.offshore-mag.com": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.offshore-mag.com/sitemap.xml",
+   "https://www.offshore-mag.com/sitemap-google-news.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.splash247.com": {
+  "robots_http": 403,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [],
+  "rss": {}
+ },
+ "https://kommunikasjon.ntb.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": "1",
+  "sitemapy": [
+   "https://kommunikasjon.ntb.no/sitemap.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.inderes.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://b2b.inderes.com/sitemap-index.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.sysla.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.sysla.no/sitemap.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.kauppalehti.fi": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [
+   "ai"
+  ],
+  "robots_disallow_all": false,
+  "crawl_delay": "10",
+  "sitemapy": [
+   "https://www.kauppalehti.fi/sitemaps/sitemapindex.xml",
+   "https://www.kauppalehti.fi/sitemaps/sitemap_yritykset.xml.gz",
+   "https://www.kauppalehti.fi/sitemaps/sitemap_stocks.xml.gz"
+  ],
+  "rss": {}
+ },
+ "https://www.aksjelive.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [
+   "ai",
+   "crawl",
+   "large language",
+   "text and data mining"
+  ],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://e24.no/sitemaps/files/articles-48hrs.xml",
+   "https://e24.no/sitemap.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.vg.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [
+   "ai",
+   "crawl",
+   "large language",
+   "text and data mining"
+  ],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.vg.no/sitemaps/files/articles-48hrs.xml",
+   "https://www.vg.no/sitemap.xml",
+   "https://www.vg.no/dinepenger/sitemap.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.hegnar.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": "10",
+  "sitemapy": [
+   "https://ws.finansavisen.no/sitemap"
+  ],
+  "rss": {}
+ },
+ "https://www.nordnet.no/blogg": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": false,
+  "robots_uwagi": [],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.nordnet.no/sitemap.xml"
+  ],
+  "rss": {}
+ },
+ "https://www.tv2.no": {
+  "robots_http": 200,
+  "robots_blokuje_boty_ai": true,
+  "robots_uwagi": [
+   "ai",
+   "artificial intelligence",
+   "crawl",
+   "data extraction",
+   "scrap"
+  ],
+  "robots_disallow_all": false,
+  "crawl_delay": null,
+  "sitemapy": [
+   "https://www.tv2.no/sitemap/news/sitemap.xml",
+   "https://www.tv2.no/sitemap/sitemap.xml",
+   "https://www.tv2.no/video2/api/v1/sitemap"
+  ],
+  "rss": {
+   "https://www.tv2.no/rss/nyheter": {
+    "final": "https://www.tv2.no/rss/nyheter",
+    "pozycji": 20,
+    "pubDate": 21,
+    "opis_zakaz": [],
+    "przyklad": [
+     "Vil bruke 608,4 milliarder oljekroner",
+     "Stoltenberg om statsbudsjettet: – Folk får noe mer å rutte med"
+    ]
+   }
+  }
+ }
+}
