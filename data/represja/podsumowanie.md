@@ -1,4 +1,4 @@
-# Monitor represji finansowej - stan 2026-10-20T19:05:54Z
+# Monitor represji finansowej - stan 2026-10-26T11:03:07Z
 
 Zrodla oficjalne (FRED, Norges Bank, EBC, Eurostat, NBP). Szczegoly i adresy: data/represja/status.json.
 
@@ -6,21 +6,21 @@ Zrodla oficjalne (FRED, Norges Bank, EBC, Eurostat, NBP). Szczegoly i adresy: da
 
 | Seria | Kraj | Ostatnia data | Wartosc | Opis |
 |---|---|---|---|---|
-| US_FED_GORNA | US | 2026-10-20 | 4.00 | Fed: gorna granica przedzialu stopy funduszy federalnych, % |
-| US_IORB | US | 2026-10-20 | 3.90 | Fed: oprocentowanie rezerw bankow (IORB), % |
-| US_REZERWY | US | 2026-10-14 | 3022140 | Fed: rezerwy bankow, mld USD (tygodniowo) |
-| US_10Y | US | 2026-10-16 | 5.09 | USA: rentownosc obligacji 10Y, % |
-| US_10Y_REALNA | US | 2026-10-16 | 2.74 | USA: realna rentownosc 10Y (TIPS), % |
+| US_FED_GORNA | US | 2026-10-25 | 4.00 | Fed: gorna granica przedzialu stopy funduszy federalnych, % |
+| US_IORB | US | 2026-10-26 | 3.90 | Fed: oprocentowanie rezerw bankow (IORB), % |
+| US_REZERWY | US | 2026-10-21 | 2962607 | Fed: rezerwy bankow, mld USD (tygodniowo) |
+| US_10Y | US | 2026-10-22 | 4.96 | USA: rentownosc obligacji 10Y, % |
+| US_10Y_REALNA | US | 2026-10-22 | 2.64 | USA: realna rentownosc 10Y (TIPS), % |
 | US_CPI | US | 2026-09-01 | 336.298 | USA: CPI, indeks (r/r liczone w skrypcie) |
-| US_BANKI_SKARB | US | 2026-09-01 | 4783.1255 | USA: obligacje skarbowe i agencji w bankach komercyjnych, mld USD |
-| US_BANKI_AKTYWA | US | 2026-10-07 | 26100.3308 | USA: aktywa ogolem bankow komercyjnych, mld USD |
+| US_BANKI_SKARB | US | 2026-09-01 | 4783.6153 | USA: obligacje skarbowe i agencji w bankach komercyjnych, mld USD |
+| US_BANKI_AKTYWA | US | 2026-10-14 | 26138.3143 | USA: aktywa ogolem bankow komercyjnych, mld USD |
 | NO_10Y_OECD | NO | 2026-09-01 | 4.40580952380952 | Norwegia: rentownosc dlugoterminowa (OECD, miesiecznie), % |
 | PL_10Y_OECD | PL | 2026-09-01 | 6.230000000 | Polska: rentownosc dlugoterminowa (OECD, miesiecznie), % |
 | EA_10Y_OECD | EA | 2026-01-01 | 3.2209840909000000 | Strefa euro: rentownosc dlugoterminowa (OECD, miesiecznie), % |
-| NO_STOPA | NO | 2026-10-19 | 4.5 | Norges Bank: stopa depozytowa (styringsrenten), % |
-| NO_10Y | NO | 2026-10-19 | 4.568 | Norwegia: rentownosc obligacji 10Y (Norges Bank), % |
+| NO_STOPA | NO | 2026-10-23 | 4.5 | Norges Bank: stopa depozytowa (styringsrenten), % |
+| NO_10Y | NO | 2026-10-23 | 4.472 | Norwegia: rentownosc obligacji 10Y (Norges Bank), % |
 | EA_DFR | EA | 2026-09-16 | 2.5 | EBC: stopa depozytowa (DFR), % |
-| EA_10Y | EA | 2026-10-19 | 3.4690828084 | Strefa euro: krzywa AAA, 10Y, % |
+| EA_10Y | EA | 2026-10-23 | 3.3694058329 | Strefa euro: krzywa AAA, 10Y, % |
 | PL_10Y | PL | 2026-09 | 6.23 | Polska: rentownosc 10Y (kryterium konwergencji), % |
 | EA_BANKI_RZAD | EA | 2026-08 | 2392320.8542008097 | Strefa euro: dluzne papiery rzadowe w bilansie bankow (MFI), mln EUR |
 | EA_BANKI_AKTYWA | EA | 2026-08 | 44206208.5070215 | Strefa euro: aktywa ogolem bankow (MFI), mln EUR |
