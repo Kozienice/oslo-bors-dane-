@@ -1,4 +1,4 @@
-# Monitor represji finansowej - stan 2026-10-26T11:03:07Z
+# Monitor represji finansowej - stan 2026-11-02T13:27:12Z
 
 Zrodla oficjalne (FRED, Norges Bank, EBC, Eurostat, NBP). Szczegoly i adresy: data/represja/status.json.
 
@@ -6,24 +6,24 @@ Zrodla oficjalne (FRED, Norges Bank, EBC, Eurostat, NBP). Szczegoly i adresy: da
 
 | Seria | Kraj | Ostatnia data | Wartosc | Opis |
 |---|---|---|---|---|
-| US_FED_GORNA | US | 2026-10-25 | 4.00 | Fed: gorna granica przedzialu stopy funduszy federalnych, % |
-| US_IORB | US | 2026-10-26 | 3.90 | Fed: oprocentowanie rezerw bankow (IORB), % |
-| US_REZERWY | US | 2026-10-21 | 2962607 | Fed: rezerwy bankow, mld USD (tygodniowo) |
-| US_10Y | US | 2026-10-22 | 4.96 | USA: rentownosc obligacji 10Y, % |
-| US_10Y_REALNA | US | 2026-10-22 | 2.64 | USA: realna rentownosc 10Y (TIPS), % |
+| US_FED_GORNA | US | 2026-11-02 | 4.00 | Fed: gorna granica przedzialu stopy funduszy federalnych, % |
+| US_IORB | US | 2026-11-02 | 3.90 | Fed: oprocentowanie rezerw bankow (IORB), % |
+| US_REZERWY | US | 2026-10-28 | 2893770 | Fed: rezerwy bankow, mld USD (tygodniowo) |
+| US_10Y | US | 2026-10-29 | 4.98 | USA: rentownosc obligacji 10Y, % |
+| US_10Y_REALNA | US | 2026-10-29 | 2.63 | USA: realna rentownosc 10Y (TIPS), % |
 | US_CPI | US | 2026-09-01 | 336.298 | USA: CPI, indeks (r/r liczone w skrypcie) |
-| US_BANKI_SKARB | US | 2026-09-01 | 4783.6153 | USA: obligacje skarbowe i agencji w bankach komercyjnych, mld USD |
-| US_BANKI_AKTYWA | US | 2026-10-14 | 26138.3143 | USA: aktywa ogolem bankow komercyjnych, mld USD |
+| US_BANKI_SKARB | US | 2026-09-01 | 4783.6617 | USA: obligacje skarbowe i agencji w bankach komercyjnych, mld USD |
+| US_BANKI_AKTYWA | US | 2026-10-21 | 26080.1895 | USA: aktywa ogolem bankow komercyjnych, mld USD |
 | NO_10Y_OECD | NO | 2026-09-01 | 4.40580952380952 | Norwegia: rentownosc dlugoterminowa (OECD, miesiecznie), % |
 | PL_10Y_OECD | PL | 2026-09-01 | 6.230000000 | Polska: rentownosc dlugoterminowa (OECD, miesiecznie), % |
 | EA_10Y_OECD | EA | 2026-01-01 | 3.2209840909000000 | Strefa euro: rentownosc dlugoterminowa (OECD, miesiecznie), % |
-| NO_STOPA | NO | 2026-10-23 | 4.5 | Norges Bank: stopa depozytowa (styringsrenten), % |
-| NO_10Y | NO | 2026-10-23 | 4.472 | Norwegia: rentownosc obligacji 10Y (Norges Bank), % |
+| NO_STOPA | NO | 2026-10-30 | 4.5 | Norges Bank: stopa depozytowa (styringsrenten), % |
+| NO_10Y | NO | 2026-10-30 | 4.435 | Norwegia: rentownosc obligacji 10Y (Norges Bank), % |
 | EA_DFR | EA | 2026-09-16 | 2.5 | EBC: stopa depozytowa (DFR), % |
-| EA_10Y | EA | 2026-10-23 | 3.3694058329 | Strefa euro: krzywa AAA, 10Y, % |
+| EA_10Y | EA | 2026-10-30 | 3.3650469366 | Strefa euro: krzywa AAA, 10Y, % |
 | PL_10Y | PL | 2026-09 | 6.23 | Polska: rentownosc 10Y (kryterium konwergencji), % |
-| EA_BANKI_RZAD | EA | 2026-08 | 2392320.8542008097 | Strefa euro: dluzne papiery rzadowe w bilansie bankow (MFI), mln EUR |
-| EA_BANKI_AKTYWA | EA | 2026-08 | 44206208.5070215 | Strefa euro: aktywa ogolem bankow (MFI), mln EUR |
+| EA_BANKI_RZAD | EA | 2026-09 | 2416504.24777969 | Strefa euro: dluzne papiery rzadowe w bilansie bankow (MFI), mln EUR |
+| EA_BANKI_AKTYWA | EA | 2026-09 | 44923283.1521 | Strefa euro: aktywa ogolem bankow (MFI), mln EUR |
 | NO_HICP | NO | 2026-09 | 3.4 | Norwegia: HICP r/r (Eurostat, ECOICOP ver.2), % |
 | PL_HICP | PL | 2026-09 | 4.0 | Polska: HICP r/r (Eurostat, ECOICOP ver.2), % |
 | EA_HICP | EA | 2026-09 | 3.8 | Strefa euro: HICP r/r (Eurostat, ECOICOP ver.2, sklad zmienny), % |
@@ -37,7 +37,7 @@ Zrodla oficjalne (FRED, Norges Bank, EBC, Eurostat, NBP). Szczegoly i adresy: da
 | US_REALNA_10Y | 2026-09 | 1.57 | 1.14 | US_10Y (koniec miesiaca) minus US_CPI_RR |
 | EA_REALNA_10Y | 2026-09 | -0.22 | 0.58 | EA_10Y (koniec miesiaca) minus EA_HICP |
 | US_UDZIAL_RZAD_W_AKTYWACH_BANKOW | 2026-09 | 18.39 | 19.01 | US_BANKI_SKARB / US_BANKI_AKTYWA x 100 |
-| EA_UDZIAL_RZAD_W_AKTYWACH_BANKOW | 2026-08 | 5.41 | 5.05 | EA_BANKI_RZAD / EA_BANKI_AKTYWA x 100 |
+| EA_UDZIAL_RZAD_W_AKTYWACH_BANKOW | 2026-09 | 5.38 | 5.16 | EA_BANKI_RZAD / EA_BANKI_AKTYWA x 100 |
 
 ## Stopy NBP (data/represja/nbp_stopy.csv)
 
