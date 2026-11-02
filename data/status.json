@@ -1,6 +1,6 @@
 {
-  "uruchomienie_utc": "2026-11-02T15:53:26Z",
-  "uruchomienie_oslo": "2026-11-02 16:53 CET",
+  "uruchomienie_utc": "2026-11-02T17:13:07Z",
+  "uruchomienie_oslo": "2026-11-02 18:13 CET",
   "wersja_skryptu": "0.7.0",
   "zrodla": {
     "newsweb": {
@@ -15,208 +15,208 @@
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=VAR&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 2181,
-          "sha256": "484842395a4ba579700a83a61317263a4d2c10913a4d8ccbf6754783062b3455",
-          "pobrano_utc": "2026-11-02T15:53:27Z"
+          "sha256": "6eb64dc7b24e31a99f30c6e391d5393ac636bd244af4d80568bcc692c548df5d",
+          "pobrano_utc": "2026-11-02T17:13:08Z"
         },
         {
           "plik": "data/raw/newsweb/lista/NAS.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=NAS&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 2686,
-          "sha256": "1a17c88799350cf3601e46226c81fe3bb8fa78916f32492fa08d2ae52c195d11",
-          "pobrano_utc": "2026-11-02T15:53:28Z"
+          "sha256": "167e8b1575ae45fb40cf99233995f90ab9d59fc13fce70916597e6473b95217a",
+          "pobrano_utc": "2026-11-02T17:13:09Z"
         },
         {
           "plik": "data/raw/newsweb/lista/AFG.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=AFG&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 3734,
-          "sha256": "ed1fd913ef000c116024dd8d5945220edf6003e1c52235ccfa1a06793357fc2b",
-          "pobrano_utc": "2026-11-02T15:53:28Z"
+          "sha256": "3c7c9dd921ad64a3e5003a54cc06dfc04b7f62180c6f5ee49c89b93aa831747d",
+          "pobrano_utc": "2026-11-02T17:13:09Z"
         },
         {
           "plik": "data/raw/newsweb/lista/TGS.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=TGS&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 2435,
-          "sha256": "20c38068bc928b16caee47273e2ce74d72a225d7868d5c0ebd32b515ecf49b67",
-          "pobrano_utc": "2026-11-02T15:53:29Z"
+          "sha256": "cccea7c08bff01302171a4156d1282152fb9af6919e3e11d774791997a1e33fc",
+          "pobrano_utc": "2026-11-02T17:13:10Z"
         },
         {
           "plik": "data/raw/newsweb/lista/BNOR.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=BNOR&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 6530,
-          "sha256": "d476049a396e29cffabf1fb6a58b0e2a821ef31d715f54bf7bd6891067170da3",
-          "pobrano_utc": "2026-11-02T15:53:29Z"
+          "sha256": "5954400dd09cc3c219e9b089c3c180ad830d175988013df0b211b4a4134bb275",
+          "pobrano_utc": "2026-11-02T17:13:10Z"
         },
         {
           "plik": "data/raw/newsweb/lista/EQNR.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=EQNR&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 11456,
-          "sha256": "36d172190b9e17dc48d07a5d06b65631957dfaf21bd600414a08ea771b198e57",
-          "pobrano_utc": "2026-11-02T15:53:30Z"
+          "sha256": "7f746438a9e274e48d58549480334d7414401c4db495e10bf4b1c0f41d3fdc54",
+          "pobrano_utc": "2026-11-02T17:13:11Z"
         },
         {
           "plik": "data/raw/newsweb/lista/AKRBP.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=AKRBP&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 2598,
-          "sha256": "747540566e77d93abf9c014a9fcb601b7c658184ea9beb8cef6fe29b3e6f599d",
-          "pobrano_utc": "2026-11-02T15:53:31Z"
+          "sha256": "dc2f56369b68dbba30f5c9c6bd187539d478bd203e23293ffdcb63c4100b9949",
+          "pobrano_utc": "2026-11-02T17:13:11Z"
         },
         {
           "plik": "data/raw/newsweb/lista/MPCC.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=MPCC&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 861,
-          "sha256": "c700f28232bf40ba948da8eeeeabaa9f5e012524a4ce7b4bd101c4ba7d3aac68",
-          "pobrano_utc": "2026-11-02T15:53:32Z"
+          "sha256": "d649393b590c6ebccd19d9f299825f67549fc47761788a429e10bcb773a30bef",
+          "pobrano_utc": "2026-11-02T17:13:12Z"
         },
         {
           "plik": "data/raw/newsweb/lista/HAUTO.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=HAUTO&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 157,
-          "sha256": "a294a07efd7d935073d73eebdb519169cf136a2d975cb2e360fc3bc6d8797544",
-          "pobrano_utc": "2026-11-02T15:53:32Z"
+          "sha256": "afe4e26511093af49e69cad68db942c21d89d397688077e2ae07ae04d3292223",
+          "pobrano_utc": "2026-11-02T17:13:12Z"
         },
         {
           "plik": "data/raw/newsweb/lista/HAFNI.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=HAFNI&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 157,
-          "sha256": "1b8eb20d96f5911089517140c2ac4906c1d2a9f7af7bab8fe950d712de32e95c",
-          "pobrano_utc": "2026-11-02T15:53:33Z"
+          "sha256": "2440e1044e8c82ee47529a13ed48059e66843166aec96cc8f54078e9ce47a2c6",
+          "pobrano_utc": "2026-11-02T17:13:13Z"
         },
         {
           "plik": "data/raw/newsweb/lista/FRO.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=FRO&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 751,
-          "sha256": "c55353a2ecec301056bd3e6d542372f5dfc4c976f732634f572f90752275b432",
-          "pobrano_utc": "2026-11-02T15:53:33Z"
+          "sha256": "391b64fa172260fd451624076e17e4638b8face518883caf7d71677724c487fc",
+          "pobrano_utc": "2026-11-02T17:13:13Z"
         },
         {
           "plik": "data/raw/newsweb/lista/AKSO.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=AKSO&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 732,
-          "sha256": "8d182ef27035a0b771f0817067af289d780a91de48e3a786fd93e7c715cc3084",
-          "pobrano_utc": "2026-11-02T15:53:34Z"
+          "sha256": "ffab94253e8294a2d5d4fbf151dd9d96082154515649825d2a5028e4c08b9077",
+          "pobrano_utc": "2026-11-02T17:13:14Z"
         },
         {
           "plik": "data/raw/newsweb/lista/SUBC.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=SUBC&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 715,
-          "sha256": "63a8be1bb1fa117a9411790bc28008528e4fc7a4d176f156d0f37c01b91b3a1b",
-          "pobrano_utc": "2026-11-02T15:53:34Z"
+          "sha256": "7438dda16f1068ec111ed77bd2321c08993602ef5ccfd17640683f355401cd58",
+          "pobrano_utc": "2026-11-02T17:13:14Z"
         },
         {
           "plik": "data/raw/newsweb/lista/KOG.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=KOG&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 9205,
-          "sha256": "0b1867b7bffbaf963804c76ce96106cc441b2e624ab62bb60f550d69ba0b65be",
-          "pobrano_utc": "2026-11-02T15:53:35Z"
+          "sha256": "07337a736c612c36b438ea0ea4c062352a609cdcf6c8839b4923a456c3c595cf",
+          "pobrano_utc": "2026-11-02T17:13:15Z"
         },
         {
           "plik": "data/raw/newsweb/lista/MOWI.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=MOWI&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 1884,
-          "sha256": "cebdca6fb4df8ea1c24d95f1ec9ea495e1adbd5664e574775d797b3807f1bf35",
-          "pobrano_utc": "2026-11-02T15:53:35Z"
+          "sha256": "e85c27b8e5b228c24ee30c80afdf9420099e7e29312b2eb5f6346dc890417401",
+          "pobrano_utc": "2026-11-02T17:13:15Z"
         },
         {
           "plik": "data/raw/newsweb/lista/SALM.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=SALM&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 3016,
-          "sha256": "463e9aef56ed44fb2d5ae39ff9a5b66f1e35080553481248bbd312e5820e0eb6",
-          "pobrano_utc": "2026-11-02T15:53:36Z"
+          "sha256": "3d3219a7b809aede73fd130b4cd99ab63320a16a69c7967d74e74c1903a037cc",
+          "pobrano_utc": "2026-11-02T17:13:16Z"
         },
         {
           "plik": "data/raw/newsweb/lista/LSG.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=LSG&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 708,
-          "sha256": "1426fdda77f14b116bc2228750b6f7abf22d4dff5896e50bb7d4d7d51fdb90b2",
-          "pobrano_utc": "2026-11-02T15:53:36Z"
+          "sha256": "f4874023e9ecb957b44ce50bfa6a476c71892aa5ae3c77385ec7794fbf421f37",
+          "pobrano_utc": "2026-11-02T17:13:16Z"
         },
         {
           "plik": "data/raw/newsweb/lista/BAKKA.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=BAKKA&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 1369,
-          "sha256": "76b28f105b4c63ef4937ad62d0105f28a11de1fa1666e069c7c7c7b7412af809",
-          "pobrano_utc": "2026-11-02T15:53:37Z"
+          "sha256": "9538c973d730278fe07b651e27fa716d41e5305def135fb1406c1e971408565b",
+          "pobrano_utc": "2026-11-02T17:13:17Z"
         },
         {
           "plik": "data/raw/newsweb/lista/NOM.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=NOM&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 3741,
-          "sha256": "f572307bbf629b3a1bb6d43a91d544e99427cc096411bc5f2c7dd5659d49bbad",
-          "pobrano_utc": "2026-11-02T15:53:38Z"
+          "sha256": "0d903839fcb4b3a4ab0398cd39c1473539653868203a96233d028ad25a704392",
+          "pobrano_utc": "2026-11-02T17:13:17Z"
         },
         {
           "plik": "data/raw/newsweb/lista/TEKNA.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=TEKNA&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 1423,
-          "sha256": "1ea61d5f858332140dfa61e56ddc02d9aad7b33a9c37c9d12fc363768ff4d834",
-          "pobrano_utc": "2026-11-02T15:53:38Z"
+          "sha256": "cd96046c16dcfa630e9056e228f52901b63e1845f7e53df75f7f61c67ced3c96",
+          "pobrano_utc": "2026-11-02T17:13:18Z"
         },
         {
           "plik": "data/raw/newsweb/lista/NHY.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=NHY&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 4266,
-          "sha256": "04cb54954f0076032a9213d48fadbee94794a4622ebafdefafbb6c4f7e9c2fee",
-          "pobrano_utc": "2026-11-02T15:53:39Z"
+          "sha256": "c1a5fed13bb869c7e1ddd2660507e6fd659292a0cd0830765a4579b24b496fa3",
+          "pobrano_utc": "2026-11-02T17:13:18Z"
         },
         {
           "plik": "data/raw/newsweb/lista/VEI.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=VEI&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 3200,
-          "sha256": "37c8a6e0e5da0f13a7d7a8e9b0f26497864ab0cad460843b6f6a0590eb98d9c3",
-          "pobrano_utc": "2026-11-02T15:53:39Z"
+          "sha256": "73db3d889b02d2d2e10cce2f7849ed38a6ffed124ebc36f17566b389ac3f7cd4",
+          "pobrano_utc": "2026-11-02T17:13:19Z"
         },
         {
           "plik": "data/raw/newsweb/lista/SNTIA.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=SNTIA&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 3904,
-          "sha256": "83edb37af9c21151bf4e944d87dda2114f4600334428d5eaac67150dd549defd",
-          "pobrano_utc": "2026-11-02T15:53:40Z"
+          "sha256": "b91717bf8db506b5cc7b1100f5e5b30541ee812d1b8b1dfe59de0a54b2557b9e",
+          "pobrano_utc": "2026-11-02T17:13:19Z"
         },
         {
           "plik": "data/raw/newsweb/lista/NRC.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=NRC&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 1937,
-          "sha256": "ab6920fc60e0d4f6be7d26ed47d83d168cccf436fb90793a271c94215e235c7f",
-          "pobrano_utc": "2026-11-02T15:53:42Z"
+          "sha256": "b2277ca5b82372933a367de0520f71787c222342fdc326f32b21ef555cc11a35",
+          "pobrano_utc": "2026-11-02T17:13:20Z"
         },
         {
           "plik": "data/raw/newsweb/lista/POLAR.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=POLAR&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 157,
-          "sha256": "c592feff45876e3c092b5633be5ee7c4e26721ecdb9e08d65d12fdb58e82af5d",
-          "pobrano_utc": "2026-11-02T15:53:43Z"
+          "sha256": "b66de254a46f7846a36dd77ae5ac51b4a98e0b66fffa899f1ffb155eaf037209",
+          "pobrano_utc": "2026-11-02T17:13:21Z"
         },
         {
           "plik": "data/raw/newsweb/lista/GEM.json",
           "url": "https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=GEM&category=&fromDate=2026-10-19&toDate=2026-11-03",
           "http": 200,
           "bajty": 157,
-          "sha256": "66a326cf1f4b75bce72ff12c646d35d285a80f96aafdf0f0abfad9066f0e9af4",
-          "pobrano_utc": "2026-11-02T15:53:43Z"
+          "sha256": "0472edf16c6435b253cbcb991010b80d52d5e8f474db718c68ec63ab4e740db7",
+          "pobrano_utc": "2026-11-02T17:13:21Z"
         }
       ],
       "GET https://api3.oslo.oslobors.no/v1/newsreader/list?issuer=NAS&category=&fromDate=2026-10-19&toDate=2026-11-03": {
@@ -345,88 +345,6 @@
         "content_type": "application/json"
       }
     },
-    "newsweb_tresc": {
-      "GET https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685363": {
-        "http": 200,
-        "bajty": 1362,
-        "content_type": "application/json"
-      },
-      "pliki": [
-        {
-          "plik": "data/raw/newsweb/tresc/685363.json",
-          "url": "https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685363",
-          "http": 200,
-          "bajty": 1362,
-          "sha256": "ba29bd593361f793a64f5f20d4041c123ed865ce5e05abdc6cbc362464813ced",
-          "pobrano_utc": "2026-11-02T15:53:30Z"
-        },
-        {
-          "plik": "data/raw/newsweb/tresc/685362.json",
-          "url": "https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685362",
-          "http": 200,
-          "bajty": 1345,
-          "sha256": "8a8f18fa48344583f83ca7e31a998fb18c0fbd63c50844bd28439c88e46aa1cb",
-          "pobrano_utc": "2026-11-02T15:53:31Z"
-        },
-        {
-          "plik": "data/raw/newsweb/tresc/685386.json",
-          "url": "https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685386",
-          "http": 200,
-          "bajty": 1775,
-          "sha256": "4c7731dfe78c10738386015af8e489902457249ee0379ff86bb8a4fc01456c92",
-          "pobrano_utc": "2026-11-02T15:53:40Z"
-        },
-        {
-          "plik": "data/raw/newsweb/tresc/685385.json",
-          "url": "https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685385",
-          "http": 200,
-          "bajty": 1776,
-          "sha256": "77edbf99eab2b800187bb74447f6aaa6b192ccfcef440f5b785112076dbef5cb",
-          "pobrano_utc": "2026-11-02T15:53:41Z"
-        },
-        {
-          "plik": "data/raw/newsweb/tresc/685374.json",
-          "url": "https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685374",
-          "http": 200,
-          "bajty": 1865,
-          "sha256": "109aae833c6b6289f31802fe8b221364380fa2db10a076ee287c9a41fdd653c2",
-          "pobrano_utc": "2026-11-02T15:53:41Z"
-        },
-        {
-          "plik": "data/raw/newsweb/tresc/685373.json",
-          "url": "https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685373",
-          "http": 200,
-          "bajty": 1810,
-          "sha256": "b24798c960716863f833e906b07c35c174f3fc685fc8f610f02c65f2b9215268",
-          "pobrano_utc": "2026-11-02T15:53:42Z"
-        }
-      ],
-      "GET https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685362": {
-        "http": 200,
-        "bajty": 1345,
-        "content_type": "application/json"
-      },
-      "GET https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685386": {
-        "http": 200,
-        "bajty": 1775,
-        "content_type": "application/json"
-      },
-      "GET https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685385": {
-        "http": 200,
-        "bajty": 1776,
-        "content_type": "application/json"
-      },
-      "GET https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685374": {
-        "http": 200,
-        "bajty": 1865,
-        "content_type": "application/json"
-      },
-      "GET https://api3.oslo.oslobors.no/v1/newsreader/message?messageId=685373": {
-        "http": 200,
-        "bajty": 1810,
-        "content_type": "application/json"
-      }
-    },
     "norges_bank": {
       "GET https://data.norges-bank.no/api/data/EXR/B.USD+EUR+SEK.NOK.SP?format=csv&lastNObservations=30&locale=en": {
         "http": 200,
@@ -440,7 +358,7 @@
           "http": 200,
           "bajty": 11104,
           "sha256": "7cfc59d117e932386b5fe627d0814688b71228b360e3309be11bb901d96d4961",
-          "pobrano_utc": "2026-11-02T15:53:44Z"
+          "pobrano_utc": "2026-11-02T17:13:22Z"
         }
       ]
     },
@@ -457,7 +375,7 @@
           "http": 200,
           "bajty": 170273,
           "sha256": "f3ad22ec3aa8800fc5edfa638d364ae388a5612ed895d233f0b2af67c807a393",
-          "pobrano_utc": "2026-11-02T15:53:45Z"
+          "pobrano_utc": "2026-11-02T17:13:23Z"
         },
         {
           "plik": "data/raw/fred/MCOILBRENTEU.csv",
@@ -465,7 +383,7 @@
           "http": 200,
           "bajty": 8128,
           "sha256": "7eac06a84801749a15bed05b5f6828330124a4f4723c19140c0a185e37e77108",
-          "pobrano_utc": "2026-11-02T15:53:46Z"
+          "pobrano_utc": "2026-11-02T17:13:23Z"
         },
         {
           "plik": "data/raw/fred/PNGASEUUSDM.csv",
@@ -473,7 +391,7 @@
           "http": 200,
           "bajty": 11821,
           "sha256": "c9d987779496df731576fce5acdbc64d9df0ebab49c9249fcf1ee6ac06a864f4",
-          "pobrano_utc": "2026-11-02T15:53:47Z"
+          "pobrano_utc": "2026-11-02T17:13:24Z"
         }
       ],
       "GET https://fred.stlouisfed.org/graph/fredgraph.csv?id=MCOILBRENTEU": {
@@ -490,160 +408,160 @@
     "shorty": {
       "GET https://ssr.finanstilsynet.no/api/v2/instruments": {
         "http": 200,
-        "bajty": 1501732,
+        "bajty": 1501913,
         "content_type": "application/json; charset=utf-8"
       },
-      "sha256_odpowiedzi": "f1f0953e2e4c604308797b77f26c1cda3040d939b7723b1292550b7fd3ded379",
+      "sha256_odpowiedzi": "9bdb21c423003433a297edbbe19245d3b97d4c43ebb7ac596d335649a14d5ef7",
       "pliki": [
         {
           "plik": "data/raw/finanstilsynet/instruments.json.gz",
           "url": "https://ssr.finanstilsynet.no/api/v2/instruments",
           "http": 200,
-          "bajty": 88068,
-          "sha256": "6b8c5234b81c3335054274267192c44c44210b5cee213061ae490a5c902cb39f",
-          "pobrano_utc": "2026-11-02T15:53:49Z"
+          "bajty": 88073,
+          "sha256": "5d421802a85afe340ef3c920fb82b2024c15e3832fcb3b264ab738adb0fd0d13",
+          "pobrano_utc": "2026-11-02T17:13:26Z"
         }
       ]
     },
     "prasa": {
       "GET https://www.bygg.no/?lab_viewport=rss": {
         "http": 200,
-        "bajty": 58012,
+        "bajty": 60545,
         "content_type": "text/xml;charset=UTF-8"
       },
       "odpowiedzi": [
         {
           "url": "https://www.bygg.no/?lab_viewport=rss",
           "http": 200,
-          "bajty": 58012,
-          "sha256": "a1d407aaacbe9aaea85a6a854324bdc751d9d2c1622f3934bfbfa3470b462548",
-          "pobrano_utc": "2026-11-02T15:53:53Z"
+          "bajty": 60545,
+          "sha256": "595852e3132548a2f64009ac3767cce6acc8518c022a071559349db43d60d80c",
+          "pobrano_utc": "2026-11-02T17:13:29Z"
         },
         {
           "url": "https://anlegg.bygg.no/?lab_viewport=rss",
           "http": 200,
           "bajty": 37775,
           "sha256": "ec8262935de4a1744ba9836b2a5ac7df4ed2038ee1fddb219bbc07470ca6ee2f",
-          "pobrano_utc": "2026-11-02T15:53:57Z"
+          "pobrano_utc": "2026-11-02T17:13:33Z"
         },
         {
           "url": "https://www.estatenyheter.no/?lab_viewport=rss",
           "http": 200,
           "bajty": 78655,
           "sha256": "361ca9cc6ef93c70df289c0534e576260799ac81173932b9b7a3ea55f97483e6",
-          "pobrano_utc": "2026-11-02T15:54:01Z"
+          "pobrano_utc": "2026-11-02T17:13:37Z"
         },
         {
           "url": "https://www.tu.no/?lab_viewport=rss",
           "http": 200,
           "bajty": 197731,
           "sha256": "2b64d9bccc2b9337fea2e3d65388578b9cca09eeb7b897da4140215305ee77e1",
-          "pobrano_utc": "2026-11-02T15:54:05Z"
+          "pobrano_utc": "2026-11-02T17:13:41Z"
         },
         {
           "url": "https://www.shifter.no/?lab_viewport=rss",
           "http": 200,
           "bajty": 50596,
-          "sha256": "e9d62e62274870c01d7a8d3e0d133e1119123f1c576959ad22ffc428264f070b",
-          "pobrano_utc": "2026-11-02T15:54:08Z"
+          "sha256": "d1fc5093fc7e7a6c82a1a8d156c5958eda64adb2c4958eac8dedf9954b0b2272",
+          "pobrano_utc": "2026-11-02T17:13:45Z"
         },
         {
           "url": "https://www.kyst.no/?lab_viewport=rss",
           "http": 200,
           "bajty": 23727,
           "sha256": "96367843597b667de2e754f25d15dadc8cf4d730d25d9e6d080465e46d419c94",
-          "pobrano_utc": "2026-11-02T15:54:12Z"
+          "pobrano_utc": "2026-11-02T17:13:49Z"
         },
         {
           "url": "https://ilaks.no/feed/",
           "http": 200,
           "bajty": 18754,
           "sha256": "a0edf2ac32915e8f0d0c01a294955fa8ed8b12abd11229ea1202b310b72110c7",
-          "pobrano_utc": "2026-11-02T15:54:16Z"
+          "pobrano_utc": "2026-11-02T17:13:53Z"
         },
         {
           "url": "https://www.offshore-energy.biz/feed",
           "http": 200,
           "bajty": 63512,
           "sha256": "9b76604c4580dfc073424a265065879828d718bd5c4d3f9dddd05123cfd549a7",
-          "pobrano_utc": "2026-11-02T15:54:20Z"
+          "pobrano_utc": "2026-11-02T17:13:57Z"
         },
         {
           "url": "https://anleggsmaskinen.no/feed/",
           "http": 200,
           "bajty": 116448,
           "sha256": "9bf3e804a38853dc2a64a80de9e016d3df3cffee1b1b72ab9c0598abdb30a633",
-          "pobrano_utc": "2026-11-02T15:54:25Z"
+          "pobrano_utc": "2026-11-02T17:14:01Z"
         },
         {
           "url": "https://www.vegvesen.no/rss",
           "http": 200,
           "bajty": 31951,
           "sha256": "c5393d170eb1d266ccb06de41f573509d5ff7521ce89444271c6908347c7336a",
-          "pobrano_utc": "2026-11-02T15:54:29Z"
+          "pobrano_utc": "2026-11-02T17:14:05Z"
         },
         {
           "url": "https://www.boligprodusentene.no/rss",
           "http": 200,
           "bajty": 2330,
           "sha256": "b637caf1b879a8fb3514306675f91b8f1624c7c6595434c7a710ae40b4d50848",
-          "pobrano_utc": "2026-11-02T15:54:33Z"
+          "pobrano_utc": "2026-11-02T17:14:10Z"
         },
         {
           "url": "https://www.investornytt.no/?lab_viewport=rss",
           "http": 200,
           "bajty": 100579,
           "sha256": "673d55f1d67aeb381673b54c9d5e83199894198d7f18fb8c54c42beed1e63562",
-          "pobrano_utc": "2026-11-02T15:54:37Z"
+          "pobrano_utc": "2026-11-02T17:14:14Z"
         },
         {
           "url": "https://www.energiogklima.no/rss.xml",
           "http": 200,
           "bajty": 34537,
-          "sha256": "60f1d5e9058dbe45fa484e3cced3e9c398725f08519e40148e525d2fbf3a0168",
-          "pobrano_utc": "2026-11-02T15:54:41Z"
+          "sha256": "76342815e7109b2a294bd26770fe6be42d690b89fd5410f62e706c6a54680c78",
+          "pobrano_utc": "2026-11-02T17:14:17Z"
         },
         {
           "url": "https://www.fishfarmingexpert.com/?lab_viewport=rss",
           "http": 200,
-          "bajty": 57594,
-          "sha256": "6343bcfda51bb61b166f6005ad4f8ec58c8ca4443e5caf9d92bbf6cd183aee44",
-          "pobrano_utc": "2026-11-02T15:55:09Z"
+          "bajty": 57568,
+          "sha256": "a29e133a6bc59c193ca1bd74e8ea2b5141373d2678dd6aa169142c584f17ab0e",
+          "pobrano_utc": "2026-11-02T17:14:45Z"
         },
         {
           "url": "https://gcaptain.com/feed/",
           "http": 200,
-          "bajty": 12057,
-          "sha256": "adcccb683087b11a8b69c73e565e104e6d58ffaa12c23d47a6c5e0b1fe94bb90",
-          "pobrano_utc": "2026-11-02T15:55:12Z"
+          "bajty": 11919,
+          "sha256": "beca4e26f200d36d69d89ea39b500963bd1aab116d55e3e5b9ebddaa39cd8d0c",
+          "pobrano_utc": "2026-11-02T17:14:49Z"
         },
         {
           "url": "https://www.hellenicshippingnews.com/feed/",
           "http": 200,
           "bajty": 20405,
           "sha256": "b37c369ae1c705655bc75670bead686f3de901742dd662320d9414ecfa0e826f",
-          "pobrano_utc": "2026-11-02T15:55:16Z"
+          "pobrano_utc": "2026-11-02T17:14:53Z"
         },
         {
           "url": "https://www.northernminer.com/feed/",
           "http": 200,
-          "bajty": 29926,
-          "sha256": "cd541aec2e9baf051ac4cd6eabdc6988c655ffdf8ce3d1a5d7ad3b7e3c518482",
-          "pobrano_utc": "2026-11-02T15:56:17Z"
+          "bajty": 30140,
+          "sha256": "1e7fe7899619e1c71898b6d275e21bbb42318fcec2c97787cbece30feb39a267",
+          "pobrano_utc": "2026-11-02T17:14:56Z"
         },
         {
           "url": "https://ws.finansavisen.no/sitemap/sitemap-articles-2026-11.xml",
           "http": 200,
-          "bajty": 149775,
-          "sha256": "c44c2beb3b7626d9671f1b48f3ae6c808290b33fae5386e081a04e8181714f3c",
-          "pobrano_utc": "2026-11-02T15:56:27Z"
+          "bajty": 155861,
+          "sha256": "0e992ac0ec5e5a35f80707e39fff9a76ccde777509b5de35dadb5a4ce26ebe54",
+          "pobrano_utc": "2026-11-02T17:15:07Z"
         },
         {
           "url": "https://ws.finansavisen.no/sitemap/sitemap-articles-2026-10.xml",
           "http": 200,
           "bajty": 2867717,
           "sha256": "4eb7bcea4e0e9fa606fafd84f814dc4fdfb214f8b2fac3367c2d7751f768a0ec",
-          "pobrano_utc": "2026-11-02T15:56:39Z"
+          "pobrano_utc": "2026-11-02T17:15:19Z"
         }
       ],
       "GET https://anlegg.bygg.no/?lab_viewport=rss": {
@@ -717,12 +635,12 @@
       ],
       "GET https://www.fishfarmingexpert.com/?lab_viewport=rss": {
         "http": 200,
-        "bajty": 57594,
+        "bajty": 57568,
         "content_type": "text/xml;charset=UTF-8"
       },
       "GET https://gcaptain.com/feed/": {
         "http": 200,
-        "bajty": 12057,
+        "bajty": 11919,
         "content_type": "application/rss+xml; charset=UTF-8"
       },
       "GET https://www.hellenicshippingnews.com/feed/": {
@@ -732,12 +650,12 @@
       },
       "GET https://www.northernminer.com/feed/": {
         "http": 200,
-        "bajty": 29926,
+        "bajty": 30140,
         "content_type": "application/rss+xml; charset=UTF-8"
       },
       "GET https://ws.finansavisen.no/sitemap/sitemap-articles-2026-11.xml": {
         "http": 200,
-        "bajty": 149775,
+        "bajty": 155861,
         "content_type": "application/xml"
       },
       "GET https://ws.finansavisen.no/sitemap/sitemap-articles-2026-10.xml": {
@@ -835,7 +753,7 @@
     "prasa": {
       "ok": true,
       "pozycji_w_kanalach": {
-        "bygg": 65,
+        "bygg": 68,
         "anlegg": 41,
         "estate": 85,
         "tu": 250,
@@ -853,12 +771,12 @@
         "gcaptain": 12,
         "hellenic_shipping": 20,
         "northernminer": 20,
-        "finansavisen": 2525,
+        "finansavisen": 2530,
         "offshore_mag": 0
       },
-      "wierszy_w_pliku": 6703,
-      "z_trafieniami": 557,
-      "najnowszy": "2026-11-02T15:51:30Z",
+      "wierszy_w_pliku": 6714,
+      "z_trafieniami": 560,
+      "najnowszy": "2026-11-02T17:00:08Z",
       "pominiete_celowo": "dn.no, e24.no (warunki portali zabraniaja automatycznego przetwarzania)",
       "zapis": "tytul, data, adres, trafienia; bez leadu i bez surowych kopii kanalow (0.7.0)"
     },
@@ -868,5 +786,5 @@
       "zasada": "w repo zadnych danych o autorach wpisow (nazwa, id profilu, awatar, opis, kraj)"
     }
   },
-  "zakonczenie_utc": "2026-11-02T15:56:44Z"
+  "zakonczenie_utc": "2026-11-02T17:15:23Z"
 }
