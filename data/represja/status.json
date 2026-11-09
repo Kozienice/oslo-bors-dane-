@@ -1,5 +1,5 @@
 {
- "uruchomienie_utc": "2026-11-02T13:27:12Z",
+ "uruchomienie_utc": "2026-11-09T13:51:05Z",
  "wersja_skryptu": "0.2",
  "serie": {
   "US_FED_GORNA": {
@@ -10,7 +10,7 @@
    "opis": "Fed: gorna granica przedzialu stopy funduszy federalnych, %",
    "http": 200,
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU",
-   "ostatnia_data": "2026-11-02",
+   "ostatnia_data": "2026-11-09",
    "ostatnia_wartosc": "4.00",
    "obserwacji": 400
   },
@@ -22,7 +22,7 @@
    "opis": "Fed: oprocentowanie rezerw bankow (IORB), %",
    "http": 200,
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=IORB",
-   "ostatnia_data": "2026-11-02",
+   "ostatnia_data": "2026-11-09",
    "ostatnia_wartosc": "3.90",
    "obserwacji": 400
   },
@@ -34,8 +34,8 @@
    "opis": "Fed: rezerwy bankow, mld USD (tygodniowo)",
    "http": 200,
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL",
-   "ostatnia_data": "2026-10-28",
-   "ostatnia_wartosc": "2893770",
+   "ostatnia_data": "2026-11-04",
+   "ostatnia_wartosc": "2930088",
    "obserwacji": 400
   },
   "US_10Y": {
@@ -46,8 +46,8 @@
    "opis": "USA: rentownosc obligacji 10Y, %",
    "http": 200,
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
-   "ostatnia_data": "2026-10-29",
-   "ostatnia_wartosc": "4.98",
+   "ostatnia_data": "2026-11-05",
+   "ostatnia_wartosc": "4.84",
    "obserwacji": 400
   },
   "US_10Y_REALNA": {
@@ -58,8 +58,8 @@
    "opis": "USA: realna rentownosc 10Y (TIPS), %",
    "http": 200,
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFII10",
-   "ostatnia_data": "2026-10-29",
-   "ostatnia_wartosc": "2.63",
+   "ostatnia_data": "2026-11-05",
+   "ostatnia_wartosc": "2.60",
    "obserwacji": 400
   },
   "US_CPI": {
@@ -83,7 +83,7 @@
    "http": 200,
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=USGSEC",
    "ostatnia_data": "2026-09-01",
-   "ostatnia_wartosc": "4783.6617",
+   "ostatnia_wartosc": "4783.6573",
    "obserwacji": 400
   },
   "US_BANKI_AKTYWA": {
@@ -94,8 +94,8 @@
    "opis": "USA: aktywa ogolem bankow komercyjnych, mld USD",
    "http": 200,
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=TLAACBW027SBOG",
-   "ostatnia_data": "2026-10-21",
-   "ostatnia_wartosc": "26080.1895",
+   "ostatnia_data": "2026-10-28",
+   "ostatnia_wartosc": "26076.3647",
    "obserwacji": 400
   },
   "NO_10Y_OECD": {
@@ -142,7 +142,7 @@
    "opis": "Norges Bank: stopa depozytowa (styringsrenten), %",
    "http": 200,
    "url": "https://data.norges-bank.no/api/data/IR/B.KPRA.SD.R?format=csv&lastNObservations=400&locale=en",
-   "ostatnia_data": "2026-10-30",
+   "ostatnia_data": "2026-11-06",
    "ostatnia_wartosc": "4.5",
    "obserwacji": 400
   },
@@ -154,8 +154,8 @@
    "opis": "Norwegia: rentownosc obligacji 10Y (Norges Bank), %",
    "http": 200,
    "url": "https://data.norges-bank.no/api/data/GOVT_GENERIC_RATES/B.10Y.GBON?format=csv&lastNObservations=400&locale=en",
-   "ostatnia_data": "2026-10-30",
-   "ostatnia_wartosc": "4.435",
+   "ostatnia_data": "2026-11-06",
+   "ostatnia_wartosc": "4.295",
    "obserwacji": 400
   },
   "EA_DFR": {
@@ -178,8 +178,8 @@
    "opis": "Strefa euro: krzywa AAA, 10Y, %",
    "http": 200,
    "url": "https://data-api.ecb.europa.eu/service/data/YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_10Y?format=csvdata&lastNObservations=400",
-   "ostatnia_data": "2026-10-30",
-   "ostatnia_wartosc": "3.3650469366",
+   "ostatnia_data": "2026-11-06",
+   "ostatnia_wartosc": "3.2855888131",
    "obserwacji": 400
   },
   "PL_10Y": {
@@ -250,9 +250,9 @@
    "opis": "Strefa euro: HICP r/r (Eurostat, ECOICOP ver.2, sklad zmienny), %",
    "http": 200,
    "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_minr?geo=NO&geo=PL&geo=EA&geo=EA21&geo=EA20&coicop18=TOTAL&unit=RCH_A&lang=EN&sinceTimePeriod=2015-01",
-   "ostatnia_data": "2026-09",
-   "ostatnia_wartosc": "3.8",
-   "obserwacji": 141
+   "ostatnia_data": "2026-10",
+   "ostatnia_wartosc": "4.0",
+   "obserwacji": 142
   },
   "PL_STOPY_NBP": {
    "ok": true,
@@ -265,32 +265,32 @@
   "data/represja/raw/fred/US_FED_GORNA.csv": {
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU",
    "http": 200,
-   "bajty": 104522,
-   "sha256": "3029614805f9e3d7ee7b22ad0c6378ce8b0e0da195f499a3168dd0efbc84dd7e"
+   "bajty": 104634,
+   "sha256": "2522d4955db3c8aaa981973704b857782127a579095e531dc7bfce38a35a0ed8"
   },
   "data/represja/raw/fred/US_IORB.csv": {
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=IORB",
    "http": 200,
-   "bajty": 30790,
-   "sha256": "d996dcdf8bfa776397394591abade4251858fdcb67fd2fdcea982887b08dcfd9"
+   "bajty": 30902,
+   "sha256": "451d55734ff34bd18b198f2d030782e49304a020d5bb6cc87c481810501f7274"
   },
   "data/represja/raw/fred/US_REZERWY.csv": {
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WRESBAL",
    "http": 200,
-   "bajty": 22898,
-   "sha256": "aced7bef4acab598d39436c5bf9649cffe5ebaa1cf8d5d9fe21825139656917f"
+   "bajty": 22917,
+   "sha256": "0b20e9ae2ac59d3b2f7e13c91d41daf72af7657d070dd1f0a381708ad98b25c4"
   },
   "data/represja/raw/fred/US_10Y.csv": {
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
    "http": 200,
-   "bajty": 269235,
-   "sha256": "55e2559ffdb30b8ed921b119935fa6b3893dde3d1ed26ddede33fb59895f0659"
+   "bajty": 269315,
+   "sha256": "b475ba7f607331389c112cdf0f3bfea981eaab609de34645b49dfd02e9797ea4"
   },
   "data/represja/raw/fred/US_10Y_REALNA.csv": {
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFII10",
    "http": 200,
-   "bajty": 99415,
-   "sha256": "c7367a06a914bb86c02974e37ef6d1979de31e78e88402af697640b85b41c791"
+   "bajty": 99495,
+   "sha256": "4a0fb7917211c53d08a09f61cc1ee1d2d98953ff99e94dbdfa7bfdf5cea3eff5"
   },
   "data/represja/raw/fred/US_CPI.csv": {
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL",
@@ -302,13 +302,13 @@
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=USGSEC",
    "http": 200,
    "bajty": 19110,
-   "sha256": "df12469546a08eff179bee18740e92580b6e5388a0bfc1bbc607b0fb585b0bd3"
+   "sha256": "6d5f3fe765781eb9309e0256315547eeea9b417129d7f4cdf2fcbfd9f7a80c77"
   },
   "data/represja/raw/fred/US_BANKI_AKTYWA.csv": {
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=TLAACBW027SBOG",
    "http": 200,
-   "bajty": 59802,
-   "sha256": "6604e7c9e78ee562cac4b76b84b88ef50840fdb79313a93c2f68653d975f99ea"
+   "bajty": 59824,
+   "sha256": "806b2f44371cf95150c6503724e50cbb7b6d527c0489b7154db040990265f089"
   },
   "data/represja/raw/fred/NO_10Y_OECD.csv": {
    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=IRLTLT01NOM156N",
@@ -332,13 +332,13 @@
    "url": "https://data.norges-bank.no/api/data/IR/B.KPRA.SD.R?format=csv&lastNObservations=400&locale=en",
    "http": 200,
    "bajty": 34431,
-   "sha256": "779f29642d42c4c41f3f15e2921156efe7bda0903a0631e4ee9e71f927132357"
+   "sha256": "a3b0162de06f4ca3192d337dd85290939fbe5cf3fa5ba577248b872e5ca5dcaa"
   },
   "data/represja/raw/norges/NO_10Y.csv": {
    "url": "https://data.norges-bank.no/api/data/GOVT_GENERIC_RATES/B.10Y.GBON?format=csv&lastNObservations=400&locale=en",
    "http": 200,
-   "bajty": 28457,
-   "sha256": "00b930d9a58295da2e7ef501115f75d6cf010c3892482d91396efb7a1f4fa5da"
+   "bajty": 28455,
+   "sha256": "ae00c5c0b9e4b4cbd54d46a8fa9385463c034efa7c695dbbb2ea46d8c2d79bcb"
   },
   "data/represja/raw/ecb/EA_DFR.csv": {
    "url": "https://data-api.ecb.europa.eu/service/data/FM/B.U2.EUR.4F.KR.DFR.LEV?format=csvdata&lastNObservations=400",
@@ -350,7 +350,7 @@
    "url": "https://data-api.ecb.europa.eu/service/data/YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_10Y?format=csvdata&lastNObservations=400",
    "http": 200,
    "bajty": 222808,
-   "sha256": "0b9ac7b85f3fb6e987f58591d348f4f2130dcc8bbdcbdb6ed5c71e73ffc55d17"
+   "sha256": "6360f4745b150184147ebee696dfd1dd52feb5747b27cc7ead07dfeda00bf2ff"
   },
   "data/represja/raw/ecb/PL_10Y.csv": {
    "url": "https://data-api.ecb.europa.eu/service/data/IRS/M.PL.L.L40.CI.0000.PLN.N.Z?format=csvdata&lastNObservations=400",
@@ -373,8 +373,8 @@
   "data/represja/raw/eurostat/prc_hicp_minr.json": {
    "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_minr?geo=NO&geo=PL&geo=EA&geo=EA21&geo=EA20&coicop18=TOTAL&unit=RCH_A&lang=EN&sinceTimePeriod=2015-01",
    "http": 200,
-   "bajty": 16377,
-   "sha256": "ba54d8b8054149d7fb3a2cfa91053eefce12341fcc0fb8b88c10844d2ad5001f"
+   "bajty": 16519,
+   "sha256": "c60d86718b79035a4534a515b1d64ac2ecc6f3a7b89de32e36ee64c516cc971d"
   },
   "data/represja/raw/nbp_stopy_procentowe.xml": {
    "url": "https://static.nbp.pl/dane/stopy/stopy_procentowe.xml",
