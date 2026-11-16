@@ -1,4 +1,4 @@
-# Oslo Bors - dane z 2026-11-16 18:10 CET (skrypt 0.7.0)
+# Oslo Bors - dane z 2026-11-17 00:29 CET (skrypt 0.7.0)
 
 Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie wpisano recznie.
 
@@ -10,7 +10,7 @@ Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie w
 - Kursy Yahoo: WYLACZONE od 2026-10-24 - warunki Yahoo zabraniaja automatycznego zbierania danych i ich rozpowszechniania (bufor bezpieczenstwa)
 - Rekomendacje (MarketScreener): WYLACZONE od 2026-10-24 - regulaminy Nordnet i MarketScreener zabraniaja automatycznego pobierania i redystrybucji (bufor bezpieczenstwa)
 - Shorty Finanstilsynet (klasa 1): OK, 104 spolek z pozycjami, 94 aktywnych pozycji, ostatnie zdarzenie 2026-11-13
-- Prasa (kanaly RSS i mapy artykulow, tytul + data + adres): OK, 9491 naglowkow w prasa.csv (773 z trafieniami); w kanalach: {'bygg': 64, 'anlegg': 32, 'estate': 61, 'tu': 241, 'shifter': 51, 'kyst': 94, 'ilaks': 12, 'offshore_energy': 50, 'anleggsmaskinen': 20, 'vegvesen': 50, 'boligprodusentene': 6, 'investornytt': 112, 'energiogklima': 25, 'byggmesteren': 0, 'fishfarmingexpert': 64, 'gcaptain': 12, 'hellenic_shipping': 20, 'northernminer': 20, 'finansavisen': 1276, 'offshore_mag': 0}
+- Prasa (kanaly RSS i mapy artykulow, tytul + data + adres): OK, 9543 naglowkow w prasa.csv (779 z trafieniami); w kanalach: {'bygg': 66, 'anlegg': 36, 'estate': 61, 'tu': 241, 'shifter': 51, 'kyst': 94, 'ilaks': 12, 'offshore_energy': 50, 'anleggsmaskinen': 20, 'vegvesen': 50, 'boligprodusentene': 6, 'investornytt': 112, 'energiogklima': 25, 'byggmesteren': 0, 'fishfarmingexpert': 64, 'gcaptain': 12, 'hellenic_shipping': 20, 'northernminer': 20, 'finansavisen': 1287, 'offshore_mag': 0}
 - Kontrola autorow: OK
 
 Pliki: prasa.csv, komunikaty.csv, waluty.csv, shorty.csv, shorty_pozycje.csv, shorty_historia.csv, fred/*_ostatnie.csv, raw/ (odpowiedzi zrodel danych: newsweb, Norges Bank, FRED, Finanstilsynet), status.json
