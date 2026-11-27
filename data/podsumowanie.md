@@ -1,4 +1,4 @@
-# Oslo Bors - dane z 2026-11-27 23:55 CET (skrypt 0.7.0)
+# Oslo Bors - dane z 2026-11-28 00:43 CET (skrypt 0.7.0)
 
 Plik wygenerowany automatycznie z danych w tym repozytorium. Zadnej liczby nie wpisano recznie.
 
